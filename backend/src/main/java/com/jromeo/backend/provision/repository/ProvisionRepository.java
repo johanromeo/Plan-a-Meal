@@ -1,4 +1,8 @@
 package com.jromeo.backend.provision.repository;
 
-public class ProvisionRepository {
+import com.jromeo.backend.provision.entity.ProvisionEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProvisionRepository extends JpaRepository<ProvisionEntity, Integer> {
+
 }
