@@ -2,7 +2,9 @@ package com.jromeo.backend.provision.mapper;
 
 import com.jromeo.backend.provision.dto.ProvisionDTO;
 import com.jromeo.backend.provision.entity.ProvisionEntity;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProvisionMapper {
 
     public ProvisionDTO mapToDTO(ProvisionEntity provisionEntity) {

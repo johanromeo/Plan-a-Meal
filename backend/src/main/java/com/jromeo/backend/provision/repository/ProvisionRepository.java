@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProvisionRepository extends JpaRepository<ProvisionEntity, Integer> {
 
+    ProvisionEntity findByName(String name);
+
 }
