@@ -40,4 +40,15 @@ public class ProvisionService {
 
         return provisionDTOs;
     }
+
+    public ProvisionDTO updateProvision(int id, ProvisionDTO provisionDTO) {
+        ProvisionEntity updatedProvisionEntity = provisionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("No provision with id" + id + " exists"));
+        updatedProvisionEntity.setName(provisionDTO.getName());
+        updatedProvisionEntity.setUnits(provisionDTO.getUnits());
+        updatedProvisionEntity.setAddedToGroceryShoppingList(provisionDTO.isAddedToGroceryShoppingList());
+
+        provisionRepository.save(updatedProvisionEntity);
+        return provisionMapper.mapToDTO(updatedProvisionEntity);
+    }
 }

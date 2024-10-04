@@ -30,4 +30,9 @@ public class ProvisionController {
     public List<ProvisionDTO> findAllProvisions() {
         return provisionService.findAllProvisions();
     }
+
+    @PutMapping("/{id}")
+    public ProvisionDTO updateProvision(@PathVariable int id, @RequestBody ProvisionDTO provisionDTO) {
+        return provisionService.updateProvision(id, provisionDTO);
+    }
 }
