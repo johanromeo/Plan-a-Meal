@@ -25,6 +25,13 @@ public class ProvisionService {
         provisionRepository.save(provisionEntity);
     }
 
+    public ProvisionDTO findProvisionById(int id) {
+        ProvisionEntity provisionEntity = provisionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("No provision with id " + id + " exists"));
+
+        return provisionMapper.mapToDTO(provisionEntity);
+    }
+
     public ProvisionDTO findProvisionByName(String name) {
         ProvisionEntity provisionEntity = provisionRepository.findByName(name);
         return provisionMapper.mapToDTO(provisionEntity);
@@ -42,13 +49,21 @@ public class ProvisionService {
     }
 
     public ProvisionDTO updateProvision(int id, ProvisionDTO provisionDTO) {
-        ProvisionEntity updatedProvisionEntity = provisionRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No provision with id" + id + " exists"));
-        updatedProvisionEntity.setName(provisionDTO.getName());
-        updatedProvisionEntity.setUnits(provisionDTO.getUnits());
-        updatedProvisionEntity.setAddedToGroceryShoppingList(provisionDTO.isAddedToGroceryShoppingList());
+        ProvisionEntity provisionEntity = provisionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("No provision with id " + id + " exists"));
+        provisionEntity.setName(provisionDTO.getName());
+        provisionEntity.setUnits(provisionDTO.getUnits());
+        provisionEntity.setAddedToGroceryShoppingList(provisionDTO.isAddedToGroceryShoppingList());
 
-        provisionRepository.save(updatedProvisionEntity);
-        return provisionMapper.mapToDTO(updatedProvisionEntity);
+        provisionRepository.save(provisionEntity);
+
+        return provisionMapper.mapToDTO(provisionEntity);
+    }
+
+    public void deleteProvisionById(int id) {
+        ProvisionEntity provisionEntity = provisionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("No provision with id" + id + " exists"));
+
+        provisionRepository.delete(provisionEntity);
     }
 }

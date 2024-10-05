@@ -9,11 +9,13 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ProvisionDTO {
 
+    private Integer id;
     private String name;
     private int units;
     private boolean addedToGroceryShoppingList;
 
-    public ProvisionDTO(String name, int units, boolean addedToGroceryShoppingList) {
+    public ProvisionDTO(Integer id,String name, int units, boolean addedToGroceryShoppingList) {
+        this.id = id;
         this.name = name;
         this.units = units;
         this.addedToGroceryShoppingList = addedToGroceryShoppingList;

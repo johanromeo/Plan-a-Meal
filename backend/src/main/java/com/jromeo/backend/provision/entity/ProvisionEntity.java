@@ -23,7 +23,8 @@ public class ProvisionEntity {
     @Column(name = "is_in_grocery_shopping_list")
     private boolean addedToGroceryShoppingList;
 
-    public ProvisionEntity(String name, int units, boolean addedToGroceryShoppingList) {
+    public ProvisionEntity(Integer id, String name, int units, boolean addedToGroceryShoppingList) {
+        this.id = id;
         this.name = name;
         this.units = units;
         this.addedToGroceryShoppingList = addedToGroceryShoppingList;

@@ -9,6 +9,7 @@ public class ProvisionMapper {
 
     public ProvisionDTO mapToDTO(ProvisionEntity provisionEntity) {
         ProvisionDTO  provisionDTO = new ProvisionDTO(
+                provisionEntity.getId(),
                 provisionEntity.getName(),
                 provisionEntity.getUnits(),
                 provisionEntity.isAddedToGroceryShoppingList()
@@ -19,6 +20,7 @@ public class ProvisionMapper {
 
     public ProvisionEntity mapToEntity(ProvisionDTO provisionDTO) {
         ProvisionEntity provisionEntity = new ProvisionEntity(
+                provisionDTO.getId(),
                 provisionDTO.getName(),
                 provisionDTO.getUnits(),
                 provisionDTO.isAddedToGroceryShoppingList()

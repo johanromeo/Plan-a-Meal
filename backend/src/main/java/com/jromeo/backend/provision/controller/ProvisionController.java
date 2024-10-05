@@ -21,6 +21,11 @@ public class ProvisionController {
         provisionService.addProvision(provisionDTO);
     }
 
+    @GetMapping("/{id}")
+    public ProvisionDTO findProvisionById(@PathVariable int id) {
+        return provisionService.findProvisionById(id);
+    }
+
     @GetMapping("/{name}")
     public ProvisionDTO findProvisionByName(@PathVariable String name) {
         return provisionService.findProvisionByName(name);
@@ -34,5 +39,10 @@ public class ProvisionController {
     @PutMapping("/{id}")
     public ProvisionDTO updateProvision(@PathVariable int id, @RequestBody ProvisionDTO provisionDTO) {
         return provisionService.updateProvision(id, provisionDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProvisionById(@PathVariable int id) {
+        provisionService.deleteProvisionById(id);
     }
 }
