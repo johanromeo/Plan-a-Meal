@@ -1,6 +1,7 @@
 package com.jromeo.backend.provision.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,23 +11,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class ProvisionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "provision_id")
+    @Column(name = "id")
     private Integer id;
     @Column(name = "provision_name", unique = true)
     private String name;
     @Column(name = "number_of_units")
     private int units;
-    @Column(name = "is_in_grocery_shopping_list")
+    @Column(name = "in_grocery_shopping_list")
     private boolean addedToGroceryShoppingList;
-
-    public ProvisionEntity(Integer id, String name, int units, boolean addedToGroceryShoppingList) {
-        this.id = id;
-        this.name = name;
-        this.units = units;
-        this.addedToGroceryShoppingList = addedToGroceryShoppingList;
-    }
 }
