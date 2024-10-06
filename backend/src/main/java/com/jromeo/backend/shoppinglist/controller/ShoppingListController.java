@@ -16,6 +16,7 @@ public class ShoppingListController {
         this.shoppingListService = shoppingListService;
     }
 
+    // Method just to try out sql query
     @GetMapping("/generate-list")
     public ShoppingListDTO generateGroceryShoppingList() {
         return shoppingListService.addProvisionsToGroceryShoppingList();
