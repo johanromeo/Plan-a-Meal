@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -14,5 +15,5 @@ import java.util.List;
 @AllArgsConstructor
 public class ShoppingListDTO {
 
-    private List<ProvisionDTO> provisionsToShoppingList;
+    private List<ProvisionDTO> provisionsToShoppingList = new ArrayList<>();
 }

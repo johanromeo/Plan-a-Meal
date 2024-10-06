@@ -1,12 +1,10 @@
 package com.jromeo.backend.shoppinglist.controller;
 
-import com.jromeo.backend.provision.dto.ProvisionDTO;
+import com.jromeo.backend.shoppinglist.dto.ShoppingListDTO;
 import com.jromeo.backend.shoppinglist.service.ShoppingListService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/shopping-list")
@@ -19,7 +17,7 @@ public class ShoppingListController {
     }
 
     @GetMapping("/generate-list")
-    public List<ProvisionDTO> getShoppingList() {
+    public ShoppingListDTO getShoppingList() {
         return shoppingListService.addProvisionsToGroceryShoppingList();
     }
 }
