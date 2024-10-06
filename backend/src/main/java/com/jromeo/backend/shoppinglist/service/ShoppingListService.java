@@ -22,17 +22,16 @@ public class ShoppingListService {
     }
 
     public ShoppingListDTO addProvisionsToGroceryShoppingList() {
-        List<ProvisionEntity> provisionsToBeAdded = provisionRepository.addProvisionToShoppingList();
-        List<ProvisionDTO> dtos = new ArrayList<>();
+        List<ProvisionEntity> provisionEntities = provisionRepository.addProvisionToShoppingList();
+        List<ProvisionDTO> provisionDTOs = new ArrayList<>();
 
-        for (ProvisionEntity provisionEntity : provisionsToBeAdded) {
-            dtos.add(provisionMapper.mapToDTO(provisionEntity));
+        for (ProvisionEntity provisionEntity : provisionEntities) {
+            provisionDTOs.add(provisionMapper.mapToDTO(provisionEntity));
         }
 
-        ShoppingListDTO list = new ShoppingListDTO();
-        list.setProvisionsToShoppingList(dtos);
+        ShoppingListDTO provisionsToGroceryShoppingList = new ShoppingListDTO();
+        provisionsToGroceryShoppingList.setProvisionsToShoppingList(provisionDTOs);
 
-
-        return list;
+        return provisionsToGroceryShoppingList;
     }
 }

@@ -17,7 +17,7 @@ public class ShoppingListController {
     }
 
     @GetMapping("/generate-list")
-    public ShoppingListDTO getShoppingList() {
+    public ShoppingListDTO generateGroceryShoppingList() {
         return shoppingListService.addProvisionsToGroceryShoppingList();
     }
 }
