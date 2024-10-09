@@ -21,7 +21,7 @@ public class ShoppingListService {
         this.provisionMapper = provisionMapper;
     }
 
-    public ShoppingListDTO addProvisionsToGroceryShoppingList() {
+    public ShoppingListDTO addProvisionsToShoppingList() {
         List<ProvisionEntity> provisionEntities = provisionRepository.addProvisionToShoppingList();
         List<ProvisionDTO> provisionDTOs = new ArrayList<>();
 
