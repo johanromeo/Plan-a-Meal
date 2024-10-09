@@ -6,7 +6,6 @@ import com.jromeo.backend.provision.mapper.ProvisionMapper;
 import com.jromeo.backend.provision.repository.ProvisionRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,6 +21,7 @@ public class ProvisionService {
 
     public void addProvision(ProvisionDTO provisionDTO) {
         ProvisionEntity provisionEntity = provisionMapper.mapToEntity(provisionDTO);
+
         provisionRepository.save(provisionEntity);
     }
 
@@ -34,18 +34,14 @@ public class ProvisionService {
 
     public ProvisionDTO findProvisionByName(String name) {
         ProvisionEntity provisionEntity = provisionRepository.findByName(name);
+
         return provisionMapper.mapToDTO(provisionEntity);
     }
 
     public List<ProvisionDTO> findAllProvisions() {
         List<ProvisionEntity> provisionEntities = provisionRepository.findAll();
-        List<ProvisionDTO> provisionDTOs = new ArrayList<>();
 
-        for(ProvisionEntity provision : provisionEntities) {
-            provisionDTOs.add(provisionMapper.mapToDTO(provision));
-        }
-
-        return provisionDTOs;
+        return provisionMapper.mapToDTOs(provisionEntities);
     }
 
     public ProvisionDTO updateProvision(int id, ProvisionDTO provisionDTO) {
@@ -53,7 +49,7 @@ public class ProvisionService {
                 .orElseThrow(() -> new RuntimeException("No provision with id " + id + " exists"));
         provisionEntity.setName(provisionDTO.getName());
         provisionEntity.setUnits(provisionDTO.getUnits());
-        provisionEntity.setAddedToGroceryShoppingList(provisionDTO.isAddedToGroceryShoppingList());
+        provisionEntity.setAddedToGroceryShoppingList(provisionDTO.isAddedToShoppingList());
 
         provisionRepository.save(provisionEntity);
 

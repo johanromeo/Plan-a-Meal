@@ -14,5 +14,5 @@ public class ProvisionDTO {
     private Integer id;
     private String name;
     private int units;
-    private boolean addedToGroceryShoppingList;
+    private boolean addedToShoppingList;
 }
