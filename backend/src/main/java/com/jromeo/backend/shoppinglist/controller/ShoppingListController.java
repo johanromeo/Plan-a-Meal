@@ -1,24 +1,24 @@
 package com.jromeo.backend.shoppinglist.controller;
 
-import com.jromeo.backend.shoppinglist.dto.ShoppingListDTO;
-import com.jromeo.backend.shoppinglist.service.ShoppingListService;
+import com.jromeo.backend.shoppinglist.service.DocumentGeneratorService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/shopping-list")
 public class ShoppingListController {
 
-    private final ShoppingListService shoppingListService;
+    private final DocumentGeneratorService documentGeneratorService;
 
-    public ShoppingListController(ShoppingListService shoppingListService) {
-        this.shoppingListService = shoppingListService;
+    public ShoppingListController(DocumentGeneratorService documentGeneratorService) {
+        this.documentGeneratorService = documentGeneratorService;
     }
 
-    // Method just to try out sql query
     @GetMapping("/generate-list")
-    public ShoppingListDTO generateShoppingList() {
-        return shoppingListService.addProvisionsToShoppingList();
+    public void generateShoppingList() throws IOException {
+        documentGeneratorService.createShoppingListDocx();
     }
 }
