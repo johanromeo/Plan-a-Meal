@@ -44,6 +44,12 @@ public class ProvisionService {
         return provisionMapper.mapToDTOs(provisionEntities);
     }
 
+    public List<ProvisionDTO> findAllPositiveProvisions() {
+        List<ProvisionEntity> provisionEntities = provisionRepository.findAllPositiveProvisions();
+
+        return provisionMapper.mapToDTOs(provisionEntities);
+    }
+
     public ProvisionDTO updateProvision(int id, ProvisionDTO provisionDTO) {
         ProvisionEntity provisionEntity = provisionRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("No provision with id " + id + " exists"));

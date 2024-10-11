@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/provision")
+@RequestMapping("/provisions")
 public class ProvisionController {
 
     private final ProvisionService provisionService;

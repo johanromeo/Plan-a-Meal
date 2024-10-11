@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
-public class ChatGptRequestBuilder {
+public class RequestBuilder {
     @JsonProperty("model")
     private final String model;
     @JsonProperty("messages")

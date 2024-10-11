@@ -10,14 +10,20 @@ import java.util.List;
 @Repository
 public interface ProvisionRepository extends JpaRepository<ProvisionEntity, Integer> {
 
-    @Query(
-            value = "SELECT * FROM provisions " +
-                    "WHERE number_of_units = 0 " +
-                    "AND in_grocery_shopping_list = true",
+    @Query(value =
+            "SELECT * FROM provisions " +
+            "WHERE number_of_units = 0 " +
+            "AND in_grocery_shopping_list = true",
             nativeQuery = true
     )
     List<ProvisionEntity> addProvisionToShoppingList();
 
     ProvisionEntity findByName(String name);
+
+    @Query(value =
+            "SELECT * FROM provisions " +
+            "WHERE number_of_units > 0",
+            nativeQuery = true)
+    List<ProvisionEntity> findAllPositiveProvisions();
 
 }
