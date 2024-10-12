@@ -1,7 +1,7 @@
 package com.jromeo.backend.openai.chatgpt.recipe.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.jromeo.backend.openai.chatgpt.RecipeDto;
+import com.jromeo.backend.openai.chatgpt.recipe.dto.RecipeDto;
 import com.jromeo.backend.openai.chatgpt.recipe.dto.RecipeInstructionDto;
 import com.jromeo.backend.openai.chatgpt.recipe.service.RecipeService;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,7 @@
 package com.jromeo.backend.shoppinglist.service;
 
-import com.jromeo.backend.provision.dto.ProvisionDTO;
-import com.jromeo.backend.shoppinglist.dto.ShoppingListDTO;
+import com.jromeo.backend.provision.dto.ProvisionDto;
+import com.jromeo.backend.shoppinglist.dto.ShoppingListDto;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedWriter;
@@ -27,14 +27,14 @@ public class DocumentGeneratorService {
         File file = new File("shopping-list.txt");
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
-        ShoppingListDTO shoppingListDTO = shoppingListService.addProvisionsToShoppingList();
-        List<ProvisionDTO> provisions = shoppingListDTO.getProvisionsToShoppingList();
+        ShoppingListDto shoppingListDTO = shoppingListService.addProvisionsToShoppingList();
+        List<ProvisionDto> provisions = shoppingListDTO.getProvisionsToShoppingList();
 
         writer.write(SHOPPING_LIST_BEGINNING);
         writer.newLine();
         writer.write(SHOPPING_LIST_LINE_BREAK);
         writer.newLine();
-        for (ProvisionDTO provision : provisions) {
+        for (ProvisionDto provision : provisions) {
             writer.write(provision.getName());
             writer.newLine();
         }

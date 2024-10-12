@@ -1,6 +1,6 @@
 package com.jromeo.backend.provision.controller;
 
-import com.jromeo.backend.provision.dto.ProvisionDTO;
+import com.jromeo.backend.provision.dto.ProvisionDto;
 import com.jromeo.backend.provision.service.ProvisionService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,27 +17,27 @@ public class ProvisionController {
     }
 
     @PostMapping
-    public void addProvision(@RequestBody ProvisionDTO provisionDTO) {
+    public void addProvision(@RequestBody ProvisionDto provisionDTO) {
         provisionService.addProvision(provisionDTO);
     }
 
     @GetMapping("/{id}")
-    public ProvisionDTO findProvisionById(@PathVariable int id) {
+    public ProvisionDto findProvisionById(@PathVariable int id) {
         return provisionService.findProvisionById(id);
     }
 
     @GetMapping("/{name}")
-    public ProvisionDTO findProvisionByName(@PathVariable String name) {
+    public ProvisionDto findProvisionByName(@PathVariable String name) {
         return provisionService.findProvisionByName(name);
     }
 
     @GetMapping
-    public List<ProvisionDTO> findAllProvisions() {
+    public List<ProvisionDto> findAllProvisions() {
         return provisionService.findAllProvisions();
     }
 
     @PutMapping("/{id}")
-    public ProvisionDTO updateProvision(@PathVariable int id, @RequestBody ProvisionDTO provisionDTO) {
+    public ProvisionDto updateProvision(@PathVariable int id, @RequestBody ProvisionDto provisionDTO) {
         return provisionService.updateProvision(id, provisionDTO);
     }
 

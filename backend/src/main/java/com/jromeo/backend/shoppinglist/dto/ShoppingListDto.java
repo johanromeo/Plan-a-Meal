@@ -1,6 +1,6 @@
 package com.jromeo.backend.shoppinglist.dto;
 
-import com.jromeo.backend.provision.dto.ProvisionDTO;
+import com.jromeo.backend.provision.dto.ProvisionDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShoppingListDTO {
+public class ShoppingListDto {
 
-    private List<ProvisionDTO> provisionsToShoppingList = new ArrayList<>();
+    private List<ProvisionDto> provisionsToShoppingList = new ArrayList<>();
 }

@@ -3,10 +3,10 @@ package com.jromeo.backend.openai.chatgpt.recipe.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jromeo.backend.openai.chatgpt.RecipeDto;
+import com.jromeo.backend.openai.chatgpt.recipe.dto.RecipeDto;
 import com.jromeo.backend.openai.chatgpt.recipe.dto.RecipeInstructionDto;
 import com.jromeo.backend.openai.chatgpt.recipe.dto.RequestBuilderDto;
-import com.jromeo.backend.provision.dto.ProvisionDTO;
+import com.jromeo.backend.provision.dto.ProvisionDto;
 import com.jromeo.backend.provision.service.ProvisionService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -78,9 +78,9 @@ public class RecipeService {
         RequestBuilderDto.Message userMessage = new RequestBuilderDto.Message();
         userMessage.setRole("user");
 
-        List<ProvisionDTO> setProvisionsAsContent = provisionService.findAllPositiveProvisions();
+        List<ProvisionDto> setProvisionsAsContent = provisionService.findAllPositiveProvisions();
         StringBuilder separatedProvisions = new StringBuilder();
-        for (ProvisionDTO provisionDTO : setProvisionsAsContent) {
+        for (ProvisionDto provisionDTO : setProvisionsAsContent) {
             separatedProvisions.append(provisionDTO.getName()).append(", ");
         }
         userMessage.setContent(separatedProvisions.toString());

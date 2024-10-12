@@ -1,4 +1,4 @@
-package com.jromeo.backend.openai.chatgpt;
+package com.jromeo.backend.openai.chatgpt.recipe.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

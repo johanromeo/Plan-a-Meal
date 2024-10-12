@@ -3,7 +3,7 @@ package com.jromeo.backend.shoppinglist.service;
 import com.jromeo.backend.provision.entity.ProvisionEntity;
 import com.jromeo.backend.provision.mapper.ProvisionMapper;
 import com.jromeo.backend.provision.repository.ProvisionRepository;
-import com.jromeo.backend.shoppinglist.dto.ShoppingListDTO;
+import com.jromeo.backend.shoppinglist.dto.ShoppingListDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,12 +19,12 @@ public class ShoppingListService {
         this.provisionMapper = provisionMapper;
     }
 
-    public ShoppingListDTO addProvisionsToShoppingList() {
+    public ShoppingListDto addProvisionsToShoppingList() {
         List<ProvisionEntity> provisionEntities = provisionRepository.addProvisionToShoppingList();
 
-        ShoppingListDTO provisionsToShoppingList = new ShoppingListDTO();
+        ShoppingListDto provisionsToShoppingList = new ShoppingListDto();
 
-        provisionsToShoppingList.setProvisionsToShoppingList(provisionMapper.mapToDTOs(provisionEntities));
+        provisionsToShoppingList.setProvisionsToShoppingList(provisionMapper.mapToDtos(provisionEntities));
 
         return provisionsToShoppingList;
     }
