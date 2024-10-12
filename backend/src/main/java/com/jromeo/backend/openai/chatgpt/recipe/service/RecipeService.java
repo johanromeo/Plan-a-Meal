@@ -70,6 +70,7 @@ public class RecipeService {
                 }'
                 Do not include any additional text or explanations outside of the JSON structure.
                 """;
+
         String content = String.format(instructions, land, mealType, minutes, language);
 
         RequestBuilderDto.Message systemMessage = new RequestBuilderDto.Message();
