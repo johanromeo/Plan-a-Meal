@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jromeo.backend.openai.chatgpt.recipe.dto.RecipeDto;
 import com.jromeo.backend.openai.chatgpt.recipe.dto.RecipeInstructionDto;
 import com.jromeo.backend.openai.chatgpt.recipe.dto.RequestBuilderDto;
+import com.jromeo.backend.openai.chatgpt.recipe.mapper.RecipeMapper;
+import com.jromeo.backend.openai.chatgpt.recipe.repository.RecipeRepository;
 import com.jromeo.backend.provision.dto.ProvisionDto;
 import com.jromeo.backend.provision.service.ProvisionService;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,10 +25,14 @@ public class RecipeService {
 
     private final RestTemplate restTemplate;
     private final ProvisionService provisionService;
+    private final RecipeMapper recipeMapper;
+    private final RecipeRepository recipeRepository;
 
-    public RecipeService(RestTemplate restTemplate, ProvisionService provisionService) {
+    public RecipeService(RestTemplate restTemplate, ProvisionService provisionService, RecipeMapper recipeMapper, RecipeRepository recipeRepository) {
         this.restTemplate = restTemplate;
         this.provisionService = provisionService;
+        this.recipeMapper = recipeMapper;
+        this.recipeRepository = recipeRepository;
     }
 
     public RecipeDto generateRecipe(RecipeInstructionDto systemPromptDTO) throws JsonProcessingException {
@@ -38,12 +44,15 @@ public class RecipeService {
 
         HttpEntity<RequestBuilderDto> requestEntity = buildRecipeRequest(systemPromptDTO, headers);
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper objectMapper = new ObjectMapper();
 
-        JsonNode rootNode = mapper.readTree(response.getBody());
+        JsonNode rootNode = objectMapper.readTree(response.getBody());
         String content = rootNode.path("choices").get(0).path("message").path("content").asText();
 
-        return mapper.readValue(content, RecipeDto.class);
+        RecipeDto recipeDto = objectMapper.readValue(content, RecipeDto.class);
+        recipeRepository.save(recipeMapper.mapToEntity(recipeDto));
+
+        return recipeDto;
     }
 
     private HttpEntity<RequestBuilderDto> buildRecipeRequest(RecipeInstructionDto systemPrompt, HttpHeaders headers) {
