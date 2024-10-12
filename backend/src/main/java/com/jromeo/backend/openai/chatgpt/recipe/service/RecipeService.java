@@ -1,8 +1,11 @@
-package com.jromeo.backend.openai.chatgpt;
+package com.jromeo.backend.openai.chatgpt.recipe.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jromeo.backend.openai.chatgpt.RecipeDto;
+import com.jromeo.backend.openai.chatgpt.recipe.dto.RecipeInstructionDto;
+import com.jromeo.backend.openai.chatgpt.recipe.dto.RequestBuilderDto;
 import com.jromeo.backend.provision.dto.ProvisionDTO;
 import com.jromeo.backend.provision.service.ProvisionService;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,9 +15,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-//TODO: Logger
 @Service
-public class ApiService {
+public class RecipeService {
 
     @Value("${openai.api-key}")
     private String apiKey;
@@ -22,30 +24,29 @@ public class ApiService {
     private final RestTemplate restTemplate;
     private final ProvisionService provisionService;
 
-    public ApiService(RestTemplate restTemplate, ProvisionService provisionService) {
+    public RecipeService(RestTemplate restTemplate, ProvisionService provisionService) {
         this.restTemplate = restTemplate;
         this.provisionService = provisionService;
     }
 
-    public Recipe generateRecipe(RecipeSystemPromptDTO systemPromptDTO) throws JsonProcessingException {
+    public RecipeDto generateRecipe(RecipeInstructionDto systemPromptDTO) throws JsonProcessingException {
         final String url = "https://api.openai.com/v1/chat/completions";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(apiKey);
 
-        HttpEntity<RequestBuilder> requestEntity = buildRecipeRequest(systemPromptDTO, headers);
+        HttpEntity<RequestBuilderDto> requestEntity = buildRecipeRequest(systemPromptDTO, headers);
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
         ObjectMapper mapper = new ObjectMapper();
 
         JsonNode rootNode = mapper.readTree(response.getBody());
         String content = rootNode.path("choices").get(0).path("message").path("content").asText();
 
-        return mapper.readValue(content, Recipe.class);
+        return mapper.readValue(content, RecipeDto.class);
     }
 
-    //TODO:
-    private HttpEntity<RequestBuilder> buildRecipeRequest(RecipeSystemPromptDTO systemPrompt, HttpHeaders headers) {
+    private HttpEntity<RequestBuilderDto> buildRecipeRequest(RecipeInstructionDto systemPrompt, HttpHeaders headers) {
         // 1: %s
         String land = systemPrompt.getFoodCulture();
         // 2: %s
@@ -58,7 +59,7 @@ public class ApiService {
                 You are a master chef from %s.
                 You must generate a %s recipe based solely on the user's provided content.
                 The recipe should take %d minutes to complete.
-                You must write the response in %s.
+                You must answer in %s.
                 You must come up with a suitable "title" and list all of the "instructions" chronologically.
                 Your response will be in a JSON format structured like this:
                 '{
@@ -71,10 +72,10 @@ public class ApiService {
                 """;
         String content = String.format(instructions, land, mealType, minutes, language);
 
-        RequestBuilder.Message systemMessage = new RequestBuilder.Message();
+        RequestBuilderDto.Message systemMessage = new RequestBuilderDto.Message();
         systemMessage.setRole("system");
         systemMessage.setContent(content);
-        RequestBuilder.Message userMessage = new RequestBuilder.Message();
+        RequestBuilderDto.Message userMessage = new RequestBuilderDto.Message();
         userMessage.setRole("user");
 
         List<ProvisionDTO> setProvisionsAsContent = provisionService.findAllPositiveProvisions();
@@ -84,10 +85,10 @@ public class ApiService {
         }
         userMessage.setContent(separatedProvisions.toString());
 
-        RequestBuilder.ResponseFormat responseFormat = new RequestBuilder.ResponseFormat();
+        RequestBuilderDto.ResponseFormat responseFormat = new RequestBuilderDto.ResponseFormat();
         responseFormat.setType("json_object");
 
-        RequestBuilder builder = RequestBuilder.builder()
+        RequestBuilderDto builder = RequestBuilderDto.builder()
                 .model("gpt-3.5-turbo")
                 .message(List.of(systemMessage, userMessage))
                 .responseFormat(responseFormat)

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Recipe {
+public class RecipeDto {
     @JsonProperty("title")
     private String title;
     @JsonProperty("instructions")

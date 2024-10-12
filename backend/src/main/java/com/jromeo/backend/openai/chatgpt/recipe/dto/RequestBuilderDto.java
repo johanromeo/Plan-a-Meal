@@ -1,4 +1,4 @@
-package com.jromeo.backend.openai.chatgpt;
+package com.jromeo.backend.openai.chatgpt.recipe.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
-public class RequestBuilder {
+public class RequestBuilderDto {
     @JsonProperty("model")
     private final String model;
     @JsonProperty("messages")
