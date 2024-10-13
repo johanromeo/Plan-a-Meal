@@ -6,6 +6,7 @@ import com.jromeo.backend.openai.chatgpt.recipe.mapper.RecipeMapper;
 import com.jromeo.backend.openai.chatgpt.recipe.repository.RecipeRepository;
 import com.jromeo.backend.openai.chatgpt.recipe.service.ChatGptApi;
 import com.jromeo.backend.openai.chatgpt.request.RequestBuilderDto;
+import com.jromeo.backend.openai.chatgpt.request.RequestBuilderDto.ModelType;
 import com.jromeo.backend.openai.chatgpt.request.RequestMessage;
 import com.jromeo.backend.openai.chatgpt.request.RequestMessage.Role;
 import com.jromeo.backend.openai.chatgpt.request.RequestResponseFormat;
@@ -42,22 +43,19 @@ public class RecipeService {
                 Role.SYSTEM,
                 systemPrompt
         );
-
         // User specific prompts and settings
         String provisions = promptBuilder.buildUserPrompt(provisionService.findAllPositiveProvisions());
         RequestMessage userMessage = new RequestMessage(
                 Role.USER,
                 provisions
         );
-
         // Response as JSON, later to be mapped to RecipeDto
         RequestResponseFormat jsonAsResponseFormat = new RequestResponseFormat(
                 FormatType.JSON_OBJECT
         );
-
         // Build the prompt
         RequestBuilderDto requestBuilderBody = new RequestBuilderDto(
-                "gpt-3.5-turbo",
+                ModelType.GPT_3_5_TURBO,
                 List.of(systemMessage, userMessage),
                 jsonAsResponseFormat
         );
@@ -65,7 +63,6 @@ public class RecipeService {
         String responseBody = api.callChatGptApi(requestBuilderBody);
 
         RecipeDto recipeDto = parser.parseResponse(responseBody);
-
         // Should be in separate service class
         recipeRepository.save(recipeMapper.mapToEntity(recipeDto));
 

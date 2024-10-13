@@ -11,10 +11,14 @@ import java.util.List;
 @AllArgsConstructor
 public class RequestBuilderDto {
     @JsonProperty("model")
-    private final String model;
+    private final ModelType model;
     @JsonProperty("messages")
     private final List<RequestMessage> message;
     @JsonProperty("response_format")
     private final RequestResponseFormat responseFormat;
 
+    public enum ModelType {
+        @JsonProperty("gpt-3.5-turbo")
+        GPT_3_5_TURBO
+    }
 }
