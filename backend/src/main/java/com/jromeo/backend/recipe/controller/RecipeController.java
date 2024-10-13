@@ -1,9 +1,9 @@
-package com.jromeo.backend.openai.chatgpt.recipe.controller;
+package com.jromeo.backend.recipe.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.jromeo.backend.openai.chatgpt.recipe.RecipeInstructionDto;
-import com.jromeo.backend.openai.chatgpt.recipe.RecipeService;
-import com.jromeo.backend.openai.chatgpt.recipe.dto.RecipeDto;
+import com.jromeo.backend.recipe.dto.RecipeInstructionDto;
+import com.jromeo.backend.recipe.service.RecipeService;
+import com.jromeo.backend.recipe.dto.RecipeDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -5,6 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Class is responsible for setting the role and content for OpenAI's chat completion.<br>
+ * A part of {@link RequestBuilder}.
+ *
+ * @author Johan Romeo
+ */
 @Getter
 @Setter
 @AllArgsConstructor

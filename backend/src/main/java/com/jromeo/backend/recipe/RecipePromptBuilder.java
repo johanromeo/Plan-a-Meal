@@ -1,6 +1,7 @@
-package com.jromeo.backend.openai.chatgpt.recipe;
+package com.jromeo.backend.recipe;
 
 import com.jromeo.backend.provision.dto.ProvisionDto;
+import com.jromeo.backend.recipe.dto.RecipeInstructionDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -9,7 +10,6 @@ import java.util.List;
 public class RecipePromptBuilder {
 
     public String buildSystemPrompt(RecipeInstructionDto instructions) {
-        // This is the system prompt and should be separated
         // 1: %s
         String land = instructions.getFoodCulture();
         // 2: %s

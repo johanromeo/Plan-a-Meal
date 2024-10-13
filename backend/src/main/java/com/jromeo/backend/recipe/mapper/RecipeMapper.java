@@ -1,10 +1,10 @@
-package com.jromeo.backend.openai.chatgpt.recipe.mapper;
+package com.jromeo.backend.recipe.mapper;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jromeo.backend.openai.chatgpt.recipe.dto.RecipeDto;
-import com.jromeo.backend.openai.chatgpt.recipe.entity.RecipeEntity;
+import com.jromeo.backend.recipe.dto.RecipeDto;
+import com.jromeo.backend.recipe.entity.RecipeEntity;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;

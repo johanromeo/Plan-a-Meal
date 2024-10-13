@@ -1,4 +1,4 @@
-package com.jromeo.backend.openai.chatgpt.recipe;
+package com.jromeo.backend.recipe.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

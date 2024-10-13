@@ -6,10 +6,15 @@ import lombok.*;
 import java.util.List;
 
 
+/**
+ * Class responsible for building an OpenAI chat completion request.
+ *
+ * @author Johan Romeo
+ */
 @Getter
 @Setter
 @AllArgsConstructor
-public class RequestBuilderDto {
+public class RequestBuilder {
     @JsonProperty("model")
     private final ModelType model;
     @JsonProperty("messages")

@@ -1,12 +1,15 @@
-package com.jromeo.backend.openai.chatgpt.recipe;
+package com.jromeo.backend.recipe.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.jromeo.backend.openai.chatgpt.recipe.dto.RecipeDto;
-import com.jromeo.backend.openai.chatgpt.recipe.mapper.RecipeMapper;
-import com.jromeo.backend.openai.chatgpt.recipe.repository.RecipeRepository;
-import com.jromeo.backend.openai.chatgpt.recipe.service.ChatGptApi;
-import com.jromeo.backend.openai.chatgpt.request.RequestBuilderDto;
-import com.jromeo.backend.openai.chatgpt.request.RequestBuilderDto.ModelType;
+import com.jromeo.backend.recipe.dto.RecipeInstructionDto;
+import com.jromeo.backend.recipe.RecipePromptBuilder;
+import com.jromeo.backend.recipe.RecipeResponseParser;
+import com.jromeo.backend.recipe.dto.RecipeDto;
+import com.jromeo.backend.recipe.mapper.RecipeMapper;
+import com.jromeo.backend.recipe.repository.RecipeRepository;
+import com.jromeo.backend.openai.chatgpt.api.ChatGptApi;
+import com.jromeo.backend.openai.chatgpt.request.RequestBuilder;
+import com.jromeo.backend.openai.chatgpt.request.RequestBuilder.ModelType;
 import com.jromeo.backend.openai.chatgpt.request.RequestMessage;
 import com.jromeo.backend.openai.chatgpt.request.RequestMessage.Role;
 import com.jromeo.backend.openai.chatgpt.request.RequestResponseFormat;
@@ -54,7 +57,7 @@ public class RecipeService {
                 FormatType.JSON_OBJECT
         );
         // Build the prompt
-        RequestBuilderDto requestBuilderBody = new RequestBuilderDto(
+        RequestBuilder requestBuilderBody = new RequestBuilder(
                 ModelType.GPT_3_5_TURBO,
                 List.of(systemMessage, userMessage),
                 jsonAsResponseFormat

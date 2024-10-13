@@ -1,4 +1,4 @@
-package com.jromeo.backend.openai.chatgpt.recipe.entity;
+package com.jromeo.backend.recipe.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,12 +1,17 @@
-package com.jromeo.backend.openai.chatgpt.recipe.service;
+package com.jromeo.backend.openai.chatgpt.api;
 
-import com.jromeo.backend.openai.chatgpt.request.RequestBuilderDto;
+import com.jromeo.backend.openai.chatgpt.request.RequestBuilder;
 import com.jromeo.backend.provision.service.ProvisionService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * Class responsible for calling OpenAI's Chat completions API.
+ *
+ * @author Johan Romeo
+ */
 @Service
 public class ChatGptApi {
 
@@ -23,12 +28,17 @@ public class ChatGptApi {
         this.provisionService = provisionService;
     }
 
-    public String callChatGptApi(RequestBuilderDto requestBuilderDto) {
+    /**
+     * Call OpenAI's chat completions URL with provided api key and a customizable request.
+     * @param requestBuilder {@link RequestBuilder} - Blueprint for building the API request body.
+     * @return
+     */
+    public String callChatGptApi(RequestBuilder requestBuilder) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(apiKey);
 
-        HttpEntity<RequestBuilderDto> requestEntity = new HttpEntity<>(requestBuilderDto, headers);
+        HttpEntity<RequestBuilder> requestEntity = new HttpEntity<>(requestBuilder, headers);
         ResponseEntity<String> response = restTemplate.exchange(chatgptUrl, HttpMethod.POST, requestEntity, String.class);
 
         return response.getBody();

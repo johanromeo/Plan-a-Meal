@@ -6,6 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Class to represent a table of provision entities in MySQL database.
+ *
+ * @author Johan Romeo
+ */
 @Entity
 @Table(name = "provisions")
 @Getter

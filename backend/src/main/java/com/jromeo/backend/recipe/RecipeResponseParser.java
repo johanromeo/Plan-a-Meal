@@ -1,9 +1,9 @@
-package com.jromeo.backend.openai.chatgpt.recipe;
+package com.jromeo.backend.recipe;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jromeo.backend.openai.chatgpt.recipe.dto.RecipeDto;
+import com.jromeo.backend.recipe.dto.RecipeDto;
 import org.springframework.stereotype.Component;
 
 @Component
