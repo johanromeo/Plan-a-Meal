@@ -64,10 +64,9 @@ public class RecipeService {
         // Parse API response
         RecipeDto recipeDto = parser.parseResponse(responseBody);
 
-
         // Should be in separate service class
         recipeRepository.save(recipeMapper.mapToEntity(recipeDto));
-//
+
         return recipeDto;
     }
 }

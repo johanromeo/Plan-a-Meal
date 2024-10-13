@@ -31,7 +31,5 @@ public class RequestBuilderDto {
     public static class ResponseFormat {
         @JsonProperty("type")
         private String type;
-//        @JsonProperty("json_object")
-//        private String jsonObject;
     }
 }
