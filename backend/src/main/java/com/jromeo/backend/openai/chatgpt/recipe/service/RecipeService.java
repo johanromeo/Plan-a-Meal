@@ -35,27 +35,39 @@ public class RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
+    // Method should be renamed
+    // Return of type String instead of RecipeDto
+    // Take a request body instead
     public RecipeDto generateRecipe(RecipeInstructionDto systemPromptDTO) throws JsonProcessingException {
+        // Should be value from application.yml
         final String url = "https://api.openai.com/v1/chat/completions";
 
+        // Should be in this class
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(apiKey);
 
+
+        //Should be in this class but of type String instead
         HttpEntity<RequestBuilderDto> requestEntity = buildRecipeRequest(systemPromptDTO, headers);
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
-        ObjectMapper objectMapper = new ObjectMapper();
 
+
+        // Should be in a separate parser class for recipes
+        ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(response.getBody());
         String content = rootNode.path("choices").get(0).path("message").path("content").asText();
-
         RecipeDto recipeDto = objectMapper.readValue(content, RecipeDto.class);
+
+
+        // Should be in a separate class - RecipeService for db management
         recipeRepository.save(recipeMapper.mapToEntity(recipeDto));
 
         return recipeDto;
     }
 
     private HttpEntity<RequestBuilderDto> buildRecipeRequest(RecipeInstructionDto systemPrompt, HttpHeaders headers) {
+        // This is the system prompt and should be separated
         // 1: %s
         String land = systemPrompt.getFoodCulture();
         // 2: %s
@@ -88,6 +100,8 @@ public class RecipeService {
         RequestBuilderDto.Message userMessage = new RequestBuilderDto.Message();
         userMessage.setRole("user");
 
+
+        // This is the user prompt and should be separated
         List<ProvisionDto> setProvisionsAsContent = provisionService.findAllPositiveProvisions();
         StringBuilder separatedProvisions = new StringBuilder();
         for (ProvisionDto provisionDTO : setProvisionsAsContent) {
