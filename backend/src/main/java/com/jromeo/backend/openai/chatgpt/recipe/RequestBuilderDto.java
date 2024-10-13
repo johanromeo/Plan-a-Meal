@@ -1,4 +1,4 @@
-package com.jromeo.backend.openai.chatgpt.recipe.dto;
+package com.jromeo.backend.openai.chatgpt.recipe;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
