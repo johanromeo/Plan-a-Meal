@@ -22,35 +22,27 @@ public class RecipeService {
 
     @Value("${openai.api-key}")
     private String apiKey;
+    @Value("${openai.chatgpt-url}")
+    private String chatgptUrl;
 
     private final RestTemplate restTemplate;
     private final ProvisionService provisionService;
-    private final RecipeMapper recipeMapper;
-    private final RecipeRepository recipeRepository;
 
-    public RecipeService(RestTemplate restTemplate, ProvisionService provisionService, RecipeMapper recipeMapper, RecipeRepository recipeRepository) {
+    public RecipeService(RestTemplate restTemplate, ProvisionService provisionService) {
         this.restTemplate = restTemplate;
         this.provisionService = provisionService;
-        this.recipeMapper = recipeMapper;
-        this.recipeRepository = recipeRepository;
     }
 
     // Method should be renamed
     // Return of type String instead of RecipeDto
     // Take a request body instead
-    public RecipeDto generateRecipe(RecipeInstructionDto systemPromptDTO) throws JsonProcessingException {
-        // Should be value from application.yml
-        final String url = "https://api.openai.com/v1/chat/completions";
-
-        // Should be in this class
+    public String callChatGptApi(RequestBuilderDto requestBuilderDto) throws JsonProcessingException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(apiKey);
 
-
-        //Should be in this class but of type String instead
-        HttpEntity<RequestBuilderDto> requestEntity = buildRecipeRequest(systemPromptDTO, headers);
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
+        HttpEntity<RequestBuilderDto> requestEntity = new HttpEntity<>(requestBuilderDto, headers);
+        ResponseEntity<String> response = restTemplate.exchange(chatgptUrl, HttpMethod.POST, requestEntity, String.class);
 
 
         // Should be in a separate parser class for recipes
@@ -63,7 +55,7 @@ public class RecipeService {
         // Should be in a separate class - RecipeService for db management
         recipeRepository.save(recipeMapper.mapToEntity(recipeDto));
 
-        return recipeDto;
+        return response.getBody();
     }
 
     private HttpEntity<RequestBuilderDto> buildRecipeRequest(RecipeInstructionDto systemPrompt, HttpHeaders headers) {

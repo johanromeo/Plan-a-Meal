@@ -15,3 +15,5 @@ spring:
 
 openai:
   api-key: ${OPENAI_API_KEY}
+  chatgpt-url: "https://api.openai.com/v1/chat/completions"
+  #dalle-url:
