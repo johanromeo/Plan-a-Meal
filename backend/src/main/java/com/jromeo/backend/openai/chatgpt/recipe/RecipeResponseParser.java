@@ -12,7 +12,12 @@ public class RecipeResponseParser {
     public RecipeDto parseResponse(String response) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(response);
-        String content = rootNode.path("choices").get(0).path("message").path("content").asText();
+        String content = rootNode
+                .path("choices")
+                .get(0)
+                .path("message")
+                .path("content")
+                .asText();
         RecipeDto recipeDto = objectMapper.readValue(content, RecipeDto.class);
 
         return recipeDto;

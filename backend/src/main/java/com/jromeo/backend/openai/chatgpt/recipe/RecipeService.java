@@ -5,7 +5,11 @@ import com.jromeo.backend.openai.chatgpt.recipe.dto.RecipeDto;
 import com.jromeo.backend.openai.chatgpt.recipe.mapper.RecipeMapper;
 import com.jromeo.backend.openai.chatgpt.recipe.repository.RecipeRepository;
 import com.jromeo.backend.openai.chatgpt.recipe.service.ChatGptApi;
-import com.jromeo.backend.provision.mapper.ProvisionMapper;
+import com.jromeo.backend.openai.chatgpt.request.RequestBuilderDto;
+import com.jromeo.backend.openai.chatgpt.request.RequestMessage;
+import com.jromeo.backend.openai.chatgpt.request.RequestMessage.Role;
+import com.jromeo.backend.openai.chatgpt.request.RequestResponseFormat;
+import com.jromeo.backend.openai.chatgpt.request.RequestResponseFormat.FormatType;
 import com.jromeo.backend.provision.service.ProvisionService;
 import org.springframework.stereotype.Service;
 
@@ -19,49 +23,47 @@ public class RecipeService {
     private final RecipeResponseParser parser;
     private final ProvisionService provisionService;
     private final RecipeRepository recipeRepository;
-    private final ProvisionMapper mapper;
     private final RecipeMapper recipeMapper;
 
-    public RecipeService(ChatGptApi api, RecipePromptBuilder promptBuilder, RecipeResponseParser parser, ProvisionService provisionService, RecipeRepository recipeRepository, ProvisionMapper mapper, RecipeMapper recipeMapper) {
+    public RecipeService(ChatGptApi api, RecipePromptBuilder promptBuilder, RecipeResponseParser parser,
+                         ProvisionService provisionService, RecipeRepository recipeRepository, RecipeMapper recipeMapper) {
         this.api = api;
         this.promptBuilder = promptBuilder;
         this.parser = parser;
         this.provisionService = provisionService;
         this.recipeRepository = recipeRepository;
-        this.mapper = mapper;
         this.recipeMapper = recipeMapper;
     }
 
     public RecipeDto generateRecipe(RecipeInstructionDto instructions) throws JsonProcessingException {
-        // Feed system prompt
+        // System specific prompts and settings
         String systemPrompt = promptBuilder.buildSystemPrompt(instructions);
+        RequestMessage systemMessage = new RequestMessage(
+                Role.SYSTEM,
+                systemPrompt
+        );
 
-        RequestBuilderDto.Message systemMessage = new RequestBuilderDto.Message();
-        systemMessage.setRole("system");
-        systemMessage.setContent(systemPrompt);
+        // User specific prompts and settings
+        String provisions = promptBuilder.buildUserPrompt(provisionService.findAllPositiveProvisions());
+        RequestMessage userMessage = new RequestMessage(
+                Role.USER,
+                provisions
+        );
 
-        // Feed user prompt
-        String provs = promptBuilder.buildUserPrompt(provisionService.findAllPositiveProvisions());
-
-        RequestBuilderDto.Message userMessage = new RequestBuilderDto.Message();
-        userMessage.setRole("user");
-        userMessage.setContent(provs);
-
-        // Set response_format
-        RequestBuilderDto.ResponseFormat responseFormat = new RequestBuilderDto.ResponseFormat();
-        responseFormat.setType("json_object");
+        // Response as JSON, later to be mapped to RecipeDto
+        RequestResponseFormat jsonAsResponseFormat = new RequestResponseFormat(
+                FormatType.JSON_OBJECT
+        );
 
         // Build the prompt
-        RequestBuilderDto requestBody = RequestBuilderDto.builder()
-                .model("gpt-3.5-turbo")
-                .message(List.of(systemMessage, userMessage))
-                .responseFormat(responseFormat)
-                .build();
+        RequestBuilderDto requestBuilderBody = new RequestBuilderDto(
+                "gpt-3.5-turbo",
+                List.of(systemMessage, userMessage),
+                jsonAsResponseFormat
+        );
 
-        // Call API
-        String responseBody = api.callChatGptApi(requestBody);
+        String responseBody = api.callChatGptApi(requestBuilderBody);
 
-        // Parse API response
         RecipeDto recipeDto = parser.parseResponse(responseBody);
 
         // Should be in separate service class

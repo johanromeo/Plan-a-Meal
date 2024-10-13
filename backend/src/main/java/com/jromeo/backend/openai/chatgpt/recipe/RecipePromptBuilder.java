@@ -20,7 +20,7 @@ public class RecipePromptBuilder {
         String language = instructions.getResponseLanguage();
         String systemPrompt = """
                 You are a master chef from %s.
-                You must generate a %s recipe based solely on the user's provided content.
+                You must generate a %s recipe based solely on the user's provided "Available provisions"-content.
                 The recipe should take %d minutes to complete.
                 You must answer in %s.
                 You must come up with a suitable "title" and list all of the "instructions" chronologically.

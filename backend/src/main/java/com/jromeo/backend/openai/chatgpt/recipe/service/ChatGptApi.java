@@ -1,6 +1,6 @@
 package com.jromeo.backend.openai.chatgpt.recipe.service;
 
-import com.jromeo.backend.openai.chatgpt.recipe.RequestBuilderDto;
+import com.jromeo.backend.openai.chatgpt.request.RequestBuilderDto;
 import com.jromeo.backend.provision.service.ProvisionService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
