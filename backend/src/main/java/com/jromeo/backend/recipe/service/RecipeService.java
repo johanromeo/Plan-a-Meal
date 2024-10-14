@@ -19,6 +19,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service class responsible for handling operations related to recipe generation.
+ * This class interacts with the OpenAI API through {@link ChatGptApi} to generate recipes based
+ * on instructions provided by the user and available provisions. It also handles the persistence
+ * of generated recipes into the database using {@link RecipeRepository} and {@link RecipeMapper}.
+ *
+ * The {@link RecipePromptBuilder} is used to create prompts for the system and user interactions,
+ * while {@link RecipeResponseParser} parses the API response into a {@link RecipeDto} object.
+ *
+ * @author Johan Romeo
+ */
 @Service
 public class RecipeService {
 
@@ -39,6 +50,18 @@ public class RecipeService {
         this.recipeMapper = recipeMapper;
     }
 
+    /**
+     * Generates a recipe by calling the OpenAI ChatGPT API, providing instructions and available provisions,
+     * and maps the response to a {@link RecipeDto} object. The generated recipe is then stored in the database.
+     *
+     * <p>The process consists of generating a system prompt with user instructions and a user prompt
+     * with the available provisions. The API response is expected in JSON format, which is then parsed
+     * into a {@link RecipeDto}.</p>
+     *
+     * @param instructions the {@link RecipeInstructionDto} containing the user's instructions for the recipe generation.
+     * @return a {@link RecipeDto} object representing the generated recipe.
+     * @throws JsonProcessingException if an error occurs while parsing the response from the API.
+     */
     public RecipeDto generateRecipe(RecipeInstructionDto instructions) throws JsonProcessingException {
         // System specific prompts and settings
         String systemPrompt = promptBuilder.buildSystemPrompt(instructions);

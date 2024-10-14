@@ -6,9 +6,28 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Utility class for building prompt strings to be used in requests to the OpenAI API.
+ * This class creates prompts based on recipe instructions and available provisions
+ * to guide the AI in generating recipe responses in the desired format and language.
+ *
+ * The {@link RecipePromptBuilder} provides two types of prompts:
+ * <p>A system prompt defining the context and response structure for the recipe generation.
+ * <p>A user prompt listing the available provisions as inputs for recipe creation.
+ *
+ * @author Johan Romeo
+ */
 @Component
 public class RecipePromptBuilder {
 
+    /**
+     * Builds a system prompt to be used by the AI for generating a recipe.
+     * The prompt includes information about the food culture, meal type, time to complete,
+     * response language, and the required JSON structure for the AI response.
+     *
+     * @param instructions the {@link RecipeInstructionDto} containing user instructions for the recipe generation.
+     * @return a formatted system prompt string ready to be sent to the AI.
+     */
     public String buildSystemPrompt(RecipeInstructionDto instructions) {
         // 1: %s
         String land = instructions.getFoodCulture();
@@ -39,6 +58,14 @@ public class RecipePromptBuilder {
         return content;
     }
 
+    /**
+     * Builds a user prompt listing the available provisions for recipe generation.
+     * The prompt includes a comma-separated list of provision names to guide the AI in selecting ingredients
+     * for the generated recipe.
+     *
+     * @param provisionDtos a list of {@link ProvisionDto} objects representing the available provisions.
+     * @return a string containing the prompt with the list of provisions.
+     */
     public String buildUserPrompt(List<ProvisionDto> provisionDtos) {
         StringBuilder provisions = new StringBuilder("Available provisions: ");
         for (ProvisionDto provision : provisionDtos) {

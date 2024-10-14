@@ -6,6 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Class to represent a Recipe Entity in the "recipes" table in MySQL database.
+ *
+ * @author Johan Romeo
+ */
 @Entity
 @Table(name = "recipes")
 @Getter

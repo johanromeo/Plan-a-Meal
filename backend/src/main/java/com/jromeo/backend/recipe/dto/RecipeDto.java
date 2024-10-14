@@ -6,6 +6,11 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * Class to represent a Recipe Data Transfer Object.
+ *
+ * @author Johan Romeo
+ */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RecipeDto {

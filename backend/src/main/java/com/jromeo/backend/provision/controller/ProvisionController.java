@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * Controller class responsible for exposing API-endpoints for manipulating the "provisions" table in a MySQL database.
+ * Calls the service layer {@link ProvisionService}.
  *
  * @author Johan Romeo
  */

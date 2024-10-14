@@ -5,6 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Class to represent a recipe instruction when prompting OpenAI's chat completion.
+ *
+ * @author Johan Romeo
+ */
 @Getter
 @Setter
 @NoArgsConstructor

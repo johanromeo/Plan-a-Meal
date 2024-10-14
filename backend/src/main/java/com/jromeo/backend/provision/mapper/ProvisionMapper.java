@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class handling the mapping provisions from DTO to Entity and Entity to DTO.<br>
- * Used by {@link ProvisionService} and {@link ShoppingListService}
+ * Mapper class for mapping provisions from DTO to Entity and Entity to DTO.
+ * Used by {@link ProvisionService} and {@link ShoppingListService}.
  *
  * @author Johan Romeo
  */

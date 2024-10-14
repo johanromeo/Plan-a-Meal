@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * Interface responsible for providing CRUD methods on {@link ProvisionEntity} in MySQL database.<br>
- * Implemented by {@link ProvisionService} and {@link ShoppingListService}
+ * Interface responsible for providing CRUD methods on {@link ProvisionEntity} in MySQL database.
+ * Implemented by {@link ProvisionService} and {@link ShoppingListService}.
  *
  * @author Johan Romeo
  */

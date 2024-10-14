@@ -1,9 +1,9 @@
 package com.jromeo.backend.recipe.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.jromeo.backend.recipe.dto.RecipeDto;
 import com.jromeo.backend.recipe.dto.RecipeInstructionDto;
 import com.jromeo.backend.recipe.service.RecipeService;
-import com.jromeo.backend.recipe.dto.RecipeDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Controller class responsible for exposing API-endpoints for generating a recipe.
+ * Calls the service layer {@link RecipeService}.
+ *
+ * @author Johan Romeo
+ */
 @RestController
 @RequestMapping("/chat")
 public class RecipeController {
