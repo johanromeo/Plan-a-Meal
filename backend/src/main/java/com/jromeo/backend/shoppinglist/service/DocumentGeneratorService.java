@@ -10,6 +10,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Service class responsible for generating a shopping list document.
+ * This class interacts with the {@link ShoppingListService} to retrieve a list of provisions
+ * and generates a text file that represents the shopping list.
+ *
+ * @author Johan Romeo
+ */
 @Service
 public class DocumentGeneratorService {
 

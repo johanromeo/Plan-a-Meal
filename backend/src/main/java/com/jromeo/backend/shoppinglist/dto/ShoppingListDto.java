@@ -9,6 +9,13 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Data Transfer Object (DTO) representing the shopping list.
+ * This class holds a list of provisions that are included in the shopping list,
+ * represented by {@link ProvisionDto} objects.
+ *
+ * @author Johan Romeo
+ */
 @Getter
 @Setter
 @NoArgsConstructor

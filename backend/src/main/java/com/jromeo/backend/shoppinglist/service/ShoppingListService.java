@@ -8,6 +8,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service class responsible for handling operations related to the shopping list.
+ * This class interacts with the {@link ProvisionRepository} to retrieve provisions that are to be
+ * added to the shopping list and maps them to DTOs using the {@link ProvisionMapper}.
+ *
+ * @author Johan Romeo
+ */
 @Service
 public class ShoppingListService {
 
