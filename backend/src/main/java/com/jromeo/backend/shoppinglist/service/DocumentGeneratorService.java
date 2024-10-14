@@ -1,6 +1,8 @@
 package com.jromeo.backend.shoppinglist.service;
 
 import com.jromeo.backend.provision.dto.ProvisionDto;
+import com.jromeo.backend.provision.mapper.ProvisionMapper;
+import com.jromeo.backend.provision.repository.ProvisionRepository;
 import com.jromeo.backend.shoppinglist.dto.ShoppingListDto;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,13 @@ public class DocumentGeneratorService {
         this.shoppingListService = shoppingListService;
     }
 
+    /**
+     * Retrieves provisions from the database that are to be added to the shopping list.
+     * The provisions are fetched from the {@link ProvisionRepository}, mapped to DTOs using
+     * {@link ProvisionMapper}, and returned as part of a {@link ShoppingListDto}.
+     *
+     * @return a {@link ShoppingListDto} containing the list of provisions to be included in the shopping list.
+     */
     public void createShoppingListDocx() throws IOException {
         File file = new File("shopping-list.txt");
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
