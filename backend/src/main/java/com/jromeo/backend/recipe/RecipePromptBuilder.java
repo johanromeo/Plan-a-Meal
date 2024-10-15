@@ -25,19 +25,19 @@ public class RecipePromptBuilder {
      * The prompt includes information about the food culture, meal type, time to complete,
      * response language, and the required JSON structure for the AI response.
      *
-     * @param instructions the {@link RecipeInstructionDto} containing user instructions for the recipe generation.
+     * @param recipeInstructions the {@link RecipeInstructionDto} containing user instructions for the recipe generation.
      * @return a formatted system prompt string ready to be sent to the AI.
      */
-    public String buildSystemPrompt(RecipeInstructionDto instructions) {
-        // 1: %s
-        String land = instructions.getFoodCulture();
-        // 2: %s
-        String mealType = instructions.getMealType();
-        // 3: %d
-        int minutes = instructions.getMinutesToComplete();
-        // 4: %s
-        String language = instructions.getResponseLanguage();
-        String systemPrompt = """
+    public String buildSystemPrompt(RecipeInstructionDto recipeInstructions) {
+        // From which country or culture do you want your recipe to come from?
+        String foodCultureOfChoice = recipeInstructions.getFoodCultureOfChoice();
+        // Should it be a recipe of; breakfast, dinner, lunch, after noon snack?
+        String mealType = recipeInstructions.getMealType();
+        // How long should it take to complete the recipe (in minutes)?
+        int maxMinutesToCompleteRecipe = recipeInstructions.getMaxMinutesToCompleteRecipe();
+        // In what language do you want the chatbot's response?
+        String chatBotTextLanguage = recipeInstructions.getChatBotTextLanguage();
+        String prompt = """
                 You are a master chef from %s.
                 You must generate a %s recipe based solely on the user's provided "Available provisions"-content.
                 The recipe should take %d minutes to complete.
@@ -53,7 +53,7 @@ public class RecipePromptBuilder {
                 Do not include any additional text or explanations outside of the JSON structure.
                 """;
 
-        String content = String.format(systemPrompt, land, mealType, minutes, language);
+        String content = String.format(prompt, foodCultureOfChoice, mealType, maxMinutesToCompleteRecipe, chatBotTextLanguage);
 
         return content;
     }
