@@ -1,10 +1,10 @@
 package com.jromeo.backend.grocerylist.service;
 
+import com.jromeo.backend.grocerylist.dto.GroceryShoppingListDto;
 import com.jromeo.backend.provision.dto.ProvisionDto;
 import com.jromeo.backend.provision.mapper.ProvisionMapper;
 import com.jromeo.backend.provision.repository.ProvisionRepository;
-import com.jromeo.backend.grocerylist.dto.GroceryShoppingListDto;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,9 +19,8 @@ import java.util.List;
  *
  * @author Johan Romeo
  */
-@Service
+@Component
 public class DocumentGeneratorService {
-
 
     private final GroceryShoppingListService groceryShoppingListService;
     private final static String SHOPPING_LIST_BEGINNING = "GROCERY SHOPPING LIST";
@@ -40,7 +39,7 @@ public class DocumentGeneratorService {
      * @return a {@link GroceryShoppingListDto} containing the list of provisions to be included in the grocery shopping list.
      */
     public void createShoppingListDocx() throws IOException {
-        File file = new File("shopping-list.txt");
+        File file = new File("grocery-shopping-list.txt");
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
         GroceryShoppingListDto groceryShoppingListDTO = groceryShoppingListService.addProvisionsToShoppingList();

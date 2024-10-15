@@ -1,5 +1,6 @@
 package com.jromeo.backend.provision.service;
 
+import com.jromeo.backend.exceptions.ProvisionNotFoundException;
 import com.jromeo.backend.provision.dto.ProvisionDto;
 import com.jromeo.backend.provision.entity.ProvisionEntity;
 import com.jromeo.backend.provision.mapper.ProvisionMapper;
@@ -42,7 +43,7 @@ public class ProvisionService {
      */
     public ProvisionDto findProvisionById(int id) {
         ProvisionEntity provisionEntity = provisionRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No provision with id " + id + " exists"));
+                .orElseThrow(() -> new ProvisionNotFoundException("No provision with id " + id + " exists"));
 
         return provisionMapper.mapToDto(provisionEntity);
     }
@@ -86,7 +87,7 @@ public class ProvisionService {
      */
     public ProvisionDto updateProvision(int id, ProvisionDto provisionDTO) {
         ProvisionEntity provisionEntity = provisionRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No provision with id " + id + " exists"));
+                .orElseThrow(() -> new ProvisionNotFoundException("No provision with id " + id + " exists"));
         provisionEntity.setName(provisionDTO.getName());
         provisionEntity.setUnits(provisionDTO.getUnits());
         provisionEntity.setAddedToGroceryShoppingList(provisionDTO.isAddedToShoppingList());
@@ -102,7 +103,7 @@ public class ProvisionService {
      */
     public void deleteProvisionById(int id) {
         ProvisionEntity provisionEntity = provisionRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No provision with id" + id + " exists"));
+                .orElseThrow(() -> new ProvisionNotFoundException("No provision with id" + id + " exists"));
 
         provisionRepository.delete(provisionEntity);
     }
