@@ -3,7 +3,7 @@ package com.jromeo.backend.provision.mapper;
 import com.jromeo.backend.provision.dto.ProvisionDto;
 import com.jromeo.backend.provision.entity.ProvisionEntity;
 import com.jromeo.backend.provision.service.ProvisionService;
-import com.jromeo.backend.shoppinglist.service.ShoppingListService;
+import com.jromeo.backend.grocerylist.service.GroceryShoppingListService;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * Mapper class for mapping provisions from DTO to Entity and Entity to DTO.
- * Used by {@link ProvisionService} and {@link ShoppingListService}.
+ * Used by {@link ProvisionService} and {@link GroceryShoppingListService}.
  *
  * @author Johan Romeo
  */

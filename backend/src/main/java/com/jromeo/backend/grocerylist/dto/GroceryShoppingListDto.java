@@ -1,4 +1,4 @@
-package com.jromeo.backend.shoppinglist.dto;
+package com.jromeo.backend.grocerylist.dto;
 
 import com.jromeo.backend.provision.dto.ProvisionDto;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShoppingListDto {
+public class GroceryShoppingListDto {
 
     private List<ProvisionDto> provisionsToShoppingList = new ArrayList<>();
 }

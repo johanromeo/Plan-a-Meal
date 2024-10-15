@@ -1,6 +1,6 @@
-package com.jromeo.backend.shoppinglist.controller;
+package com.jromeo.backend.grocerylist.controller;
 
-import com.jromeo.backend.shoppinglist.service.DocumentGeneratorService;
+import com.jromeo.backend.grocerylist.service.DocumentGeneratorService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,25 +8,24 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 /**
- * REST controller responsible for handling API requests related to the shopping list.
- * This controller provides an endpoint to generate a shopping list document using the {@link DocumentGeneratorService}.
- *
- * The generated shopping list is typically in a DOCX format and is created based on the available data.
+ * REST controller responsible for handling API requests related to the grocery shopping list.
+ * This controller provides an endpoint to generate a grocery shopping list document using
+ * the {@link DocumentGeneratorService}.
  *
  * @author Johan Romeo
  */
 @RestController
-@RequestMapping("/shopping-list")
-public class ShoppingListController {
+@RequestMapping("/grocery-list")
+public class GroceryShoppingListController {
 
     private final DocumentGeneratorService documentGeneratorService;
 
-    public ShoppingListController(DocumentGeneratorService documentGeneratorService) {
+    public GroceryShoppingListController(DocumentGeneratorService documentGeneratorService) {
         this.documentGeneratorService = documentGeneratorService;
     }
 
     /**
-     * API endpoint to generate a shopping list document.
+     * API endpoint to generate a grocery shopping list document.
      *
      * <p>This method triggers the generation of a shopping list in DOCX format by calling the
      * {@link DocumentGeneratorService#createShoppingListDocx()} method.</p>

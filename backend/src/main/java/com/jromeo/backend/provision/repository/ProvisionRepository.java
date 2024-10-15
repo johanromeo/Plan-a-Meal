@@ -2,7 +2,7 @@ package com.jromeo.backend.provision.repository;
 
 import com.jromeo.backend.provision.entity.ProvisionEntity;
 import com.jromeo.backend.provision.service.ProvisionService;
-import com.jromeo.backend.shoppinglist.service.ShoppingListService;
+import com.jromeo.backend.grocerylist.service.GroceryShoppingListService;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * Interface responsible for providing CRUD methods on {@link ProvisionEntity} in MySQL database.
- * Implemented by {@link ProvisionService} and {@link ShoppingListService}.
+ * Implemented by {@link ProvisionService} and {@link GroceryShoppingListService}.
  *
  * @author Johan Romeo
  */
