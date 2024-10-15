@@ -13,9 +13,9 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Service class responsible for generating a shopping list document.
+ * Service class responsible for generating a grocery shopping list document.
  * This class interacts with the {@link GroceryShoppingListService} to retrieve a list of provisions
- * and generates a text file that represents the shopping list.
+ * and generates a text file that represents the grocery shopping list.
  *
  * @author Johan Romeo
  */
@@ -33,11 +33,11 @@ public class DocumentGeneratorService {
     }
 
     /**
-     * Retrieves provisions from the database that are to be added to the shopping list.
+     * Retrieves provisions from the database that are to be added to the grocery shopping list.
      * The provisions are fetched from the {@link ProvisionRepository}, mapped to DTOs using
      * {@link ProvisionMapper}, and returned as part of a {@link GroceryShoppingListDto}.
      *
-     * @return a {@link GroceryShoppingListDto} containing the list of provisions to be included in the shopping list.
+     * @return a {@link GroceryShoppingListDto} containing the list of provisions to be included in the grocery shopping list.
      */
     public void createShoppingListDocx() throws IOException {
         File file = new File("shopping-list.txt");
