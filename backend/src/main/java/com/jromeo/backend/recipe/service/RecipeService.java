@@ -70,20 +70,20 @@ public class RecipeService {
                 systemPrompt
         );
         // User specific prompts and settings
-        String provisions = promptBuilder.buildUserPrompt(provisionService.findAllPositiveProvisions());
+        String userAvailableProvisions = promptBuilder.buildUserPrompt(provisionService.findAllPositiveProvisions());
         RequestMessage userMessage = new RequestMessage(
                 Role.USER,
-                provisions
+                userAvailableProvisions
         );
         // Response as JSON, later to be mapped to RecipeDto
-        RequestResponseFormat jsonAsResponseFormat = new RequestResponseFormat(
+        RequestResponseFormat jsonAsResponseBody = new RequestResponseFormat(
                 FormatType.JSON_OBJECT
         );
         // Build the prompt
         RequestBuilder requestBuilderBody = new RequestBuilder(
                 ModelType.GPT_3_5_TURBO,
                 List.of(systemMessage, userMessage),
-                jsonAsResponseFormat
+                jsonAsResponseBody
         );
 
         String responseBody = api.callChatGptApi(requestBuilderBody);

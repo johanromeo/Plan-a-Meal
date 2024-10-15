@@ -53,9 +53,9 @@ public class RecipePromptBuilder {
                 Do not include any additional text or explanations outside of the JSON structure.
                 """;
 
-        String content = String.format(prompt, foodCultureOfChoice, mealType, maxMinutesToCompleteRecipe, chatBotTextLanguage);
+        String promptContent = String.format(prompt, foodCultureOfChoice, mealType, maxMinutesToCompleteRecipe, chatBotTextLanguage);
 
-        return content;
+        return promptContent;
     }
 
     /**
@@ -67,11 +67,11 @@ public class RecipePromptBuilder {
      * @return a string containing the prompt with the list of provisions.
      */
     public String buildUserPrompt(List<ProvisionDto> provisionDtos) {
-        StringBuilder provisions = new StringBuilder("Available provisions: ");
+        StringBuilder userAvailableProvisions = new StringBuilder("Available provisions: ");
         for (ProvisionDto provision : provisionDtos) {
-            provisions.append(provision.getName()).append(", ");
+            userAvailableProvisions.append(provision.getName()).append(", ");
         }
 
-        return provisions.toString();
+        return userAvailableProvisions.toString();
     }
 }
