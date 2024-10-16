@@ -38,7 +38,7 @@ public class DocumentGeneratorService {
      *
      * @return a {@link GroceryShoppingListDto} containing the list of provisions to be included in the grocery shopping list.
      */
-    public void createShoppingListDocx() throws IOException {
+    public File createShoppingListDocx() throws IOException {
         File file = new File("grocery-shopping-list.txt");
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
@@ -55,5 +55,7 @@ public class DocumentGeneratorService {
         }
         writer.write(SHOPPING_LIST_LINE_BREAK);
         writer.close();
+
+        return file;
     }
 }
