@@ -4,11 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * Configuration class for providing a {@link RestTemplate} {@code @Bean}.
- *
- * @author Johan Romeo
- */
 @Configuration
 public class RestTemplateConfiguration {
 

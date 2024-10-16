@@ -7,7 +7,6 @@ import lombok.*;
 @Getter
 @Setter
 public class DallERequestBuilder {
-
     private final String model;
     private final String prompt;
     private final Integer n;

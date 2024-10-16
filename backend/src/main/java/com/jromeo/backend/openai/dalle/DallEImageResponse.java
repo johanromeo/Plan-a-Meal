@@ -13,15 +13,13 @@ import java.util.List;
 @Getter
 @Setter
 public class DallEImageResponse {
-
     private List<ImageData> data;
-
     @Getter
     @Setter
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class ImageData {
 
+    public static class ImageData {
         @JsonProperty("b64_json")
         private String b64json;
     }

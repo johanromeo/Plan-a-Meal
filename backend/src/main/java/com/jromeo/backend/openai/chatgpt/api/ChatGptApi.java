@@ -7,11 +7,6 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * Class responsible for calling OpenAI's Chat completions API.
- *
- * @author Johan Romeo
- */
 @Service
 public class ChatGptApi {
 
@@ -28,11 +23,6 @@ public class ChatGptApi {
         this.provisionService = provisionService;
     }
 
-    /**
-     * Call OpenAI's chat completions URL with provided api key and a customizable request.
-     * @param requestBuilder {@link RequestBuilder} - Blueprint for building the API request body.
-     * @return
-     */
     public String callChatGptApi(RequestBuilder requestBuilder) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

@@ -11,12 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Controller class responsible for exposing API-endpoints for generating a recipe.
- * Calls the service layer {@link RecipeService}.
- *
- * @author Johan Romeo
- */
 @RestController
 @RequestMapping("/chat")
 public class RecipeController {

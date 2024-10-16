@@ -7,16 +7,8 @@ import com.jromeo.backend.provision.repository.ProvisionRepository;
 import jakarta.mail.MessagingException;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 
-/**
- * Service class responsible for handling operations related to the grocery shopping list.
- * This class interacts with the {@link ProvisionRepository} to retrieve provisions that are to be
- * added to the grocery shopping list and maps them to DTOs using the {@link ProvisionMapper}.
- *
- * @author Johan Romeo
- */
 @Service
 public class GroceryShoppingListService {
 
@@ -26,7 +18,11 @@ public class GroceryShoppingListService {
     private final DocumentGeneratorService documentGeneratorService;
     private final PersonService personService;
 
-    public GroceryShoppingListService(ProvisionRepository provisionRepository, ProvisionMapper provisionMapper, EmailDeliveryService emailDeliveryService, DocumentGeneratorService documentGeneratorService, PersonService personService) {
+    public GroceryShoppingListService(
+            ProvisionRepository provisionRepository, ProvisionMapper provisionMapper,
+            EmailDeliveryService emailDeliveryService,
+            DocumentGeneratorService documentGeneratorService, PersonService personService) {
+
         this.provisionRepository = provisionRepository;
         this.provisionMapper = provisionMapper;
         this.emailDeliveryService = emailDeliveryService;
@@ -34,13 +30,13 @@ public class GroceryShoppingListService {
         this.personService = personService;
     }
 
-    public void constructEmailWithProvisions() throws IOException, MessagingException, InterruptedException {
+    public void constructEmailWithProvisions() throws MessagingException{
         List<ProvisionEntity> provisionEntities = provisionRepository.addProvisionToShoppingList();
 
         String provisionsToBuy = documentGeneratorService.provisionsToBuy(provisionMapper.mapToDtos(provisionEntities));
+
         String[] emailAddresses = personService.getPeopleEmailAddresses();
+
         emailDeliveryService.sendGroceryShoppingListToMail(provisionsToBuy, emailAddresses);
-
-
     }
 }

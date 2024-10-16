@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/people")
 public class PersonController {
+
     private final PersonService personService;
 
     public PersonController(PersonService personService) {
         this.personService = personService;
     }
-
 
     @PostMapping
     public ResponseEntity<String> addPersonToHousehold(@Valid @RequestBody PersonDto personDto) {
