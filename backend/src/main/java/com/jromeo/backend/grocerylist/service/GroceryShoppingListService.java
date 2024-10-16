@@ -1,6 +1,6 @@
 package com.jromeo.backend.grocerylist.service;
 
-import com.jromeo.backend.person.PersonService;
+import com.jromeo.backend.person.service.PersonService;
 import com.jromeo.backend.provision.entity.ProvisionEntity;
 import com.jromeo.backend.provision.mapper.ProvisionMapper;
 import com.jromeo.backend.provision.repository.ProvisionRepository;

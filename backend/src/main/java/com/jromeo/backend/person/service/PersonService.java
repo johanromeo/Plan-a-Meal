@@ -1,8 +1,11 @@
-package com.jromeo.backend.person;
+package com.jromeo.backend.person.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jromeo.backend.exceptions.IllegalEmailException;
+import com.jromeo.backend.person.dto.PersonDto;
+import com.jromeo.backend.person.entity.PersonEntity;
+import com.jromeo.backend.person.repository.PersonRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

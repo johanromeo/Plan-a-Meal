@@ -1,5 +1,7 @@
-package com.jromeo.backend.person;
+package com.jromeo.backend.person.controller;
 
+import com.jromeo.backend.person.dto.PersonDto;
+import com.jromeo.backend.person.service.PersonService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

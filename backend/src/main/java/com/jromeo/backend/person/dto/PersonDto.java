@@ -1,4 +1,4 @@
-package com.jromeo.backend.person;
+package com.jromeo.backend.person.dto;
 
 
 import lombok.AllArgsConstructor;

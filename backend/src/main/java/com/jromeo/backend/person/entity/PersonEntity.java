@@ -1,4 +1,4 @@
-package com.jromeo.backend.person;
+package com.jromeo.backend.person.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
