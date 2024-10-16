@@ -1,6 +1,8 @@
 package com.jromeo.backend.grocerylist.controller;
 
 import com.jromeo.backend.grocerylist.service.DocumentGeneratorService;
+import com.jromeo.backend.grocerylist.service.GroceryShoppingListService;
+import jakarta.mail.MessagingException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,10 +20,10 @@ import java.io.IOException;
 @RequestMapping("/grocery-list")
 public class GroceryShoppingListController {
 
-    private final DocumentGeneratorService documentGeneratorService;
+    private final GroceryShoppingListService groceryShoppingListService;
 
-    public GroceryShoppingListController(DocumentGeneratorService documentGeneratorService) {
-        this.documentGeneratorService = documentGeneratorService;
+    public GroceryShoppingListController(GroceryShoppingListService groceryShoppingListService) {
+        this.groceryShoppingListService = groceryShoppingListService;
     }
 
     /**
@@ -33,7 +35,7 @@ public class GroceryShoppingListController {
      * @throws IOException if an error occurs while generating the document.
      */
     @GetMapping("/generate-list")
-    public void generateShoppingList() throws IOException {
-        documentGeneratorService.createShoppingListDocx();
+    public void generateShoppingList() throws IOException, MessagingException, InterruptedException {
+        groceryShoppingListService.constructEmailWithProvisions();
     }
 }

@@ -4,7 +4,7 @@ import com.jromeo.backend.grocerylist.dto.GroceryShoppingListDto;
 import com.jromeo.backend.provision.dto.ProvisionDto;
 import com.jromeo.backend.provision.mapper.ProvisionMapper;
 import com.jromeo.backend.provision.repository.ProvisionRepository;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,17 +19,12 @@ import java.util.List;
  *
  * @author Johan Romeo
  */
-@Component
+@Service
 public class DocumentGeneratorService {
 
-    private final GroceryShoppingListService groceryShoppingListService;
     private final static String SHOPPING_LIST_BEGINNING = "GROCERY SHOPPING LIST";
     private final static String SHOPPING_LIST_LINE_BREAK = "______________________";
 
-
-    public DocumentGeneratorService(GroceryShoppingListService groceryShoppingListService) {
-        this.groceryShoppingListService = groceryShoppingListService;
-    }
 
     /**
      * Retrieves provisions from the database that are to be added to the grocery shopping list.
@@ -38,24 +33,32 @@ public class DocumentGeneratorService {
      *
      * @return a {@link GroceryShoppingListDto} containing the list of provisions to be included in the grocery shopping list.
      */
-    public File createShoppingListDocx() throws IOException {
+    public void createShoppingListDocx(List<ProvisionDto> provisions) throws IOException {
+
         File file = new File("grocery-shopping-list.txt");
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
-        GroceryShoppingListDto groceryShoppingListDTO = groceryShoppingListService.addProvisionsToShoppingList();
-        List<ProvisionDto> provisions = groceryShoppingListDTO.getProvisionsToShoppingList();
+//        GroceryShoppingListDto groceryShoppingListDTO = new GroceryShoppingListDto(provisions);
+//        List<ProvisionDto> provisionss = groceryShoppingListDTO.getProvisionsToShoppingList();
 
         writer.write(SHOPPING_LIST_BEGINNING);
         writer.newLine();
         writer.write(SHOPPING_LIST_LINE_BREAK);
         writer.newLine();
-        for (ProvisionDto provision : provisions) {
+        for (ProvisionDto provision: provisions) {
             writer.write(provision.getName());
             writer.newLine();
         }
         writer.write(SHOPPING_LIST_LINE_BREAK);
         writer.close();
 
-        return file;
+    }
+
+    public String provisionsToBuy(List<ProvisionDto> provisionDtos) {
+        StringBuilder sb = new StringBuilder();
+        for (ProvisionDto provisionDto : provisionDtos) {
+            sb.append(provisionDto.getName()).append("\n");
+        }
+        return sb.toString();
     }
 }
