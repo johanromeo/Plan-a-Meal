@@ -38,7 +38,7 @@ public class GroceryShoppingListService {
         List<ProvisionEntity> provisionEntities = provisionRepository.addProvisionToShoppingList();
 
         String provisionsToBuy = documentGeneratorService.provisionsToBuy(provisionMapper.mapToDtos(provisionEntities));
-        String[] emailAddresses = personService.getHouseholdEmailAddresses();
+        String[] emailAddresses = personService.getPeopleEmailAddresses();
         emailDeliveryService.sendGroceryShoppingListToMail(provisionsToBuy, emailAddresses);
 
 

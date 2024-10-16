@@ -1,5 +1,6 @@
 package com.jromeo.backend.person;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,8 +17,9 @@ public class PersonController {
         this.personService = personService;
     }
 
+
     @PostMapping
-    public ResponseEntity<String> addPersonToHousehold(@RequestBody PersonDto personDto) {
+    public ResponseEntity<String> addPersonToHousehold(@Valid @RequestBody PersonDto personDto) {
         personService.addPersonToHousehold(personDto);
         return new ResponseEntity<>("Person added to household!", HttpStatus.CREATED);
     }

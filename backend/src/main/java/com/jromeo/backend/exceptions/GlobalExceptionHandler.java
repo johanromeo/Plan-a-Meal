@@ -17,4 +17,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(IllegalEmailException.class)
+    public ResponseEntity<ErrorMessage> handleIllegalEmailException(IllegalEmailException e) {
+        ErrorMessage errorMessage = new ErrorMessage(new Date(), e.getMessage());
+
+        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+    }
+
 }

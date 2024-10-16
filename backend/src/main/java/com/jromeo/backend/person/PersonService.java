@@ -2,6 +2,7 @@ package com.jromeo.backend.person;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jromeo.backend.exceptions.IllegalEmailException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,25 +19,30 @@ public class PersonService {
     }
 
     public void addPersonToHousehold(PersonDto personDto) {
-        PersonEntity personEntity = new PersonEntity(
-                personDto.getId(),
-                personDto.getName(),
-                personDto.getEmail()
-        );
-        personRepository.save(personEntity);
+        if (personDto.getEmail().contains("@")) {
+            PersonEntity personEntity = new PersonEntity(
+                    personDto.getId(),
+                    personDto.getName(),
+                    personDto.getEmail()
+            );
+            personRepository.save(personEntity);
+
+        } else {
+            throw new IllegalEmailException("Invalid email! Must contain '@'");
+        }
     }
 
-    public String[] getHouseholdEmailAddresses() {
-        List<PersonDto> peopleEmailAddresses = objectMapper.convertValue(personRepository.findAll(),
-                new TypeReference<>() {
-                });
+    public String[] getPeopleEmailAddresses() {
+        List<PersonDto> people = objectMapper.convertValue(personRepository.findAll(),
+                new TypeReference<>(){}
+        );
 
-        String[] mailAddresses = new String[peopleEmailAddresses.size()];
+        String[] emailAddresses = new String[people.size()];
 
-        for (int i = 0; i < mailAddresses.length; i++) {
-            mailAddresses[i] = peopleEmailAddresses.get(i).getEmail();
+        for (int i = 0; i < emailAddresses.length; i++) {
+            emailAddresses[i] = people.get(i).getEmail();
         }
 
-        return mailAddresses;
+        return emailAddresses;
     }
 }
