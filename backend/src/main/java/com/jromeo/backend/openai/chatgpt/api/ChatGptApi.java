@@ -24,13 +24,18 @@ public class ChatGptApi {
     }
 
     public String callChatGptApi(RequestBuilder requestBuilder) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBearerAuth(apiKey);
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.setBearerAuth(apiKey);
 
-        HttpEntity<RequestBuilder> requestEntity = new HttpEntity<>(requestBuilder, headers);
-        ResponseEntity<String> response = restTemplate.exchange(chatgptUrl, HttpMethod.POST, requestEntity, String.class);
+            HttpEntity<RequestBuilder> requestEntity = new HttpEntity<>(requestBuilder, headers);
+            ResponseEntity<String> response = restTemplate.exchange(chatgptUrl, HttpMethod.POST, requestEntity, String.class);
+            return response.getBody();
 
-        return response.getBody();
+        } catch (Exception e) {
+            return "Error when calling chat completion endpoint";
+
+        }
     }
 }

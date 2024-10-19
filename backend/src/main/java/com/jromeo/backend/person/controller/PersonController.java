@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/people")
+@RequestMapping("/household-people")
 public class PersonController {
 
     private final PersonService personService;
@@ -21,8 +21,8 @@ public class PersonController {
     }
 
     @PostMapping
-    public ResponseEntity<String> addPersonToHousehold(@Valid @RequestBody PersonDto personDto) {
+    public ResponseEntity<PersonDto> addPersonToHousehold(@Valid @RequestBody PersonDto personDto) {
         personService.addPersonToHousehold(personDto);
-        return new ResponseEntity<>("Person added to household!", HttpStatus.CREATED);
+        return new ResponseEntity<>(personDto, HttpStatus.CREATED);
     }
 }

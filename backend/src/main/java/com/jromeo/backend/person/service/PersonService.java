@@ -21,23 +21,23 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public void addPersonToHousehold(PersonDto personDto) {
-        if (personDto.getEmail().contains("@")) {
+    public PersonDto addPersonToHousehold(PersonDto personDto) {
+        if (!personDto.getEmail().contains("@")) {
+            throw new IllegalEmailException("Invalid email! Must contain '@'");
+        } else {
             PersonEntity personEntity = new PersonEntity(
                     personDto.getId(),
                     personDto.getName(),
                     personDto.getEmail()
             );
             personRepository.save(personEntity);
-
-        } else {
-            throw new IllegalEmailException("Invalid email! Must contain '@'");
+            return objectMapper.convertValue(personEntity, PersonDto.class);
         }
     }
 
     public String[] getPeopleEmailAddresses() {
         List<PersonDto> people = objectMapper.convertValue(personRepository.findAll(),
-                new TypeReference<>(){}
+                new TypeReference<>() {}
         );
 
         String[] emailAddresses = new String[people.size()];

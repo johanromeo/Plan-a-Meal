@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-
 
 @RestController
 @RequestMapping("/grocery-list")
@@ -20,7 +18,7 @@ public class GroceryShoppingListController {
     }
 
     @GetMapping("/generate-list")
-    public void generateShoppingList() throws IOException, MessagingException, InterruptedException {
+    public void generateShoppingList() throws MessagingException {
         groceryShoppingListService.constructEmailWithProvisions();
     }
 }

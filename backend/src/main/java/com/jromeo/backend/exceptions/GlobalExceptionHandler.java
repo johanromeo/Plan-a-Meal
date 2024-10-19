@@ -11,16 +11,16 @@ import java.util.Date;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ProvisionNotFoundException.class)
-    public ResponseEntity<ErrorMessage> handleProvisionNotFoundException(ProvisionNotFoundException e) {
-        ErrorMessage errorMessage = new ErrorMessage(new Date(), e.getMessage());
+    public ResponseEntity<ErrorMessagePayload> handleProvisionNotFoundException(ProvisionNotFoundException e) {
+        ErrorMessagePayload errorMessagePayload = new ErrorMessagePayload(new Date(), e.getMessage());
 
-        return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(errorMessagePayload, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(IllegalEmailException.class)
-    public ResponseEntity<ErrorMessage> handleIllegalEmailException(IllegalEmailException e) {
-        ErrorMessage errorMessage = new ErrorMessage(new Date(), e.getMessage());
+    public ResponseEntity<ErrorMessagePayload> handleIllegalEmailException(IllegalEmailException e) {
+        ErrorMessagePayload errorMessagePayload = new ErrorMessagePayload(new Date(), e.getMessage());
 
-        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorMessagePayload, HttpStatus.BAD_REQUEST);
     }
 }
