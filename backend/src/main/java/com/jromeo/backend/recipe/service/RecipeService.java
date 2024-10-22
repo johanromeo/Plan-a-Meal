@@ -23,8 +23,6 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-//TODO: Make this class responsible for only handling interactions with chatgpt
-//TODO: Make a recipe service class that handles interactions with mysql
 public class RecipeService {
 
     private final ChatGptApi api;
@@ -79,7 +77,7 @@ public class RecipeService {
 
     public RecipeDto getRecipeById(int id) throws IOException {
         RecipeEntity recipeEntity = recipeRepository.findById(id)
-                .orElseThrow(() -> new RecipeNotFoundException("Recipe with id " + id + " doesn't existse"));
+                .orElseThrow(() -> new RecipeNotFoundException("Recipe with id " + id + " doesn't exists"));
 
         return recipeMapper.mapToDto(recipeEntity);
     }
@@ -88,6 +86,13 @@ public class RecipeService {
         List<RecipeEntity> recipeEntities = recipeRepository.findAll();
 
         return recipeMapper.mapToDtos(recipeEntities);
+    }
+
+    public void deleteRecipe(int id) {
+        RecipeEntity recipeEntity = recipeRepository.findById(id)
+                .orElseThrow(() -> new RecipeNotFoundException("Recipe with id " + id + " doesn't exists"));
+
+        recipeRepository.delete(recipeEntity);
     }
 
 
