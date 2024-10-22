@@ -2,12 +2,14 @@ package com.jromeo.backend.openai.chatgpt.api;
 
 import com.jromeo.backend.openai.chatgpt.request.RequestBuilder;
 import com.jromeo.backend.provision.service.ProvisionService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
+@Slf4j
 public class ChatGptApi {
 
     @Value("${openai.api-key}")
@@ -24,18 +26,21 @@ public class ChatGptApi {
     }
 
     public String callChatGptApi(RequestBuilder requestBuilder) {
-        try {
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.setBearerAuth(apiKey);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(apiKey);
 
+        try {
             HttpEntity<RequestBuilder> requestEntity = new HttpEntity<>(requestBuilder, headers);
             ResponseEntity<String> response = restTemplate.exchange(chatgptUrl, HttpMethod.POST, requestEntity, String.class);
-            return response.getBody();
+            if (response.getStatusCode().is2xxSuccessful()) {
+                return response.getBody();
+            }
 
         } catch (Exception e) {
-            return "Error when calling chat completion endpoint";
-
+            log.warn("Error with chat completion: {}.", e.getMessage());
         }
+        //TODO: Don't return null
+        return null;
     }
 }

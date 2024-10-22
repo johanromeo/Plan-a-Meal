@@ -1,10 +1,12 @@
 package com.jromeo.backend.recipe.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.jromeo.backend.exceptions.RecipeNotFoundException;
 import com.jromeo.backend.recipe.dto.RecipeInstructionDto;
 import com.jromeo.backend.recipe.RecipePromptBuilder;
 import com.jromeo.backend.recipe.RecipeResponseParser;
 import com.jromeo.backend.recipe.dto.RecipeDto;
+import com.jromeo.backend.recipe.entity.RecipeEntity;
 import com.jromeo.backend.recipe.mapper.RecipeMapper;
 import com.jromeo.backend.recipe.repository.RecipeRepository;
 import com.jromeo.backend.openai.chatgpt.api.ChatGptApi;
@@ -17,9 +19,12 @@ import com.jromeo.backend.openai.chatgpt.request.RequestResponseFormat.FormatTyp
 import com.jromeo.backend.provision.service.ProvisionService;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
+//TODO: Make this class responsible for only handling interactions with chatgpt
+//TODO: Make a recipe service class that handles interactions with mysql
 public class RecipeService {
 
     private final ChatGptApi api;
@@ -66,9 +71,24 @@ public class RecipeService {
         String responseBody = api.callChatGptApi(requestBuilderBody);
 
         RecipeDto recipeDto = parser.parseResponse(responseBody);
-        // Should be in separate service class
+
         recipeRepository.save(recipeMapper.mapToEntity(recipeDto));
 
         return recipeDto;
     }
+
+    public RecipeDto getRecipeById(int id) throws IOException {
+        RecipeEntity recipeEntity = recipeRepository.findById(id)
+                .orElseThrow(() -> new RecipeNotFoundException("Recipe with id " + id + " doesn't existse"));
+
+        return recipeMapper.mapToDto(recipeEntity);
+    }
+
+    public List<RecipeDto> getAllRecipes() throws IOException {
+        List<RecipeEntity> recipeEntities = recipeRepository.findAll();
+
+        return recipeMapper.mapToDtos(recipeEntities);
+    }
+
+
 }

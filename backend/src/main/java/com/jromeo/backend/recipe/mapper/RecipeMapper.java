@@ -8,6 +8,7 @@ import com.jromeo.backend.recipe.entity.RecipeEntity;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -40,6 +41,15 @@ public class RecipeMapper {
         recipeDto.setInstructions(instructionsToString);
 
         return recipeDto;
+    }
 
+    public List<RecipeDto> mapToDtos(List<RecipeEntity> recipeEntities) throws IOException {
+        List<RecipeDto> recipeDtos = new ArrayList<>();
+
+        for (RecipeEntity recipeEntity : recipeEntities) {
+            recipeDtos.add(mapToDto(recipeEntity));
+        }
+
+        return recipeDtos;
     }
 }

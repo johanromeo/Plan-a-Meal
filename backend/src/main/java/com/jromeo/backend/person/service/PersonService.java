@@ -31,6 +31,7 @@ public class PersonService {
                     personDto.getEmail()
             );
             personRepository.save(personEntity);
+
             return objectMapper.convertValue(personEntity, PersonDto.class);
         }
     }
