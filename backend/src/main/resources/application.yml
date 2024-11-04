@@ -3,15 +3,16 @@ spring:
     name: "backend"
 
   datasource:
-    url: ${MYSQL_DATABASE_URL}
+    url: "jdbc:mysql://localhost:3306/plan-a-meal?createDatabaseIfNotExist=true"
     username: ${MYSQL_DATABASE_USERNAME}
-    password: ${MYSQL_DATABASE_PASSWORD}
+    password: ${MYSQL_ROOT_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+
   mail:
     username: ${MAIL_USERNAME}
     password: ${MAIL_PASSWORD}
@@ -20,3 +21,4 @@ openai:
   api-key: ${OPENAI_API_KEY}
   chatgpt-url: "https://api.openai.com/v1/chat/completions"
   #dalle-url:
+
