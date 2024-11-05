@@ -14,8 +14,8 @@ public class ChatGptApi {
 
     @Value("${openai.api-key}")
     private String apiKey;
-    @Value("${openai.chatgpt-url}")
-    private String chatgptUrl;
+
+    private static String CHAT_GPT_URL = "https://api.openai.com/v1/chat/completions";
 
     private final RestTemplate restTemplate;
     private final ProvisionService provisionService;
@@ -32,7 +32,7 @@ public class ChatGptApi {
 
         try {
             HttpEntity<RequestBuilder> requestEntity = new HttpEntity<>(requestBuilder, headers);
-            ResponseEntity<String> response = restTemplate.exchange(chatgptUrl, HttpMethod.POST, requestEntity, String.class);
+            ResponseEntity<String> response = restTemplate.exchange(CHAT_GPT_URL, HttpMethod.POST, requestEntity, String.class);
             if (response.getStatusCode().is2xxSuccessful()) {
                 return response.getBody();
             }
