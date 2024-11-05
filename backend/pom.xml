@@ -85,7 +85,7 @@
     </dependencies>
 
     <build>
-        <finalName>plan-a-meal</finalName>
+        <finalName>meal</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
