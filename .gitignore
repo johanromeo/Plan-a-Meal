@@ -7,8 +7,8 @@
 # Log file
 *.log
 
-# Secrets
-/secrets
+# Enviornment Variables
+.env
 
 # BlueJ files
 *.ctxt
