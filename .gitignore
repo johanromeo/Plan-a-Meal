@@ -8,7 +8,7 @@
 *.log
 
 # Secrets
-/secrets
+.env
 
 # BlueJ files
 *.ctxt
