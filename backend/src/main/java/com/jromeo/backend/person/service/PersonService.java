@@ -10,17 +10,36 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * The type Person service.
+ *
+ * @author Johan Romeo
+ */
 @Service
 public class PersonService {
 
     private final ObjectMapper objectMapper;
     private final PersonRepository personRepository;
 
+    /**
+     * Instantiates a new Person service.
+     *
+     * @param objectMapper     the object mapper
+     * @param personRepository the person repository
+     * @author Johan Romeo
+     */
     public PersonService(ObjectMapper objectMapper, PersonRepository personRepository) {
         this.objectMapper = objectMapper;
         this.personRepository = personRepository;
     }
 
+    /**
+     * Add person to household person dto.
+     *
+     * @param personDto the person dto
+     * @return the person dto
+     * @author Johan Romeo
+     */
     public PersonDto addPersonToHousehold(PersonDto personDto) {
         if (!personDto.getEmail().contains("@")) {
             throw new IllegalEmailException("Invalid email! Must contain '@'");
@@ -36,6 +55,12 @@ public class PersonService {
         }
     }
 
+    /**
+     * Get people email addresses string [ ].
+     *
+     * @return the string [ ]
+     * @author Johan Romeo
+     */
     public String[] getPeopleEmailAddresses() {
         List<PersonDto> people = objectMapper.convertValue(personRepository.findAll(),
                 new TypeReference<>() {}

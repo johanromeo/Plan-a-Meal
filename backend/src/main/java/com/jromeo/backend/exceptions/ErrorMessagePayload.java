@@ -6,6 +6,12 @@ import lombok.Setter;
 
 import java.util.Date;
 
+
+/**
+ * The type Error message payload.
+ *
+ * @author Johan Romeo
+ */
 @Getter
 @Setter
 @AllArgsConstructor

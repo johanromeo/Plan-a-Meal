@@ -10,16 +10,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * The type Person controller.
+ *
+ * @author Johan Romeo
+ */
 @RestController
 @RequestMapping("/household-people")
 public class PersonController {
 
     private final PersonService personService;
 
+    /**
+     * Instantiates a new Person controller.
+     *
+     * @param personService the person service
+     * @author Johan Romeo
+     */
     public PersonController(PersonService personService) {
         this.personService = personService;
     }
 
+    /**
+     * Add person to household response entity.
+     *
+     * @param personDto the person dto
+     * @return the response entity
+     * @author Johan Romeo
+     */
     @PostMapping
     public ResponseEntity<PersonDto> addPersonToHousehold(@Valid @RequestBody PersonDto personDto) {
         personService.addPersonToHousehold(personDto);

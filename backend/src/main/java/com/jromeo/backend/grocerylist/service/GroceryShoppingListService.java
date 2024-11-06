@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * The type Grocery shopping list service.
+ *
+ * @author Johan Romeo
+ */
 @Service
 public class GroceryShoppingListService {
 
@@ -18,6 +23,16 @@ public class GroceryShoppingListService {
     private final DocumentGeneratorService documentGeneratorService;
     private final PersonService personService;
 
+    /**
+     * Instantiates a new Grocery shopping list service.
+     *
+     * @param provisionRepository      the provision repository
+     * @param provisionMapper          the provision mapper
+     * @param emailDeliveryService     the email delivery service
+     * @param documentGeneratorService the document generator service
+     * @param personService            the person service
+     * @author Johan Romeo
+     */
     public GroceryShoppingListService(
             ProvisionRepository provisionRepository, ProvisionMapper provisionMapper,
             EmailDeliveryService emailDeliveryService,
@@ -30,6 +45,12 @@ public class GroceryShoppingListService {
         this.personService = personService;
     }
 
+    /**
+     * Construct email with provisions.
+     *
+     * @throws MessagingException the messaging exception
+     * @author Johan Romeo
+     */
     public void constructEmailWithProvisions() throws MessagingException{
         List<ProvisionEntity> provisionEntities = provisionRepository.addProvisionToShoppingList();
 

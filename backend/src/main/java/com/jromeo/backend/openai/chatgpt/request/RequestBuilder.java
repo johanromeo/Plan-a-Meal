@@ -5,6 +5,11 @@ import lombok.*;
 
 import java.util.List;
 
+/**
+ * The type Request builder.
+ *
+ * @author Johan Romeo
+ */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -16,7 +21,17 @@ public class RequestBuilder {
     @JsonProperty("response_format")
     private final RequestResponseFormat responseFormat;
 
+    /**
+     * The enum Model type.
+     *
+     * @author Johan Romeo
+     */
     public enum ModelType {
+        /**
+         * Gpt 3 5 turbo model type.
+         *
+         * @author Johan Romeo
+         */
         @JsonProperty("gpt-3.5-turbo")
         GPT_3_5_TURBO
     }

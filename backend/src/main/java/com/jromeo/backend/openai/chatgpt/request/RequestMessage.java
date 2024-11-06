@@ -5,6 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * The type Request message.
+ *
+ * @author Johan Romeo
+ */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,9 +19,24 @@ public class RequestMessage {
     @JsonProperty("content")
     private final String content;
 
+    /**
+     * The enum Role.
+     *
+     * @author Johan Romeo
+     */
     public enum Role {
+        /**
+         * System role.
+         *
+         * @author Johan Romeo
+         */
         @JsonProperty("system")
         SYSTEM,
+        /**
+         * User role.
+         *
+         * @author Johan Romeo
+         */
         @JsonProperty("user")
         USER
     }

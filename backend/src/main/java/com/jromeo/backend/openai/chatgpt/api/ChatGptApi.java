@@ -8,6 +8,11 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * The type Chat gpt api.
+ *
+ * @author Johan Romeo
+ */
 @Service
 @Slf4j
 public class ChatGptApi {
@@ -20,11 +25,25 @@ public class ChatGptApi {
     private final RestTemplate restTemplate;
     private final ProvisionService provisionService;
 
+    /**
+     * Instantiates a new Chat gpt api.
+     *
+     * @param restTemplate     the rest template
+     * @param provisionService the provision service
+     * @author Johan Romeo
+     */
     public ChatGptApi(RestTemplate restTemplate, ProvisionService provisionService) {
         this.restTemplate = restTemplate;
         this.provisionService = provisionService;
     }
 
+    /**
+     * Call chat gpt api string.
+     *
+     * @param requestBuilder the request builder
+     * @return the string
+     * @author Johan Romeo
+     */
     public String callChatGptApi(RequestBuilder requestBuilder) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

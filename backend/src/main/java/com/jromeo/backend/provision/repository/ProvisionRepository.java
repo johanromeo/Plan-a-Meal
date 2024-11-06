@@ -6,8 +6,19 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
+/**
+ * The interface Provision repository.
+ *
+ * @author Johan Romeo
+ */
 public interface ProvisionRepository extends JpaRepository<ProvisionEntity, Integer> {
 
+    /**
+     * Add provision to shopping list.
+     *
+     * @return the list
+     * @author Johan Romeo
+     */
     @Query(value =
             "SELECT * FROM provisions " +
             "WHERE number_of_units = 0 " +
@@ -16,6 +27,12 @@ public interface ProvisionRepository extends JpaRepository<ProvisionEntity, Inte
     )
     List<ProvisionEntity> addProvisionToShoppingList();
 
+    /**
+     * Find all positive provisions list.
+     *
+     * @return the list
+     * @author Johan Romeo
+     */
     @Query(value =
             "SELECT * FROM provisions " +
             "WHERE number_of_units > 0",
