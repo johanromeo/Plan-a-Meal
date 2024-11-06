@@ -6,9 +6,21 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * The type Recipe prompt builder.
+ *
+ * @author Johan Romeo
+ */
 @Component
 public class RecipePromptBuilder {
 
+    /**
+     * Build system prompt string.
+     *
+     * @param recipeInstructions the recipe instructions
+     * @return the string
+     * @author Johan Romeo
+     */
     public String buildSystemPrompt(RecipeInstructionDto recipeInstructions) {
         // From which country or culture do you want your recipe to come from?
         String foodCultureOfChoice = recipeInstructions.getFoodCultureOfChoice();
@@ -39,6 +51,13 @@ public class RecipePromptBuilder {
         return promptContent;
     }
 
+    /**
+     * Build user prompt string.
+     *
+     * @param provisionDtos the provision dtos
+     * @return the string
+     * @author Johan Romeo
+     */
     public String buildUserPrompt(List<ProvisionDto> provisionDtos) {
         StringBuilder userAvailableProvisions = new StringBuilder("Available provisions: ");
         for (ProvisionDto provision : provisionDtos) {

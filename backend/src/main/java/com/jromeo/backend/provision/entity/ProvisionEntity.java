@@ -6,6 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * The type Provision entity.
+ *
+ * @author Johan Romeo
+ */
 @Entity
 @Table(name = "provisions")
 @Getter

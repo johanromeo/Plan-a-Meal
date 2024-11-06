@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.jromeo</groupId>
     <artifactId>backend</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>backend</name>
     <description>backend</description>
 
@@ -64,6 +64,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-docker-compose</artifactId>
+            <scope>runtime</scope>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -80,6 +85,7 @@
     </dependencies>
 
     <build>
+        <finalName>meal</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

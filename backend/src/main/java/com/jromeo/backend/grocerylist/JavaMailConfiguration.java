@@ -8,6 +8,11 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;
 
+/**
+ * The type Java mail configuration.
+ *
+ * @author Johan Romeo
+ */
 @Configuration
 public class JavaMailConfiguration {
 
@@ -16,6 +21,12 @@ public class JavaMailConfiguration {
     @Value("${spring.mail.password}")
     private String mailPassword;
 
+    /**
+     * Configure mail properties java mail sender.
+     *
+     * @return the java mail sender
+     * @author Johan Romeo
+     */
     @Bean
     public JavaMailSender configureMailProperties() {
         JavaMailSenderImpl mailSenderImpl = new JavaMailSenderImpl();

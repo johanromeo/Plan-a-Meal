@@ -6,6 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * The type Person entity.
+ *
+ * @author Johan Romeo
+ */
 @Table(name = "people_in_houshold")
 @Entity
 @Getter

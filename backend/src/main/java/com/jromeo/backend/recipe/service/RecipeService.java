@@ -22,6 +22,11 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * The type Recipe service.
+ *
+ * @author Johan Romeo
+ */
 @Service
 public class RecipeService {
 
@@ -32,6 +37,17 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final RecipeMapper recipeMapper;
 
+    /**
+     * Instantiates a new Recipe service.
+     *
+     * @param api              the api
+     * @param promptBuilder    the prompt builder
+     * @param parser           the parser
+     * @param provisionService the provision service
+     * @param recipeRepository the recipe repository
+     * @param recipeMapper     the recipe mapper
+     * @author Johan Romeo
+     */
     public RecipeService(ChatGptApi api, RecipePromptBuilder promptBuilder, RecipeResponseParser parser,
                          ProvisionService provisionService, RecipeRepository recipeRepository, RecipeMapper recipeMapper) {
         this.api = api;
@@ -42,6 +58,14 @@ public class RecipeService {
         this.recipeMapper = recipeMapper;
     }
 
+    /**
+     * Generate recipe recipe dto.
+     *
+     * @param instructions the instructions
+     * @return the recipe dto
+     * @throws JsonProcessingException the json processing exception
+     * @author Johan Romeo
+     */
     public RecipeDto generateRecipe(RecipeInstructionDto instructions) throws JsonProcessingException {
         // System specific prompts and settings
         String systemPrompt = promptBuilder.buildSystemPrompt(instructions);
@@ -75,6 +99,14 @@ public class RecipeService {
         return recipeDto;
     }
 
+    /**
+     * Gets recipe by id.
+     *
+     * @param id the id
+     * @return the recipe by id
+     * @throws IOException the io exception
+     * @author Johan Romeo
+     */
     public RecipeDto getRecipeById(int id) throws IOException {
         RecipeEntity recipeEntity = recipeRepository.findById(id)
                 .orElseThrow(() -> new RecipeNotFoundException("Recipe with id " + id + " doesn't exists"));
@@ -82,12 +114,25 @@ public class RecipeService {
         return recipeMapper.mapToDto(recipeEntity);
     }
 
+    /**
+     * Gets all recipes.
+     *
+     * @return the all recipes
+     * @throws IOException the io exception
+     * @author Johan Romeo
+     */
     public List<RecipeDto> getAllRecipes() throws IOException {
         List<RecipeEntity> recipeEntities = recipeRepository.findAll();
 
         return recipeMapper.mapToDtos(recipeEntities);
     }
 
+    /**
+     * Delete recipe.
+     *
+     * @param id the id
+     * @author Johan Romeo
+     */
     public void deleteRecipe(int id) {
         RecipeEntity recipeEntity = recipeRepository.findById(id)
                 .orElseThrow(() -> new RecipeNotFoundException("Recipe with id " + id + " doesn't exists"));

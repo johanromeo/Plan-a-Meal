@@ -6,6 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * The type Person dto.
+ *
+ * @author Johan Romeo
+ */
 @Getter
 @Setter
 @NoArgsConstructor

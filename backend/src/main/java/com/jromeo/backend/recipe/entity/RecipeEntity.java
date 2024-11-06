@@ -6,6 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * The type Recipe entity.
+ *
+ * @author Johan Romeo
+ */
 @Entity
 @Table(name = "recipes")
 @Getter

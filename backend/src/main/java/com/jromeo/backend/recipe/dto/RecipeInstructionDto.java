@@ -5,6 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * The type Recipe instruction dto.
+ *
+ * @author Johan Romeo
+ */
 @Getter
 @Setter
 @NoArgsConstructor

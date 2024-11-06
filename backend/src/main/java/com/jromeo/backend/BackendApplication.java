@@ -3,6 +3,11 @@ package com.jromeo.backend;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * The type Backend application.
+ *
+ * @author Johan Romeo
+ */
 @SpringBootApplication
 public class BackendApplication  {
 
@@ -28,6 +33,12 @@ public class BackendApplication  {
         //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
         //SOFTWARE.
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     * @author Johan Romeo
+     */
     public static void main(String[] args) {
         SpringApplication.run(BackendApplication.class, args);
     }

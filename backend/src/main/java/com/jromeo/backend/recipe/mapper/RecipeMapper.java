@@ -11,15 +11,34 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Recipe mapper.
+ *
+ * @author Johan Romeo
+ */
 @Component
 public class RecipeMapper {
 
     private final ObjectMapper objectMapper;
 
+    /**
+     * Instantiates a new Recipe mapper.
+     *
+     * @param objectMapper the object mapper
+     * @author Johan Romeo
+     */
     public RecipeMapper(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
 
+    /**
+     * Map to entity recipe entity.
+     *
+     * @param recipeDto the recipe dto
+     * @return the recipe entity
+     * @throws JsonProcessingException the json processing exception
+     * @author Johan Romeo
+     */
     public RecipeEntity mapToEntity(RecipeDto recipeDto) throws JsonProcessingException {
         RecipeEntity recipeEntity = new RecipeEntity();
 
@@ -30,6 +49,14 @@ public class RecipeMapper {
         return recipeEntity;
     }
 
+    /**
+     * Map to dto recipe dto.
+     *
+     * @param recipeEntity the recipe entity
+     * @return the recipe dto
+     * @throws IOException the io exception
+     * @author Johan Romeo
+     */
     public RecipeDto mapToDto(RecipeEntity recipeEntity) throws IOException {
         RecipeDto recipeDto = new RecipeDto();
 
@@ -43,6 +70,14 @@ public class RecipeMapper {
         return recipeDto;
     }
 
+    /**
+     * Map to dtos list.
+     *
+     * @param recipeEntities the recipe entities
+     * @return the list
+     * @throws IOException the io exception
+     * @author Johan Romeo
+     */
     public List<RecipeDto> mapToDtos(List<RecipeEntity> recipeEntities) throws IOException {
         List<RecipeDto> recipeDtos = new ArrayList<>();
 
