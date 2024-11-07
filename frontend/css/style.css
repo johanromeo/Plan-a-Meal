@@ -32,8 +32,12 @@ main {
 
 .landing-item {
     position: relative;
-    width: 250px;
-    height: 250px;
+    width: 225px;
+    height: 225px;
+    image{
+        max-width: 25%;
+        max-height: 25%;
+    }
 }
 
 .landing-item img {
@@ -48,12 +52,12 @@ main {
     transform: scale(1.05);
 }
 
-.landing-title {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 5px 10px;
-    border-radius: 5px;
-}
+/*.landing-title {*/
+/*    position: relative;*/
+/*    bottom: 10px;*/
+/*    left: 10px;*/
+/*    color: #fff;*/
+/*    background-color: rgba(0, 0, 0, 0.6);*/
+/*    padding: 5px 10px;*/
+/*    border-radius: 5px;*/
+/*}*/
