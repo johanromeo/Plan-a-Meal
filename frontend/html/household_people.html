@@ -1,0 +1,50 @@
+<!-- household_people.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Household People</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+    <h1>Household People</h1>
+</header>
+
+<main>
+    <!-- Add Household Person Button -->
+    <button id="add-person-btn">Add Household Person</button>
+
+    <!-- Table/List of Household People -->
+    <table id="household-table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Household people will be dynamically populated here -->
+        </tbody>
+    </table>
+
+    <!-- Add/Edit Household Person Form -->
+    <div id="person-form-container" style="display: none;">
+        <form id="person-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" required>
+
+            <button type="submit">Save</button>
+            <button type="button" id="cancel-btn">Cancel</button>
+        </form>
+    </div>
+</main>
+
+<script src="js/household_people.js"></script>
+</body>
+</html>
