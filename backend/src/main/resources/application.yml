@@ -2,6 +2,10 @@ spring:
   application:
     name: "backend"
 
+  mail:
+    username: ${SPRING_MAIL_USERNAME}
+    password: ${SPRING_MAIL_PASSWORD}
+
   datasource:
     url: ${SPRING_DATASOURCE_URL}
     #"jdbc:mysql://localhost:3306/plan-a-meal?createDatabaseIfNotExist=true"
@@ -14,9 +18,8 @@ spring:
       ddl-auto: update
     show-sql: true
 
-  mail:
-    username: ${MAIL_USERNAME}
-    password: ${MAIL_PASSWORD}
+
+
 
 openai:
   api-key: ${OPENAI_API_KEY}

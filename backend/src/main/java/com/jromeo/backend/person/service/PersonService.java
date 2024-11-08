@@ -55,6 +55,12 @@ public class PersonService {
         }
     }
 
+    public List<PersonDto> getPeople() {
+        List<PersonEntity> people = personRepository.findAll();
+
+        return objectMapper.convertValue(people, new TypeReference<>() {});
+    }
+
     /**
      * Get people email addresses string [ ].
      *
