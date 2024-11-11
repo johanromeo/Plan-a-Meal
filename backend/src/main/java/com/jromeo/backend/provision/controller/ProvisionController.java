@@ -15,6 +15,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/provisions")
+@CrossOrigin("*")
 public class ProvisionController {
 
     private final ProvisionService provisionService;
@@ -76,6 +77,11 @@ public class ProvisionController {
     @PutMapping("/{id}")
     public ResponseEntity<ProvisionDto> updateProvision(@PathVariable int id, @RequestBody ProvisionDto provisionDTO) {
         return new ResponseEntity<>(provisionService.updateProvision(id, provisionDTO), HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}/quantity")
+    public ProvisionDto updateProvisionQuantity(@PathVariable int id, @RequestParam int units) {
+        return provisionService.updateProvisionQuantity(id, units);
     }
 
     /**

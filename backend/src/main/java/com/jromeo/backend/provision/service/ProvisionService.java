@@ -5,6 +5,7 @@ import com.jromeo.backend.provision.dto.ProvisionDto;
 import com.jromeo.backend.provision.entity.ProvisionEntity;
 import com.jromeo.backend.provision.mapper.ProvisionMapper;
 import com.jromeo.backend.provision.repository.ProvisionRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -96,6 +97,24 @@ public class ProvisionService {
         provisionEntity.setName(provisionDTO.getName());
         provisionEntity.setUnits(provisionDTO.getUnits());
         provisionEntity.setAddedToGroceryShoppingList(provisionDTO.isAddedToShoppingList());
+
+        provisionRepository.save(provisionEntity);
+
+        return provisionMapper.mapToDto(provisionEntity);
+    }
+
+    /**
+     * Update provision quantity.
+     *
+     * @param id     the id of the provision
+     * @param units  the new quantity for the provision
+     * @return the updated provision dto
+     */
+    @Transactional
+    public ProvisionDto updateProvisionQuantity(int id, int units) {
+        ProvisionEntity provisionEntity = provisionRepository.findById(id)
+                .orElseThrow(() -> new ProvisionNotFoundException("No provision with id " + id + " exists"));
+        provisionEntity.setUnits(units);
 
         provisionRepository.save(provisionEntity);
 
