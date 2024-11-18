@@ -1,0 +1,58 @@
+body {
+
+    /*Text Settings*/
+    font-family: sans-serif;
+    color: aliceblue;
+
+
+    /*Background Settings*/
+    background-color: #144552;
+
+    /*Flex Box Settings*/
+    display: flex;
+    /*height: 50vh;*/
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+a,
+a:hover,
+a:focus,
+a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+.heading {
+    font-size: 80px;
+}
+
+.image-container {
+    width: 700px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px;
+    justify-content: center;
+    align-content: center;
+}
+
+.image-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+img {
+    max-width: 100%; /* Ensures images don't overflow their container */
+    max-height: 150px; /* Limits the height of images */
+    object-fit: contain; /* Maintains aspect ratio while scaling images */
+    border-radius: 10%;
+}
+
+.image-title {
+    font-size: 20px;
+}
