@@ -112,6 +112,7 @@ img {
   font-size: 12px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+  font-size: large;
 }
 
 .action-button:hover {

@@ -49,4 +49,15 @@ public class PersonController {
         List<PersonDto> people = personService.getPeople();
         return new ResponseEntity<>(people, HttpStatus.OK);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PersonDto> updatePerson(@PathVariable Integer id, @RequestBody PersonDto personDto) {
+        return new ResponseEntity<>(personService.updatePerson(id, personDto), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePerson(@PathVariable Integer id) {
+        personService.deletePerson(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

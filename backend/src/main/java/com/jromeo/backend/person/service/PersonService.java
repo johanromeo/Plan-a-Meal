@@ -3,6 +3,7 @@ package com.jromeo.backend.person.service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jromeo.backend.exceptions.IllegalEmailException;
+import com.jromeo.backend.exceptions.PersonNotFoundException;
 import com.jromeo.backend.person.dto.PersonDto;
 import com.jromeo.backend.person.entity.PersonEntity;
 import com.jromeo.backend.person.repository.PersonRepository;
@@ -59,6 +60,25 @@ public class PersonService {
         List<PersonEntity> people = personRepository.findAll();
 
         return objectMapper.convertValue(people, new TypeReference<>() {});
+    }
+
+    public PersonDto updatePerson(Integer id, PersonDto personDto) {
+        PersonEntity personEntity = personRepository.findById(id)
+                .orElseThrow( () -> new PersonNotFoundException("Person with id: " + id + " doesn't exist."));
+
+        personEntity.setName(personDto.getName());
+        personEntity.setEmail(personDto.getEmail());
+
+        personRepository.save(personEntity);
+
+        return objectMapper.convertValue(personEntity, PersonDto.class);
+    }
+
+    public void deletePerson(Integer id) {
+        PersonEntity personEntity = personRepository.findById(id)
+                .orElseThrow( ()-> new PersonNotFoundException("Person with id: " + id + " doesn't exist."));
+
+        personRepository.delete(personEntity);
     }
 
     /**
