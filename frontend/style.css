@@ -67,7 +67,6 @@ img {
 
 /* Data Table Styling */
 .data-table {
-  /* Table appearance */
   width: 80%;
   margin: 20px auto;
   border-collapse: collapse;
@@ -79,14 +78,12 @@ img {
 
 .data-table th,
 .data-table td {
-  /* Cell styling */
   border: 1px solid #2bfff4;
   padding: 10px 15px;
   text-align: left;
 }
 
 .data-table th {
-  /* Header row styling */
   background-color: #2bfff4;
   color: #144552;
   text-transform: uppercase;
@@ -94,6 +91,43 @@ img {
 }
 
 .data-table tr:nth-child(even) {
-  /* Zebra striping for rows */
-  background-color: #186060; /* Slightly lighter shade for alternating rows */
+  background-color: #186060;
+}
+
+.actions-container {
+  display: flex;
+  gap: 5px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Data Table Buttons Styling */
+.action-button {
+  background-color: #2bfff4;
+  color: #144552;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-family: sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.action-button:hover {
+  background-color: aliceblue;
+  color: #144552;
+}
+
+.edit-button {
+  background-color: #2bfff4;
+}
+
+.remove-button {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.remove-button:hover {
+  background-color: #ff9999;
 }
