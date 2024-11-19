@@ -65,6 +65,65 @@ img {
   border: 5px;
 }
 
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #144552;
+  margin: 15% auto;
+  padding: 20px;
+  border: 2px solid #2bfff4;
+  width: 50%;
+  color: aliceblue;
+  position: relative;
+  border-radius: 10px;
+}
+
+.close-button {
+  color: #2bfff4;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: #ff4d4d;
+}
+
+label {
+  display: block;
+  margin: 15px 0 5px;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #2bfff4;
+  border-radius: 5px;
+  background-color: #186060;
+  color: aliceblue;
+}
+
+.form-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 /* Data Table Styling */
 .data-table {
   width: 80%;

@@ -12,6 +12,42 @@
 
     <div class="action-button add-button">Add Person</div>
 
+    <div id="person-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" id="close-form">&times;</span>
+        <h2 id="modal-title">Add Person</h2>
+        <form id="person-form">
+          <!-- Hidden input to store person ID when editing -->
+          <input type="hidden" id="person-id" name="id" />
+
+          <label for="person-name">Name:</label>
+          <input type="text" id="person-name" name="name" required />
+
+          <label for="person-email">Email:</label>
+          <input type="email" id="person-email" name="email" required />
+
+          <div class="form-buttons">
+            <button type="submit" class="action-button" id="submit-button">
+              Add Person
+            </button>
+            <button type="button" class="action-button" id="cancel-button">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="confirmation-modal" class="modal">
+      <div class="modal-content">
+        <p>Are you sure you want to remove this person?</p>
+        <div class="form-buttons">
+          <button class="action-button" id="confirm-delete-button">Yes</button>
+          <button class="action-button" id="cancel-delete-button">No</button>
+        </div>
+      </div>
+    </div>
+
     <table class="data-table">
       <thead>
         <tr>
@@ -22,17 +58,7 @@
         </tr>
       </thead>
       <tbody id="table-body">
-        <!-- <tr>
-          <td>1</td>
-          <td>Johan</td>
-          <td>test@mail.com</td>
-          <td class="actions-cell">
-            <div class="actions-container">
-              <button class="action-button edit-button">Edit</button>
-              <button class="action-button remove-button">Remove</button>
-            </div>
-          </td>
-        </tr> -->
+        <!-- Body is populated by script -->
       </tbody>
     </table>
     <script src="people.js"></script>
