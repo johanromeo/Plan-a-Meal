@@ -4,7 +4,6 @@
 }
 
 body {
-  /* height: 70vh; */
   /*Text Settings*/
   font-family: sans-serif;
   color: aliceblue;
@@ -33,6 +32,7 @@ a:visited {
   font-size: 80px;
 }
 
+/* Index.html Images Styling */
 .image-container {
   height: 5vh;
   width: 80%;
@@ -44,10 +44,9 @@ a:visited {
 
 .image-title {
   font-size: 20px;
-  font-weight: bold;
+  font-weight: lighter;
   color: #2bfff4;
   margin-bottom: 10px;
-  border: 3px solid #2bfff4;
 }
 
 .image-item {
@@ -64,4 +63,37 @@ img {
   object-fit: contain;
   border-radius: 10%;
   border: 5px;
+}
+
+/* Data Table Styling */
+.data-table {
+  /* Table appearance */
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  font-family: sans-serif;
+  color: aliceblue;
+  background-color: #144552;
+  border: 2px solid #2bfff4;
+}
+
+.data-table th,
+.data-table td {
+  /* Cell styling */
+  border: 1px solid #2bfff4;
+  padding: 10px 15px;
+  text-align: left;
+}
+
+.data-table th {
+  /* Header row styling */
+  background-color: #2bfff4;
+  color: #144552;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.data-table tr:nth-child(even) {
+  /* Zebra striping for rows */
+  background-color: #186060; /* Slightly lighter shade for alternating rows */
 }
