@@ -27,8 +27,8 @@ function populateTable(data, type) {
       <td contenteditable="true">${item.name}</td>
       <td contenteditable="true">${item.email}</td>
       <td>
-        <button class="action-button edit-button" onclick="editRow(${item.id}, '${type}')">Edit</button>
-        <button class="action-button remove-button" onclick="confirmRemove(${item.id}, '${type}')">Remove</button>
+        <button class="action-button edit-button" onclick="editRow(${item.id}, '${type}')">Edit Household Person</button>
+        <button class="action-button remove-button" onclick="confirmRemove(${item.id}, '${type}')">Remove Person from Household</button>
       </td>
     `;
 
