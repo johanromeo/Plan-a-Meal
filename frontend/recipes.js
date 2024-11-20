@@ -156,6 +156,9 @@ function handleRecipeFormSubmit(event) {
     maxMinutesToCompleteRecipe: parseInt(maxTime),
   };
 
+  // Show the loading overlay
+  showLoadingOverlay();
+
   // Send request to backend to generate recipe
   fetch(`${recipesApiUrl}/generate-recipe`, {
     method: "POST",
@@ -182,7 +185,21 @@ function handleRecipeFormSubmit(event) {
     .catch((error) => {
       console.error("Error generating recipe:", error);
       alert("Failed to generate recipe.");
+    })
+    .finally(() => {
+      // Hide the loading overlay
+      hideLoadingOverlay();
     });
+}
+
+function showLoadingOverlay() {
+  const overlay = document.getElementById("loading-overlay");
+  overlay.style.display = "flex";
+}
+
+function hideLoadingOverlay() {
+  const overlay = document.getElementById("loading-overlay");
+  overlay.style.display = "none";
 }
 
 function viewRecipe(recipeId) {
