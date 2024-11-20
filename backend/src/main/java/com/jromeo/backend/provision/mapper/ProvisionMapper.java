@@ -27,7 +27,8 @@ public class ProvisionMapper {
                 provisionEntity.getId(),
                 provisionEntity.getName(),
                 provisionEntity.getUnits(),
-                provisionEntity.isAddedToGroceryShoppingList()
+                provisionEntity.isAddedToGroceryShoppingList(),
+                provisionEntity.getImgUrl()
         );
 
         return provisionDto;
@@ -61,7 +62,8 @@ public class ProvisionMapper {
                 provisionDTO.getId(),
                 provisionDTO.getName(),
                 provisionDTO.getUnits(),
-                provisionDTO.isAddedToShoppingList()
+                provisionDTO.isAddedToShoppingList(),
+                provisionDTO.getImgUrl()
         );
 
         return provisionEntity;

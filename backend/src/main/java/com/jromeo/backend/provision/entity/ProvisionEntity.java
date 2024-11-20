@@ -28,4 +28,6 @@ public class ProvisionEntity {
     private int units;
     @Column(name = "in_grocery_shopping_list")
     private boolean addedToGroceryShoppingList;
+    @Column(name = "img_url")
+    private String imgUrl;
 }

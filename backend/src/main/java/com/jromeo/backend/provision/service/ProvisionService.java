@@ -54,7 +54,7 @@ public class ProvisionService {
      */
     public ProvisionDto findProvisionById(int id) {
         ProvisionEntity provisionEntity = provisionRepository.findById(id)
-                .orElseThrow(() -> new ProvisionNotFoundException("No provision with id " + id + " exists"));
+                .orElseThrow(() -> new ProvisionNotFoundException("No provision with id " + id + " exist"));
 
         return provisionMapper.mapToDto(provisionEntity);
     }
@@ -97,6 +97,7 @@ public class ProvisionService {
         provisionEntity.setName(provisionDTO.getName());
         provisionEntity.setUnits(provisionDTO.getUnits());
         provisionEntity.setAddedToGroceryShoppingList(provisionDTO.isAddedToShoppingList());
+        provisionEntity.setImgUrl(provisionDTO.getImgUrl());
 
         provisionRepository.save(provisionEntity);
 

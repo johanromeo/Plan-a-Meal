@@ -19,4 +19,5 @@ public class ProvisionDto {
     private String name;
     private int units;
     private boolean addedToShoppingList;
+    private String imgUrl;
 }
