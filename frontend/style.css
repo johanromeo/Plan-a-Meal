@@ -1,22 +1,8 @@
+/* COMMON STYLE SETTINGS */
+
 * {
   margin: 0;
   padding: 0;
-}
-
-body {
-  /*Text Settings*/
-  font-family: sans-serif;
-  color: aliceblue;
-  margin-top: 30px;
-
-  /*Background Settings*/
-  background-color: #144552;
-
-  /*Flex Box Settings*/
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 a,
@@ -30,6 +16,23 @@ a:visited {
 .heading {
   height: 30vh;
   font-size: 80px;
+}
+
+/* ALL SETTINGS FOR FLEX BOX USAGE */
+.flex-body {
+  /*Text Settings*/
+  font-family: sans-serif;
+  color: aliceblue;
+  margin-top: 30px;
+
+  /*Background Settings*/
+  background-color: #144552;
+
+  /*Flex Box Settings*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Index.html Images Styling */
@@ -65,7 +68,7 @@ img {
   border: 5px;
 }
 
-/* Modal Styles */
+/* ALL STYLING FOR MODAL */
 .modal {
   display: none;
   position: fixed;
@@ -89,18 +92,6 @@ img {
   border-radius: 10px;
 }
 
-.close-button {
-  color: #2bfff4;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.close-button:hover {
-  color: #ff4d4d;
-}
-
 label {
   display: block;
   margin: 15px 0 5px;
@@ -117,14 +108,7 @@ input[type="email"] {
   color: aliceblue;
 }
 
-.form-buttons {
-  margin-top: 20px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
-/* Data Table Styling */
+/* ALL STYLING FOR DATA TABLE */
 .data-table {
   width: 80%;
   margin: 20px auto;
@@ -153,6 +137,8 @@ input[type="email"] {
   background-color: #186060;
 }
 
+/* ALL STYLINGS FOR BUTTONS */
+
 .actions-container {
   display: flex;
   gap: 5px;
@@ -160,7 +146,6 @@ input[type="email"] {
   align-items: center;
 }
 
-/* Data Table Buttons Styling */
 .action-button {
   background-color: #2bfff4;
   color: #144552;
@@ -190,4 +175,41 @@ input[type="email"] {
 
 .remove-button:hover {
   background-color: #ff9999;
+}
+
+.close-button {
+  color: #2bfff4;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: #ff4d4d;
+}
+
+.form-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* ALL STYLING FOR PROVISIONS.HTML */
+
+.grid-body {
+  /*Text Settings*/
+  font-family: sans-serif;
+  color: aliceblue;
+  margin-top: 30px;
+
+  /*Background Settings*/
+  background-color: #144552;
+
+  /*Grid Settings*/
+  display: grid;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
