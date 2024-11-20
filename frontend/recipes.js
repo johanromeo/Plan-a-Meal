@@ -1,4 +1,5 @@
 const recipesApiUrl = "http://localhost:8080/recipes";
+let recipeIdToDelete = null; // Variable to store the ID of the recipe to delete
 
 document.addEventListener("DOMContentLoaded", () => {
   loadRecipes();
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementById("recipe-form")
     .addEventListener("submit", handleRecipeFormSubmit);
 
-  // Event listener for closing the view recipe modal
+  // Event listeners for closing the view recipe modal
   document
     .getElementById("close-view-recipe")
     .addEventListener("click", closeViewRecipeModal);
@@ -28,17 +29,34 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementById("close-recipe-button")
     .addEventListener("click", closeViewRecipeModal);
 
+  // Event listeners for delete confirmation modal
+  document
+    .getElementById("confirm-delete-button")
+    .addEventListener("click", confirmDelete);
+  document
+    .getElementById("cancel-delete-button")
+    .addEventListener("click", closeDeleteConfirmationModal);
+  document
+    .getElementById("close-delete-confirmation")
+    .addEventListener("click", closeDeleteConfirmationModal);
+
   // Close modals when clicking outside of them
   window.onclick = function (event) {
     const generateRecipeModal = document.getElementById(
       "generate-recipe-modal"
     );
     const viewRecipeModal = document.getElementById("view-recipe-modal");
+    const deleteConfirmationModal = document.getElementById(
+      "delete-confirmation-modal"
+    );
     if (event.target == generateRecipeModal) {
       closeRecipeModal();
     }
     if (event.target == viewRecipeModal) {
       closeViewRecipeModal();
+    }
+    if (event.target == deleteConfirmationModal) {
+      closeDeleteConfirmationModal();
     }
   };
 });
@@ -107,41 +125,6 @@ function renderRecipes(recipes) {
   });
 }
 
-function viewRecipe(recipeId) {
-  fetch(`${recipesApiUrl}/${recipeId}`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((recipe) => {
-      const modal = document.getElementById("view-recipe-modal");
-      document.getElementById("recipe-title").textContent = recipe.title;
-      const instructionsContainer = document.getElementById(
-        "recipe-instructions"
-      );
-      instructionsContainer.innerHTML = "";
-
-      // Handle instructions as an array or string
-      const instructionsArray = Array.isArray(recipe.instructions)
-        ? recipe.instructions
-        : recipe.instructions.split("\n");
-
-      instructionsArray.forEach((step) => {
-        const p = document.createElement("p");
-        p.textContent = step;
-        instructionsContainer.appendChild(p);
-      });
-
-      modal.style.display = "block";
-    })
-    .catch((error) => {
-      console.error("Error fetching recipe:", error);
-      alert("Failed to load recipe.");
-    });
-}
-
 function openRecipeModal() {
   const modal = document.getElementById("generate-recipe-modal");
   modal.style.display = "block";
@@ -202,31 +185,89 @@ function handleRecipeFormSubmit(event) {
     });
 }
 
+function viewRecipe(recipeId) {
+  if (!recipeId) {
+    console.error("Recipe ID is missing.");
+    alert("Unable to load recipe.");
+    return;
+  }
+
+  fetch(`${recipesApiUrl}/${recipeId}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((recipe) => {
+      const modal = document.getElementById("view-recipe-modal");
+      document.getElementById("recipe-title").textContent = recipe.title;
+      const instructionsContainer = document.getElementById(
+        "recipe-instructions"
+      );
+      instructionsContainer.innerHTML = "";
+
+      // Handle instructions as an array or string
+      const instructionsArray = Array.isArray(recipe.instructions)
+        ? recipe.instructions
+        : recipe.instructions.split("\n");
+
+      instructionsArray.forEach((step) => {
+        const p = document.createElement("p");
+        p.textContent = step;
+        instructionsContainer.appendChild(p);
+      });
+
+      modal.style.display = "block";
+    })
+    .catch((error) => {
+      console.error("Error fetching recipe:", error);
+      alert("Failed to load recipe.");
+    });
+}
+
 function closeViewRecipeModal() {
   const modal = document.getElementById("view-recipe-modal");
   modal.style.display = "none";
 }
 
 function deleteRecipe(recipeId) {
-  const confirmed = confirm("Are you sure you want to delete this recipe?");
-  if (confirmed) {
-    fetch(`${recipesApiUrl}/${recipeId}`, {
-      method: "DELETE",
-    })
-      .then((response) => {
-        if (response.ok) {
-          loadRecipes();
-        } else {
-          throw new Error(
-            `Failed to delete recipe. Status: ${response.status}`
-          );
-        }
-      })
-      .catch((error) => {
-        console.error("Error deleting recipe:", error);
-        alert("Failed to delete recipe.");
-      });
+  recipeIdToDelete = recipeId;
+  const modal = document.getElementById("delete-confirmation-modal");
+  modal.style.display = "block";
+}
+
+function confirmDelete() {
+  if (recipeIdToDelete == null) {
+    console.error("No recipe ID to delete.");
+    closeDeleteConfirmationModal();
+    return;
   }
+
+  fetch(`${recipesApiUrl}/${recipeIdToDelete}`, {
+    method: "DELETE",
+  })
+    .then((response) => {
+      if (response.ok) {
+        loadRecipes();
+      } else {
+        throw new Error(`Failed to delete recipe. Status: ${response.status}`);
+      }
+    })
+    .catch((error) => {
+      console.error("Error deleting recipe:", error);
+      alert("Failed to delete recipe.");
+    })
+    .finally(() => {
+      closeDeleteConfirmationModal();
+      recipeIdToDelete = null;
+    });
+}
+
+function closeDeleteConfirmationModal() {
+  const modal = document.getElementById("delete-confirmation-modal");
+  modal.style.display = "none";
+  recipeIdToDelete = null;
 }
 
 function populateDropdowns() {
