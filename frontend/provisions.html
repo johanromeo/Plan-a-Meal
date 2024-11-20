@@ -9,7 +9,11 @@
   <body class="grid-body">
     <h1 class="heading">Provisions</h1>
 
-    <div class="action-button add-button">Add Provision</div>
+    <!-- <div class="action-button add-button">Add Provision</div> -->
+    <div class="top-bar">
+      <div class="action-button add-button">Add Provision</div>
+      <input type="text" id="search-input" placeholder="Search Provisions..." />
+    </div>
 
     <div class="provisions-container">
       <!-- Provision items will be dynamically inserted here -->
@@ -42,6 +46,26 @@
       </div>
     </div>
 
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" id="close-confirmation">&times;</span>
+        <h2>Confirm Removal</h2>
+        <p>Are you sure you want to remove this provision?</p>
+        <div class="form-buttons">
+          <button
+            type="button"
+            class="action-button"
+            id="confirm-delete-button"
+          >
+            Yes, Remove
+          </button>
+          <button type="button" class="action-button" id="cancel-delete-button">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
     <script src="provisions.js"></script>
   </body>
 </html>
