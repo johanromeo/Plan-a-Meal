@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Plan a Meal - Recipes</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="grid-body">
+    <h1 class="heading">Recipes</h1>
+
+    <!-- Generate Recipe Button -->
+    <div class="top-bar">
+      <button class="action-button generate-recipe-button">
+        Generate Recipe
+      </button>
+    </div>
+
+    <!-- Recipes Container -->
+    <div class="recipes-container">
+      <!-- Recipe items will be dynamically inserted here -->
+    </div>
+
+    <!-- Generate Recipe Modal -->
+    <div id="generate-recipe-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" id="close-recipe-form">&times;</span>
+        <h2 class="modal-heading">Generate Recipe</h2>
+        <form id="recipe-form">
+          <label for="food-culture">Food Culture:</label>
+          <select id="food-culture" required>
+            <option value="" disabled selected>Select Food Culture</option>
+            <!-- Options will be populated by JavaScript -->
+          </select>
+
+          <label for="language">Language:</label>
+          <select id="language" required>
+            <option value="" disabled selected>Select Language</option>
+            <!-- Options will be populated by JavaScript -->
+          </select>
+
+          <label for="meal-type">Meal Type:</label>
+          <select id="meal-type" required>
+            <option value="" disabled selected>Select Meal Type</option>
+            <!-- Options will be populated by JavaScript -->
+          </select>
+
+          <label for="max-time">Max Minutes to Complete Recipe:</label>
+          <input type="number" id="max-time" min="1" required />
+
+          <div class="form-buttons">
+            <button type="submit" class="action-button">Generate Recipe</button>
+            <button
+              type="button"
+              class="action-button"
+              id="cancel-recipe-button"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- View Recipe Modal -->
+    <div id="view-recipe-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" id="close-view-recipe">&times;</span>
+        <h2 class="modal-heading" id="recipe-title">Recipe Title</h2>
+        <div id="recipe-instructions">
+          <!-- Recipe instructions will be dynamically inserted here -->
+        </div>
+        <div class="form-buttons">
+          <button type="button" class="action-button" id="close-recipe-button">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="recipes.js"></script>
+  </body>
+</html>

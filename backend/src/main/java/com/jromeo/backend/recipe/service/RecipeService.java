@@ -107,7 +107,7 @@ public class RecipeService {
      * @throws IOException the io exception
      * @author Johan Romeo
      */
-    public RecipeDto getRecipeById(int id) throws IOException {
+    public RecipeDto getRecipeById(Integer id) throws IOException {
         RecipeEntity recipeEntity = recipeRepository.findById(id)
                 .orElseThrow(() -> new RecipeNotFoundException("Recipe with id " + id + " doesn't exists"));
 
@@ -133,7 +133,7 @@ public class RecipeService {
      * @param id the id
      * @author Johan Romeo
      */
-    public void deleteRecipe(int id) {
+    public void deleteRecipe(Integer id) {
         RecipeEntity recipeEntity = recipeRepository.findById(id)
                 .orElseThrow(() -> new RecipeNotFoundException("Recipe with id " + id + " doesn't exists"));
 

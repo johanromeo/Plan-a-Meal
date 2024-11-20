@@ -19,6 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/recipes")
+@CrossOrigin("*")
 public class RecipeController {
 
     private final RecipeService recipeService;
@@ -41,7 +42,7 @@ public class RecipeController {
      * @throws JsonProcessingException the json processing exception
      * @author Johan Romeo
      */
-    @GetMapping("/generate-recipe")
+    @PostMapping("/generate-recipe")
     public ResponseEntity<RecipeDto> generateRecipe(@RequestBody RecipeInstructionDto recipeInstructionDto)
             throws JsonProcessingException {
         return new ResponseEntity<>(recipeService.generateRecipe(recipeInstructionDto), HttpStatus.OK);
@@ -56,7 +57,7 @@ public class RecipeController {
      * @author Johan Romeo
      */
     @GetMapping("/{id}")
-    public ResponseEntity<RecipeDto> getRecipeById(@PathVariable int id) throws IOException {
+    public ResponseEntity<RecipeDto> getRecipeById(@PathVariable Integer id) throws IOException {
         return new ResponseEntity<>(recipeService.getRecipeById(id), HttpStatus.OK);
     }
 

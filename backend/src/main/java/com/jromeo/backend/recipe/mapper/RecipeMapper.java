@@ -60,6 +60,7 @@ public class RecipeMapper {
     public RecipeDto mapToDto(RecipeEntity recipeEntity) throws IOException {
         RecipeDto recipeDto = new RecipeDto();
 
+        recipeDto.setId(recipeEntity.getId());
         recipeDto.setTitle(recipeEntity.getTitle());
         List<String> instructionsToString = objectMapper.readValue(
                 recipeEntity.getInstructions(),

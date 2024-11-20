@@ -14,6 +14,8 @@ import java.util.List;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RecipeDto {
+    @JsonProperty("id")
+    private Integer id;
     @JsonProperty("title")
     private String title;
     @JsonProperty("instructions")
