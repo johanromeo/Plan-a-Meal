@@ -2,16 +2,46 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Plan a Meal - Provisions</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body class="grid-body">
     <h1 class="heading">Provisions</h1>
 
-    <p>hello</p>
-
     <div class="action-button add-button">Add Provision</div>
+
+    <div class="provisions-container">
+      <!-- Provision items will be dynamically inserted here -->
+    </div>
+
+    <!-- Add/Edit Provision Modal -->
+    <div id="provision-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" id="close-form">&times;</span>
+        <h2 id="modal-title">Add Provision</h2>
+        <form id="provision-form">
+          <!-- Hidden input to store provision ID when editing -->
+          <input type="hidden" id="provision-id" name="id" />
+
+          <label for="provision-name">Name:</label>
+          <input type="text" id="provision-name" name="name" required />
+
+          <label for="provision-image-url">Image URL:</label>
+          <input type="text" id="provision-image-url" name="imgUrl" required />
+
+          <div class="form-buttons">
+            <button type="submit" class="action-button" id="submit-button">
+              Add Provision
+            </button>
+            <button type="button" class="action-button" id="cancel-button">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="provisions.js"></script>
   </body>
 </html>

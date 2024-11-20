@@ -198,18 +198,198 @@ input[type="email"] {
 
 /* ALL STYLING FOR PROVISIONS.HTML */
 
+/* Provisions Page Styles */
+
+/* Grid body */
 .grid-body {
-  /*Text Settings*/
+  /* Text Settings */
   font-family: sans-serif;
   color: aliceblue;
   margin-top: 30px;
 
-  /*Background Settings*/
+  /* Background Settings */
   background-color: #144552;
 
-  /*Grid Settings*/
-  display: grid;
+  /* Flex Box Settings */
+  display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+}
+
+/* Provisions container */
+.provisions-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  width: 80%;
+  margin-top: 20px;
+}
+
+/* Provision item */
+.provision-item {
+  background-color: #186060;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+}
+
+/* Provision image */
+.provision-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10%;
+  margin-bottom: 10px;
+}
+
+/* Provision title */
+.provision-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #2bfff4;
+}
+
+/* Units controls */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.quantity-button {
+  background-color: #2bfff4;
+  color: #144552;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.quantity-display {
+  font-size: 18px;
+  width: 30px;
+  text-align: center;
+}
+
+/* Action buttons (Edit and Remove) */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.action-button {
+  background-color: #2bfff4;
+  color: #144552;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-family: sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.action-button:hover {
+  background-color: aliceblue;
+  color: #144552;
+}
+
+.edit-button {
+  background-color: #2bfff4;
+}
+
+.remove-button {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.remove-button:hover {
+  background-color: #ff9999;
+}
+
+/* Heading Style */
+.heading {
+  font-size: 50px;
+  color: #2bfff4;
+}
+
+/* Add Provision Button */
+.add-button {
+  margin: 20px 0;
+  background-color: #2bfff4;
+  color: #144552;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-family: sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: aliceblue;
+  color: #144552;
+}
+
+/* Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* On top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #144552;
+  margin: 15% auto;
+  padding: 20px;
+  border: 2px solid #2bfff4;
+  width: 50%;
+  color: aliceblue;
+  position: relative;
+  border-radius: 10px;
+}
+
+.close-button {
+  color: #2bfff4;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: #ff4d4d;
+}
+
+label {
+  display: block;
+  margin: 15px 0 5px;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #2bfff4;
+  border-radius: 5px;
+  background-color: #186060;
+  color: aliceblue;
+}
+
+.form-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
