@@ -9,10 +9,15 @@
   <body class="grid-body">
     <h1 class="heading">Provisions</h1>
 
-    <!-- <div class="action-button add-button">Add Provision</div> -->
+    <!-- Top Bar with Add Provision and Generate Grocery List Buttons -->
     <div class="top-bar">
-      <div class="action-button add-button">Add Provision</div>
+      <button class="action-button add-button" id="add-provision-button">
+        Add Provision
+      </button>
       <input type="text" id="search-input" placeholder="Search Provisions..." />
+      <button class="action-button add-button" id="generate-grocery-button">
+        Generate Grocery Shopping List
+      </button>
     </div>
 
     <div class="provisions-container">
@@ -66,6 +71,34 @@
         </div>
       </div>
     </div>
+
+    <!-- Email Sent Confirmation Modal -->
+    <div id="email-sent-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" id="close-email-sent">&times;</span>
+        <h2>Email Sent</h2>
+        <p>
+          Your grocery shopping list has been sent to household members via
+          email.
+        </p>
+        <div class="form-buttons">
+          <button
+            type="button"
+            class="action-button"
+            id="close-email-sent-button"
+          >
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+      <div class="spinner"></div>
+      <p id="loading-message">Loading...</p>
+    </div>
+
     <script src="/js/provisions.js"></script>
   </body>
 </html>

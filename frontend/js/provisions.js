@@ -8,10 +8,17 @@ let allProvisions = []; // Store all provisions data
 document.addEventListener("DOMContentLoaded", () => {
   loadProvisions();
 
-  // Show the form when "Add Provision" button is clicked
-  document.querySelector(".add-button").addEventListener("click", () => {
-    openModal("add");
-  });
+  // Event listener for "Add Provision" button
+  document
+    .getElementById("add-provision-button")
+    .addEventListener("click", () => {
+      openModal("add");
+    });
+
+  // Event listener for "Generate Grocery Shopping List" button
+  document
+    .getElementById("generate-grocery-button")
+    .addEventListener("click", generateGroceryList);
 
   // Close the form when "Cancel" button is clicked
   document
@@ -47,16 +54,33 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementById("close-confirmation")
     .addEventListener("click", closeConfirmationModal);
 
+  document
+    .getElementById("close-email-sent")
+    .addEventListener("click", closeEmailSentModal);
+
+  document
+    .getElementById("close-email-sent-button")
+    .addEventListener("click", closeEmailSentModal);
+
   // Update the window.onclick function to handle the confirmation modal
   window.onclick = function (event) {
     const provisionModal = document.getElementById("provision-modal");
     const confirmationModal = document.getElementById("confirmation-modal");
+    const emailSentModal = document.getElementById("email-sent-modal");
+    const loadingOverlay = document.getElementById("loading-overlay");
     if (event.target == provisionModal) {
       closeModal();
     }
     if (event.target == confirmationModal) {
       closeConfirmationModal();
     }
+    if (event.target == emailSentModal) {
+      closeEmailSentModal();
+    }
+    // Prevent closing the loading overlay when clicking outside
+    // if (event.target == loadingOverlay) {
+    //   // Do nothing
+    // }
   };
 });
 
@@ -64,6 +88,7 @@ function loadProvisions() {
   fetch(baseApiUrl)
     .then((response) => response.json())
     .then((data) => {
+      console.log("Fetched provisions:", data);
       allProvisions = data; // Store all provisions
       renderProvisions(data);
     })
@@ -121,25 +146,27 @@ function renderProvisions(provisions) {
     unitsControls.appendChild(incrementButton);
 
     // Add to Grocery Shopping List Checkbox (if units are zero)
+    const checkboxContainer = document.createElement("div");
+    checkboxContainer.classList.add("checkbox-container");
+
+    const shoppingListCheckbox = document.createElement("input");
+    shoppingListCheckbox.type = "checkbox";
+    shoppingListCheckbox.id = `checkbox-${provision.id}`;
+    shoppingListCheckbox.checked =
+      provision.addedToGroceryShoppingList || false;
+    shoppingListCheckbox.addEventListener("change", () =>
+      toggleShoppingList(provision.id, shoppingListCheckbox.checked)
+    );
+
+    const checkboxLabel = document.createElement("label");
+    checkboxLabel.htmlFor = `checkbox-${provision.id}`;
+    checkboxLabel.textContent = "Add to Grocery List";
+
+    checkboxContainer.appendChild(shoppingListCheckbox);
+    checkboxContainer.appendChild(checkboxLabel);
+
+    // Only show the checkbox if units are zero
     if (provision.units === 0) {
-      const checkboxContainer = document.createElement("div");
-      checkboxContainer.classList.add("checkbox-container");
-
-      const shoppingListCheckbox = document.createElement("input");
-      shoppingListCheckbox.type = "checkbox";
-      shoppingListCheckbox.id = `checkbox-${provision.id}`;
-      shoppingListCheckbox.checked = provision.addedToShoppingList;
-      shoppingListCheckbox.addEventListener("change", () =>
-        toggleShoppingList(provision.id, shoppingListCheckbox.checked)
-      );
-
-      const checkboxLabel = document.createElement("label");
-      checkboxLabel.htmlFor = `checkbox-${provision.id}`;
-      checkboxLabel.textContent = "Add to Grocery List";
-
-      checkboxContainer.appendChild(shoppingListCheckbox);
-      checkboxContainer.appendChild(checkboxLabel);
-
       provisionItem.appendChild(checkboxContainer);
     }
 
@@ -165,11 +192,9 @@ function renderProvisions(provisions) {
     provisionItem.appendChild(title);
     provisionItem.appendChild(unitsControls);
 
-    // Append the checkbox if it exists
+    // Append the checkbox if units are zero
     if (provision.units === 0) {
-      provisionItem.appendChild(
-        provisionItem.querySelector(".checkbox-container")
-      );
+      provisionItem.appendChild(checkboxContainer);
     }
 
     provisionItem.appendChild(actionButtons);
@@ -178,13 +203,64 @@ function renderProvisions(provisions) {
   });
 }
 
+// Function to generate the grocery shopping list
+function generateGroceryList() {
+  showLoadingOverlay("Sending your grocery list...");
+
+  fetch("http://localhost:8080/grocery-list/generate-list", {
+    method: "POST",
+  })
+    .then((response) => {
+      if (response.ok) {
+        showEmailSentModal();
+      } else {
+        throw new Error(
+          `Failed to generate grocery list. Status: ${response.status}`
+        );
+      }
+    })
+    .catch((error) => {
+      console.error("Error generating grocery list:", error);
+      alert("Failed to generate grocery shopping list.");
+    })
+    .finally(() => {
+      hideLoadingOverlay();
+    });
+}
+
+// Function to show the email sent modal
+function showEmailSentModal() {
+  const modal = document.getElementById("email-sent-modal");
+  modal.style.display = "block";
+}
+
+// Function to close the email sent modal
+function closeEmailSentModal() {
+  const modal = document.getElementById("email-sent-modal");
+  modal.style.display = "none";
+}
+
+// Function to show the loading overlay with an optional message
+function showLoadingOverlay(message = "Loading...") {
+  const overlay = document.getElementById("loading-overlay");
+  overlay.style.display = "flex";
+  const overlayMessage = document.getElementById("loading-message");
+  overlayMessage.textContent = message;
+}
+
+// Function to hide the loading overlay
+function hideLoadingOverlay() {
+  const overlay = document.getElementById("loading-overlay");
+  overlay.style.display = "none";
+}
+
 function toggleShoppingList(provisionId, addedToShoppingList) {
   // Fetch the current provision data
   fetch(`${baseApiUrl}/${provisionId}`)
     .then((response) => response.json())
     .then((provisionData) => {
-      // Update the addedToShoppingList field
-      provisionData.addedToShoppingList = addedToShoppingList;
+      // Update the addedToGroceryShoppingList field
+      provisionData.addedToGroceryShoppingList = addedToShoppingList;
 
       // Send PUT request to backend to update the provision
       fetch(`${baseApiUrl}/${provisionId}`, {
@@ -235,9 +311,9 @@ function adjustUnits(provisionId, change) {
       // Update the units in the provision data
       provisionData.units = newUnits;
 
-      // If units increased from 0 to positive, reset addedToShoppingList to false
+      // If units increased from 0 to positive, reset addToGroceryList to false
       if (currentUnits === 0 && newUnits > 0) {
-        provisionData.addedToShoppingList = false;
+        provisionData.addToGroceryList = false;
       }
 
       // Send PUT request to backend to update the provision
@@ -321,7 +397,7 @@ function handleFormSubmit(event) {
     name: name,
     imgUrl: imgUrl,
     units: isEditMode ? undefined : 0, // Default units when adding, keep units unchanged when editing
-    addedToShoppingList: false, // Default value
+    addedToGroceryShoppingList: false, // Default value
   };
 
   let fetchOptions = {
@@ -339,14 +415,13 @@ function handleFormSubmit(event) {
     fetchMethod = "PUT";
     fetchUrl = `${baseApiUrl}/${editProvisionId}`;
 
-    // For editing, include existing units and addedToShoppingList
+    // For editing, include existing units and addToGroceryList
     fetch(`${baseApiUrl}/${editProvisionId}`)
       .then((response) => response.json())
       .then((existingProvisionData) => {
-        // Include units and addedToShoppingList from existing data
+        // Include units and addToGroceryList from existing data
         provisionData.units = existingProvisionData.units;
-        provisionData.addedToShoppingList =
-          existingProvisionData.addedToShoppingList;
+        provisionData.addToGroceryList = existingProvisionData.addToGroceryList;
 
         // Update fetch options
         fetchOptions.method = fetchMethod;
