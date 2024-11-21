@@ -37,10 +37,12 @@ a:visited {
 
 /* Index.html Images Styling */
 .image-container {
-  height: 5vh;
+  /* Remove fixed height */
+  /* height: 5vh; */
   width: 80%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* Update grid-template-columns to be responsive */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 50px;
   justify-content: center;
 }
@@ -60,12 +62,13 @@ a:visited {
   text-align: center;
 }
 
-img {
+/* Adjust image styling */
+.image-item img {
   max-width: 100%;
-  max-height: 150px;
+  height: auto;
   object-fit: contain;
   border-radius: 10%;
-  border: 5px;
+  margin-bottom: 10px;
 }
 
 /* ALL STYLING FOR MODAL */
