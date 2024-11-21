@@ -36,10 +36,6 @@ a:visited {
   gap: 40px; /* Adjust the spacing between links */
 }
 
-.navigation li {
-  /* No additional styles needed for li elements */
-}
-
 .navigation a {
   display: block;
   color: #2bfff4;
