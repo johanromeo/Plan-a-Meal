@@ -292,9 +292,9 @@ function populateDropdowns() {
   const languageSelect = document.getElementById("language");
   const mealTypeSelect = document.getElementById("meal-type");
 
-  const foodCultures = ["Swedish", "Italian", "Chinese", "Mexican"];
-  const languages = ["English", "Swedish"];
-  const mealTypes = ["Breakfast", "Lunch", "Dinner"];
+  const foodCultures = ["Swedish", "Italian", "Assyrian", "French"];
+  const languages = ["Swedish", "English"];
+  const mealTypes = ["Breakfast", "Brunch", "Lunch", "Dinner"];
 
   foodCultures.forEach((culture) => {
     const option = document.createElement("option");
