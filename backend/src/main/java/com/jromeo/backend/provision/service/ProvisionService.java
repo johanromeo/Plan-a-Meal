@@ -96,7 +96,7 @@ public class ProvisionService {
                 .orElseThrow(() -> new ProvisionNotFoundException("No provision with id " + id + " exists"));
         provisionEntity.setName(provisionDTO.getName());
         provisionEntity.setUnits(provisionDTO.getUnits());
-        provisionEntity.setAddedToGroceryShoppingList(provisionDTO.isAddedToShoppingList());
+        provisionEntity.setAddedToGroceryShoppingList(provisionDTO.isAddedToGroceryShoppingList());
         provisionEntity.setImgUrl(provisionDTO.getImgUrl());
 
         provisionRepository.save(provisionEntity);

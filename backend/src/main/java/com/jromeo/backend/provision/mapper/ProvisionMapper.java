@@ -62,7 +62,7 @@ public class ProvisionMapper {
                 provisionDTO.getId(),
                 provisionDTO.getName(),
                 provisionDTO.getUnits(),
-                provisionDTO.isAddedToShoppingList(),
+                provisionDTO.isAddedToGroceryShoppingList(),
                 provisionDTO.getImgUrl()
         );
 

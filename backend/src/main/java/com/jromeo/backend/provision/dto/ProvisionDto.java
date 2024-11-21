@@ -18,6 +18,6 @@ public class ProvisionDto {
     private Integer id;
     private String name;
     private int units;
-    private boolean addedToShoppingList;
+    private boolean addedToGroceryShoppingList;
     private String imgUrl;
 }

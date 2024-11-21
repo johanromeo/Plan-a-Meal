@@ -2,7 +2,8 @@ package com.jromeo.backend.grocerylist.controller;
 
 import com.jromeo.backend.grocerylist.service.GroceryShoppingListService;
 import jakarta.mail.MessagingException;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/grocery-list")
+@CrossOrigin("*")
 public class GroceryShoppingListController {
 
     private final GroceryShoppingListService groceryShoppingListService;
@@ -34,7 +36,7 @@ public class GroceryShoppingListController {
      * @throws MessagingException the messaging exception
      * @author Johan Romeo
      */
-    @GetMapping("/generate-list")
+    @PostMapping("/generate-list")
     public void generateShoppingList() throws MessagingException {
         groceryShoppingListService.constructEmailWithProvisions();
     }
