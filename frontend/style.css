@@ -18,6 +18,45 @@ a:visited {
   font-size: 80px;
 }
 
+/* Navigation Bar Styles */
+.navigation {
+  background-color: #186060;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  width: 80%;
+}
+
+.navigation ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Center the navigation links */
+  align-items: center;
+  gap: 40px; /* Adjust the spacing between links */
+}
+
+.navigation li {
+  /* No additional styles needed for li elements */
+}
+
+.navigation a {
+  display: block;
+  color: #2bfff4;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 18px;
+  font-family: sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navigation a:hover {
+  background-color: #2bfff4;
+  color: #144552;
+  border-radius: 5px;
+}
+
 /* ALL SETTINGS FOR FLEX BOX USAGE */
 .flex-body {
   /*Text Settings*/
