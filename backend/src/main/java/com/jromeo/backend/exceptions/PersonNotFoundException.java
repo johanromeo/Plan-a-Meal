@@ -1,7 +1,7 @@
 package com.jromeo.backend.exceptions;
 
 /**
- * The type Person not found exception.
+ * Custom-made exception class for handling {@code com.jromeo.backend.person}-related issues.
  *
  * @author Johan Romeo
  */

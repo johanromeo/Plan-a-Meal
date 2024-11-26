@@ -1,18 +1,12 @@
 package com.jromeo.backend.exceptions;
 
 /**
- * The type Illegal email exception.
+ * Custom-made exception class for handling wrong email provided by users of the application.
  *
  * @author Johan Romeo
  */
 public class IllegalEmailException extends RuntimeException {
 
-    /**
-     * Instantiates a new Illegal email exception.
-     *
-     * @param message the message
-     * @author Johan Romeo
-     */
     public IllegalEmailException(String message) {
         super(message);
     }
