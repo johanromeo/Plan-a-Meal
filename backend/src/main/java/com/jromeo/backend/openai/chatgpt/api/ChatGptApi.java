@@ -20,7 +20,7 @@ public class ChatGptApi {
     @Value("${openai.api-key}")
     private String apiKey;
 
-    private static String CHAT_GPT_URL = "https://api.openai.com/v1/chat/completions";
+    private static final String CHAT_GPT_URL = "https://api.openai.com/v1/chat/completions";
 
     private final RestTemplate restTemplate;
     private final ProvisionService provisionService;
