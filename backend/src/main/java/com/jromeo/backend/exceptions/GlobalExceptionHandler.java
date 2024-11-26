@@ -4,35 +4,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.servlet.View;
 
 import java.util.Date;
 
 /**
- * The type Global exception handler.
+ * Class handling all custom-made exceptions.
  *
  * @author Johan Romeo
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    private final View error;
-
     /**
-     * Instantiates a new Global exception handler.
+     * Handles {@link ProvisionNotFoundException}.
      *
-     * @param error the error
-     * @author Johan Romeo
-     */
-    public GlobalExceptionHandler(View error) {
-        this.error = error;
-    }
-
-    /**
-     * Handle provision not found exception response entity.
+     * @param e the custom error message.
+     * @return the response entity with an error message and Http status 404 - Not Found.
      *
-     * @param e the e
-     * @return the response entity
      * @author Johan Romeo
      */
     @ExceptionHandler(ProvisionNotFoundException.class)
@@ -43,10 +31,11 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * Handle illegal email exception response entity.
+     * Handles {@link IllegalEmailException}.
      *
-     * @param e the e
-     * @return the response entity
+     * @param e the custom error message.
+     * @return the response entity with an error message and Http status 400 - Bad Request.
+     *
      * @author Johan Romeo
      */
     @ExceptionHandler(IllegalEmailException.class)
@@ -57,10 +46,11 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * Handle person not found exception response entity.
+     * Handles {@link PersonNotFoundException}.
      *
-     * @param e the e
-     * @return the response entity
+     * @param e the custom error message.
+     * @return the response entity with an error message and Http status 404 - Not Found.
+     *
      * @author Johan Romeo
      */
     @ExceptionHandler(PersonNotFoundException.class)
@@ -72,10 +62,11 @@ public class GlobalExceptionHandler {
 
 
     /**
-     * Handle recipe not found exception response entity.
+     * Handles {@link RecipeNotFoundException}.
      *
-     * @param e the e
-     * @return the response entity
+     * @param e the custom error message.
+     * @return the response entity with an error message and Http status 404 - Not Found.
+     *
      * @author Johan Romeo
      */
     @ExceptionHandler(RecipeNotFoundException.class)

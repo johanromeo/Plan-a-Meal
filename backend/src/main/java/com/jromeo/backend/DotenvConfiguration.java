@@ -2,6 +2,7 @@ package com.jromeo.backend;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.MapPropertySource;
@@ -11,15 +12,22 @@ import org.springframework.core.env.PropertySource;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Configuration class for reading environment variables from a .env-file.
+ *
+ * @author Johan Romeo
+ */
 @Configuration
+@RequiredArgsConstructor
 public class DotenvConfiguration {
 
     private final ConfigurableEnvironment environment;
 
-    public DotenvConfiguration(ConfigurableEnvironment environment) {
-        this.environment = environment;
-    }
-
+    /**
+     * Loads the environment variables.
+     *
+     * @author Johan Romeo
+     */
     @PostConstruct
     public void loadDotenv() {
         Dotenv dotenv = Dotenv.configure()
@@ -35,4 +43,5 @@ public class DotenvConfiguration {
         MutablePropertySources propertySources = environment.getPropertySources();
         propertySources.addFirst(dotenvPropertySource);
     }
+
 }

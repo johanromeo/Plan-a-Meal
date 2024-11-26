@@ -8,7 +8,7 @@ import java.util.Date;
 
 
 /**
- * The type Error message payload.
+ * Class for creating a custom error message payload with date and a message.
  *
  * @author Johan Romeo
  */
@@ -16,6 +16,8 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 public class ErrorMessagePayload {
+
     private Date timeStamp;
     private String message;
+
 }
