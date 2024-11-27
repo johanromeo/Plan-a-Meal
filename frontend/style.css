@@ -13,17 +13,20 @@ a:visited {
   color: inherit;
 }
 
-.heading {
+/* INDEX HEADING */
+.index-heading {
   height: 30vh;
-  font-size: 80px;
+  margin-bottom: 50px;
+  font-size: 100px;
 }
 
 /* Navigation Bar Styles */
 .navigation {
-  background-color: #186060;
+  /* background-color: #186060; */
   margin-top: 20px;
   margin-bottom: 30px;
-  width: 80%;
+  width: 25%;
+  /* border-radius: 30px; */
 }
 
 .navigation ul {
@@ -83,7 +86,7 @@ a:visited {
 }
 
 .image-title {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: lighter;
   color: #2bfff4;
   margin-bottom: 10px;
@@ -345,9 +348,13 @@ input[type="email"] {
 }
 
 /* Heading Style */
-.heading {
+/* .heading {
   font-size: 50px;
   color: #2bfff4;
+} */
+.heading {
+  font-size: 80px;
+  color: #ffffff;
 }
 
 /* Add Provision Button */
@@ -464,9 +471,8 @@ input[type="email"] {
 }
 
 #search-input::placeholder {
-  color: #a0a0a0;
+  color: #cfcacad7;
 }
-
 /* Checkbox container */
 .checkbox-container {
   display: flex;
