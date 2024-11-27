@@ -47,7 +47,7 @@ public class EmailDeliveryService {
 
             javaMailSender.send(message);
         } catch (Exception e) {
-            log.warn("Could not send mail: {}.", e.getMessage());
+            log.warn("Could not send mail: {}.", e.getMessage() + e.getLocalizedMessage());
         }
     }
 }
