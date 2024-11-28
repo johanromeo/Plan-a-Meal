@@ -9,7 +9,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import java.util.Properties;
 
 /**
- * The type Java mail configuration.
+ * Configuration class for Gmail settings.
  *
  * @author Johan Romeo
  */
@@ -22,13 +22,12 @@ public class JavaMailConfiguration {
     private String mailPassword;
 
     /**
-     * Configure mail properties java mail sender.
+     *
      *
      * @return the java mail sender
-     * @author Johan Romeo
      */
     @Bean
-    public JavaMailSender configureMailProperties() {
+    public JavaMailSender configureGmailProperties() {
         JavaMailSenderImpl mailSenderImpl = new JavaMailSenderImpl();
         mailSenderImpl.setHost("smtp.gmail.com");
         mailSenderImpl.setPort(587);

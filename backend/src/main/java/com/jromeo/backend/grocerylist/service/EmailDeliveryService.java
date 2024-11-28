@@ -1,42 +1,31 @@
 package com.jromeo.backend.grocerylist.service;
 
-import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
 /**
- * The type Email delivery service.
+ * Class implementing {@link JavaMailSender} to send emails.
  *
  * @author Johan Romeo
  */
 @Component
+@RequiredArgsConstructor
 @Slf4j
 public class EmailDeliveryService {
 
     private final JavaMailSender javaMailSender;
 
     /**
-     * Instantiates a new Email delivery service.
+     * Sends an email to the user(s) consisting of all provisions to buy.
      *
-     * @param javaMailSender the java mail sender
-     * @author Johan Romeo
+     * @param provisionsToBuy the provisions to buy.
+     * @param emailTo the user(s) email addresses.
      */
-    public EmailDeliveryService(JavaMailSender javaMailSender) {
-        this.javaMailSender = javaMailSender;
-    }
-
-    /**
-     * Send grocery shopping list to mail.
-     *
-     * @param provisionsToBuy the provisions to buy
-     * @param emailTo         the email to
-     * @throws MessagingException the messaging exception
-     * @author Johan Romeo
-     */
-    public void sendGroceryShoppingListToMail(String provisionsToBuy, String[] emailTo) throws MessagingException {
+    public void sendGroceryShoppingListToMail(String provisionsToBuy, String[] emailTo) {
         try {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper mailSettings = new MimeMessageHelper(message, true);

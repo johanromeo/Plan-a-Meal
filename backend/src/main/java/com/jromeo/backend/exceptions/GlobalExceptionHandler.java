@@ -20,8 +20,6 @@ public class GlobalExceptionHandler {
      *
      * @param e the custom error message.
      * @return the response entity with an error message and Http status 404 - Not Found.
-     *
-     * @author Johan Romeo
      */
     @ExceptionHandler(ProvisionNotFoundException.class)
     public ResponseEntity<ErrorMessagePayload> handleProvisionNotFoundException(ProvisionNotFoundException e) {
@@ -35,8 +33,6 @@ public class GlobalExceptionHandler {
      *
      * @param e the custom error message.
      * @return the response entity with an error message and Http status 400 - Bad Request.
-     *
-     * @author Johan Romeo
      */
     @ExceptionHandler(IllegalEmailException.class)
     public ResponseEntity<ErrorMessagePayload> handleIllegalEmailException(IllegalEmailException e) {
@@ -50,8 +46,6 @@ public class GlobalExceptionHandler {
      *
      * @param e the custom error message.
      * @return the response entity with an error message and Http status 404 - Not Found.
-     *
-     * @author Johan Romeo
      */
     @ExceptionHandler(PersonNotFoundException.class)
     public ResponseEntity<ErrorMessagePayload> handlePersonNotFoundException(PersonNotFoundException e) {
@@ -60,14 +54,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorMessagePayload, HttpStatus.NOT_FOUND);
     }
 
-
     /**
      * Handles {@link RecipeNotFoundException}.
      *
      * @param e the custom error message.
      * @return the response entity with an error message and Http status 404 - Not Found.
-     *
-     * @author Johan Romeo
      */
     @ExceptionHandler(RecipeNotFoundException.class)
     public ResponseEntity<ErrorMessagePayload> handleRecipeNotFoundException(RecipeNotFoundException e) {

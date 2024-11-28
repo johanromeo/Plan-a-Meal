@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * The type Document generator service.
+ * Helper class for returning what provisions to be put in the grocery shopping list.
  *
  * @author Johan Romeo
  */
@@ -14,11 +14,10 @@ import java.util.List;
 public class DocumentGeneratorService {
 
     /**
-     * Provisions to buy string.
+     * Append each Provision name to a String Builder object.
      *
-     * @param provisionDtos the provision dtos
-     * @return the string
-     * @author Johan Romeo
+     * @param provisionDtos the provisions to append.
+     * @return a toString() of the String Builder object.
      */
     public String provisionsToBuy(List<ProvisionDto> provisionDtos) {
         StringBuilder sb = new StringBuilder();
