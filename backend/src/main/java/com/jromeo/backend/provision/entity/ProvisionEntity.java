@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * The type Provision entity.
+ * An Entity class for representing a Provision in the database.
  *
  * @author Johan Romeo
  */
@@ -18,16 +18,21 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProvisionEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
     @Column(name = "provision_name", unique = true)
     private String name;
+
     @Column(name = "number_of_units")
     private int units;
+
     @Column(name = "in_grocery_shopping_list")
     private boolean addedToGroceryShoppingList;
+
     @Column(name = "img_url")
     private String imgUrl;
 }

@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * The type Request message.
+ * Class for using either roles; "system" or "user", along with a prompt-content for each role.
  *
  * @author Johan Romeo
  */
@@ -14,29 +14,18 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class RequestMessage {
+
     @JsonProperty("role")
     private final Role role;
+
     @JsonProperty("content")
     private final String content;
 
-    /**
-     * The enum Role.
-     *
-     * @author Johan Romeo
-     */
     public enum Role {
-        /**
-         * System role.
-         *
-         * @author Johan Romeo
-         */
+
         @JsonProperty("system")
         SYSTEM,
-        /**
-         * User role.
-         *
-         * @author Johan Romeo
-         */
+
         @JsonProperty("user")
         USER
     }

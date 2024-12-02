@@ -3,6 +3,7 @@ package com.jromeo.backend.person.controller;
 import com.jromeo.backend.person.dto.PersonDto;
 import com.jromeo.backend.person.service.PersonService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,34 +11,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * The type Person controller.
+ * Controller class for exposing the /household-people endpoint, making ut possible to perform
+ * POST, GET, PUT and DELETE request related to {@link PersonDto} object(s).
  *
  * @author Johan Romeo
  */
 @RestController
 @RequestMapping("/household-people")
+@RequiredArgsConstructor
 @CrossOrigin("*")
 public class PersonController {
 
     private final PersonService personService;
 
-    /**
-     * Instantiates a new Person controller.
-     *
-     * @param personService the person service
-     * @author Johan Romeo
-     */
-    public PersonController(PersonService personService) {
-        this.personService = personService;
-    }
-
-    /**
-     * Add person to household response entity.
-     *
-     * @param personDto the person dto
-     * @return the response entity
-     * @author Johan Romeo
-     */
     @PostMapping
     public ResponseEntity<PersonDto> addPersonToHousehold(@Valid @RequestBody PersonDto personDto) {
         personService.addPersonToHousehold(personDto);

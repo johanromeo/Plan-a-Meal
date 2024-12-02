@@ -1,4 +1,4 @@
-package com.jromeo.backend.grocerylist;
+package com.jromeo.backend.grocerylist.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -22,9 +22,9 @@ public class JavaMailConfiguration {
     private String mailPassword;
 
     /**
+     * Method for configuring Gmail settings using JavaMailSenderImpl.
      *
-     *
-     * @return the java mail sender
+     * @return the configured JavaMailSender.
      */
     @Bean
     public JavaMailSender configureGmailProperties() {

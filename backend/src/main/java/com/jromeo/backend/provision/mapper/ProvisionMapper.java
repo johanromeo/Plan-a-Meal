@@ -8,20 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The type Provision mapper.
+ * Mapper class for converting {@link ProvisionEntity} to {@link ProvisionDto} and vice versa.
  *
  * @author Johan Romeo
  */
 @Component
 public class ProvisionMapper {
 
-    /**
-     * Map to dto provision dto.
-     *
-     * @param provisionEntity the provision entity
-     * @return the provision dto
-     * @author Johan Romeo
-     */
     public ProvisionDto mapToDto(ProvisionEntity provisionEntity) {
         ProvisionDto provisionDto = new ProvisionDto(
                 provisionEntity.getId(),
@@ -34,15 +27,9 @@ public class ProvisionMapper {
         return provisionDto;
     }
 
-    /**
-     * Map to dtos list.
-     *
-     * @param provisionEntities the provision entities
-     * @return the list
-     * @author Johan Romeo
-     */
     public List<ProvisionDto> mapToDtos(List<ProvisionEntity> provisionEntities) {
         List<ProvisionDto> provisionDtos = new ArrayList<>();
+
         for (ProvisionEntity provisionEntity : provisionEntities) {
             provisionDtos.add(mapToDto(provisionEntity));
         }
@@ -50,13 +37,6 @@ public class ProvisionMapper {
         return provisionDtos;
     }
 
-    /**
-     * Map to entity provision entity.
-     *
-     * @param provisionDTO the provision dto
-     * @return the provision entity
-     * @author Johan Romeo
-     */
     public ProvisionEntity mapToEntity(ProvisionDto provisionDTO) {
         ProvisionEntity provisionEntity = new ProvisionEntity(
                 provisionDTO.getId(),

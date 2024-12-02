@@ -6,7 +6,8 @@ import lombok.*;
 import java.util.List;
 
 /**
- * The type Request builder.
+ * Class for constructing a complete ChatGPT request, specifying which model to use, the request messages
+ * aka system prompt and user prompts, and lastly the response format.
  *
  * @author Johan Romeo
  */
@@ -14,24 +15,18 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 public class RequestBuilder {
+
     @JsonProperty("model")
     private final ModelType model;
+
     @JsonProperty("messages")
     private final List<RequestMessage> message;
+
     @JsonProperty("response_format")
     private final RequestResponseFormat responseFormat;
 
-    /**
-     * The enum Model type.
-     *
-     * @author Johan Romeo
-     */
     public enum ModelType {
-        /**
-         * Gpt 3 5 turbo model type.
-         *
-         * @author Johan Romeo
-         */
+
         @JsonProperty("gpt-3.5-turbo")
         GPT_3_5_TURBO
     }

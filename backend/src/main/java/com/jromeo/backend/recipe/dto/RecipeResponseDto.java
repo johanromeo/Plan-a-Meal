@@ -13,11 +13,14 @@ import java.util.List;
  */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RecipeDto {
+public class RecipeResponseDto {
+
     @JsonProperty("id")
     private Integer id;
+
     @JsonProperty("title")
     private String title;
+
     @JsonProperty("instructions")
     private List<String> instructions;
 }

@@ -3,7 +3,7 @@ package com.jromeo.backend.recipe;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jromeo.backend.recipe.dto.RecipeDto;
+import com.jromeo.backend.recipe.dto.RecipeResponseDto;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,7 +23,7 @@ public class RecipeResponseParser {
      * @throws JsonProcessingException the json processing exception
      * @author Johan Romeo
      */
-    public RecipeDto parseResponse(String response) throws JsonProcessingException {
+    public RecipeResponseDto parseResponse(String response) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(response);
         String content = rootNode
@@ -32,8 +32,8 @@ public class RecipeResponseParser {
                 .path("message")
                 .path("content")
                 .asText();
-        RecipeDto recipeDto = objectMapper.readValue(content, RecipeDto.class);
+        RecipeResponseDto recipeResponseDto = objectMapper.readValue(content, RecipeResponseDto.class);
 
-        return recipeDto;
+        return recipeResponseDto;
     }
 }

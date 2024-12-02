@@ -3,7 +3,7 @@ package com.jromeo.backend.recipe.mapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jromeo.backend.recipe.dto.RecipeDto;
+import com.jromeo.backend.recipe.dto.RecipeResponseDto;
 import com.jromeo.backend.recipe.entity.RecipeEntity;
 import org.springframework.stereotype.Component;
 
@@ -34,16 +34,16 @@ public class RecipeMapper {
     /**
      * Map to entity recipe entity.
      *
-     * @param recipeDto the recipe dto
+     * @param recipeResponseDto the recipe dto
      * @return the recipe entity
      * @throws JsonProcessingException the json processing exception
      * @author Johan Romeo
      */
-    public RecipeEntity mapToEntity(RecipeDto recipeDto) throws JsonProcessingException {
+    public RecipeEntity mapToEntity(RecipeResponseDto recipeResponseDto) throws JsonProcessingException {
         RecipeEntity recipeEntity = new RecipeEntity();
 
-        recipeEntity.setTitle(recipeDto.getTitle());
-        String jsonInstructions = objectMapper.writeValueAsString(recipeDto.getInstructions());
+        recipeEntity.setTitle(recipeResponseDto.getTitle());
+        String jsonInstructions = objectMapper.writeValueAsString(recipeResponseDto.getInstructions());
         recipeEntity.setInstructions(jsonInstructions);
 
         return recipeEntity;
@@ -57,18 +57,18 @@ public class RecipeMapper {
      * @throws IOException the io exception
      * @author Johan Romeo
      */
-    public RecipeDto mapToDto(RecipeEntity recipeEntity) throws IOException {
-        RecipeDto recipeDto = new RecipeDto();
+    public RecipeResponseDto mapToDto(RecipeEntity recipeEntity) throws IOException {
+        RecipeResponseDto recipeResponseDto = new RecipeResponseDto();
 
-        recipeDto.setId(recipeEntity.getId());
-        recipeDto.setTitle(recipeEntity.getTitle());
+        recipeResponseDto.setId(recipeEntity.getId());
+        recipeResponseDto.setTitle(recipeEntity.getTitle());
         List<String> instructionsToString = objectMapper.readValue(
                 recipeEntity.getInstructions(),
                 new TypeReference<>() {
                 });
-        recipeDto.setInstructions(instructionsToString);
+        recipeResponseDto.setInstructions(instructionsToString);
 
-        return recipeDto;
+        return recipeResponseDto;
     }
 
     /**
@@ -79,13 +79,13 @@ public class RecipeMapper {
      * @throws IOException the io exception
      * @author Johan Romeo
      */
-    public List<RecipeDto> mapToDtos(List<RecipeEntity> recipeEntities) throws IOException {
-        List<RecipeDto> recipeDtos = new ArrayList<>();
+    public List<RecipeResponseDto> mapToDtos(List<RecipeEntity> recipeEntities) throws IOException {
+        List<RecipeResponseDto> recipeResponseDtos = new ArrayList<>();
 
         for (RecipeEntity recipeEntity : recipeEntities) {
-            recipeDtos.add(mapToDto(recipeEntity));
+            recipeResponseDtos.add(mapToDto(recipeEntity));
         }
 
-        return recipeDtos;
+        return recipeResponseDtos;
     }
 }

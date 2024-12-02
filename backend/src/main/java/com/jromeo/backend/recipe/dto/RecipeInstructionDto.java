@@ -15,8 +15,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RecipeInstructionDto {
+
     private String foodCultureOfChoice; //e.g. Swedish, Italian
+
     private String chatBotTextLanguage; //e.g. Swedish, English
+
     private String mealType; //e.g. Breakfast, Lunch, Dinner
+
     private int maxMinutesToCompleteRecipe; //e.g. 15 minutes, 45 minutes, 90 minutes
 }

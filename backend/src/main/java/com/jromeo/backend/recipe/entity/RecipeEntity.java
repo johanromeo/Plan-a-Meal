@@ -18,11 +18,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RecipeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(name = "title")
     private String title;
+
     @Lob
     @Column(name = "instructions", columnDefinition = "TEXT")
     private String instructions;

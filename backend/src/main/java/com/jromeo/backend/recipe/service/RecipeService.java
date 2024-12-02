@@ -5,7 +5,7 @@ import com.jromeo.backend.exceptions.RecipeNotFoundException;
 import com.jromeo.backend.recipe.dto.RecipeInstructionDto;
 import com.jromeo.backend.recipe.RecipePromptBuilder;
 import com.jromeo.backend.recipe.RecipeResponseParser;
-import com.jromeo.backend.recipe.dto.RecipeDto;
+import com.jromeo.backend.recipe.dto.RecipeResponseDto;
 import com.jromeo.backend.recipe.entity.RecipeEntity;
 import com.jromeo.backend.recipe.mapper.RecipeMapper;
 import com.jromeo.backend.recipe.repository.RecipeRepository;
@@ -66,7 +66,7 @@ public class RecipeService {
      * @throws JsonProcessingException the json processing exception
      * @author Johan Romeo
      */
-    public RecipeDto generateRecipe(RecipeInstructionDto instructions) throws JsonProcessingException {
+    public RecipeResponseDto generateRecipe(RecipeInstructionDto instructions) throws JsonProcessingException {
         // System specific prompts and settings
         String systemPrompt = promptBuilder.buildSystemPrompt(instructions);
         RequestMessage systemMessage = new RequestMessage(
@@ -92,11 +92,11 @@ public class RecipeService {
 
         String responseBody = api.callChatGptApi(requestBuilderBody);
 
-        RecipeDto recipeDto = parser.parseResponse(responseBody);
+        RecipeResponseDto recipeResponseDto = parser.parseResponse(responseBody);
 
-        recipeRepository.save(recipeMapper.mapToEntity(recipeDto));
+        recipeRepository.save(recipeMapper.mapToEntity(recipeResponseDto));
 
-        return recipeDto;
+        return recipeResponseDto;
     }
 
     /**
@@ -107,7 +107,7 @@ public class RecipeService {
      * @throws IOException the io exception
      * @author Johan Romeo
      */
-    public RecipeDto getRecipeById(Integer id) throws IOException {
+    public RecipeResponseDto getRecipeById(Integer id) throws IOException {
         RecipeEntity recipeEntity = recipeRepository.findById(id)
                 .orElseThrow(() -> new RecipeNotFoundException("Recipe with id " + id + " doesn't exists"));
 
@@ -121,7 +121,7 @@ public class RecipeService {
      * @throws IOException the io exception
      * @author Johan Romeo
      */
-    public List<RecipeDto> getAllRecipes() throws IOException {
+    public List<RecipeResponseDto> getAllRecipes() throws IOException {
         List<RecipeEntity> recipeEntities = recipeRepository.findAll();
 
         return recipeMapper.mapToDtos(recipeEntities);

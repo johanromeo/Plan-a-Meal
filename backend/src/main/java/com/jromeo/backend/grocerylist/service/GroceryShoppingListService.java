@@ -27,10 +27,9 @@ public class GroceryShoppingListService {
     /**
      * Sends an email to the user(s) with what provisions to buy.
      *
-     * @author Johan Romeo
      */
     public void sendEmailWithProvisions() {
-        List<ProvisionEntity> provisionEntities = provisionRepository.addProvisionToShoppingList();
+        List<ProvisionEntity> provisionEntities = provisionRepository.findAllProvisionsToBeAddedToGroceryShoppingList();
 
         String provisionsToBuy = documentGeneratorService.provisionsToBuy(provisionMapper.mapToDtos(provisionEntities));
 

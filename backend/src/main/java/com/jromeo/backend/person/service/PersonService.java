@@ -7,40 +7,24 @@ import com.jromeo.backend.exceptions.PersonNotFoundException;
 import com.jromeo.backend.person.dto.PersonDto;
 import com.jromeo.backend.person.entity.PersonEntity;
 import com.jromeo.backend.person.repository.PersonRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * The type Person service.
+ * Service class for performing CRUD operations on {@link PersonDto} object(s).
  *
  * @author Johan Romeo
  */
 @Service
+@RequiredArgsConstructor
 public class PersonService {
 
     private final ObjectMapper objectMapper;
     private final PersonRepository personRepository;
 
-    /**
-     * Instantiates a new Person service.
-     *
-     * @param objectMapper     the object mapper
-     * @param personRepository the person repository
-     * @author Johan Romeo
-     */
-    public PersonService(ObjectMapper objectMapper, PersonRepository personRepository) {
-        this.objectMapper = objectMapper;
-        this.personRepository = personRepository;
-    }
 
-    /**
-     * Add person to household person dto.
-     *
-     * @param personDto the person dto
-     * @return the person dto
-     * @author Johan Romeo
-     */
     public PersonDto addPersonToHousehold(PersonDto personDto) {
         if (!personDto.getEmail().contains("@")) {
             throw new IllegalEmailException("Invalid email! Must contain '@'");
@@ -50,6 +34,7 @@ public class PersonService {
                     personDto.getName(),
                     personDto.getEmail()
             );
+
             personRepository.save(personEntity);
 
             return objectMapper.convertValue(personEntity, PersonDto.class);
@@ -81,12 +66,6 @@ public class PersonService {
         personRepository.delete(personEntity);
     }
 
-    /**
-     * Get people email addresses string [ ].
-     *
-     * @return the string [ ]
-     * @author Johan Romeo
-     */
     public String[] getPeopleEmailAddresses() {
         List<PersonDto> people = objectMapper.convertValue(personRepository.findAll(),
                 new TypeReference<>() {}
