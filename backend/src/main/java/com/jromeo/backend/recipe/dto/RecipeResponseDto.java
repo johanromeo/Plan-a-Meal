@@ -2,12 +2,13 @@ package com.jromeo.backend.recipe.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.jromeo.backend.recipe.entity.RecipeResponseEntity;
 import lombok.Data;
 
 import java.util.List;
 
 /**
- * The type Recipe dto.
+ * A DTO class representing {@link RecipeResponseEntity}.
  *
  * @author Johan Romeo
  */

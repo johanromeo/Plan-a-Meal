@@ -7,33 +7,33 @@ import com.jromeo.backend.recipe.dto.RecipeResponseDto;
 import org.springframework.stereotype.Component;
 
 /**
- * The type Recipe response parser.
+ * Parser class for filtering what's relevant in the response from ChatGPT when generating a recipe.
  *
  * @author Johan Romeo
  */
 @Component
 public class RecipeResponseParser {
 
-
     /**
-     * Parse response recipe dto.
+     * Method for filtering the relevant data from ChatGPT's recipe response and
+     * mapping it to a {@link RecipeResponseDto} object.
      *
-     * @param response the response
-     * @return the recipe dto
+     * @param chatGptResponse the JSON response from generating a recipe with ChatGPT.
+     * @return the chatGptResponse converted to a {@link RecipeResponseDto} object.
      * @throws JsonProcessingException the json processing exception
-     * @author Johan Romeo
      */
-    public RecipeResponseDto parseResponse(String response) throws JsonProcessingException {
+    public RecipeResponseDto parseChatGptResponse(String chatGptResponse) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode rootNode = objectMapper.readTree(response);
+
+        JsonNode rootNode = objectMapper.readTree(chatGptResponse);
+
         String content = rootNode
                 .path("choices")
                 .get(0)
                 .path("message")
                 .path("content")
                 .asText();
-        RecipeResponseDto recipeResponseDto = objectMapper.readValue(content, RecipeResponseDto.class);
 
-        return recipeResponseDto;
+        return objectMapper.readValue(content, RecipeResponseDto.class);
     }
 }

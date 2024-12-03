@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * The type Recipe instruction dto.
+ * A DTO class for representing the recipe instructions given by the user when prompting ChatGPT.
  *
  * @author Johan Romeo
  */

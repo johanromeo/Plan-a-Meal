@@ -56,5 +56,4 @@ public class RecipeController {
         recipeService.deleteRecipe(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }

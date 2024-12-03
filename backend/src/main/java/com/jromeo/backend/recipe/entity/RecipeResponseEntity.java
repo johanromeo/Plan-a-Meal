@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * The type Recipe entity.
+ * An Entity representing ChatGPT's recipe response in the database.
  *
  * @author Johan Romeo
  */
@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RecipeEntity {
+public class RecipeResponseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

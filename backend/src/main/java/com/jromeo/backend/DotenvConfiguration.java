@@ -24,7 +24,7 @@ public class DotenvConfiguration {
     private final ConfigurableEnvironment environment;
 
     /**
-     * Loads the environment variables.
+     * Loads the environment variables specified in the .env file in the project's root directory.
      *
      * @author Johan Romeo
      */
@@ -43,5 +43,4 @@ public class DotenvConfiguration {
         MutablePropertySources propertySources = environment.getPropertySources();
         propertySources.addFirst(dotenvPropertySource);
     }
-
 }
