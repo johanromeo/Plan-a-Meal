@@ -1,7 +1,7 @@
 package com.jromeo.backend.exceptions;
 
 /**
- * Exception class for Recipe not found.
+ * Custom exception class for Recipe not found.
  *
  * @author Johan Romeo
  */

@@ -8,7 +8,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
 /**
- * Class implementing {@link JavaMailSender} to send emails.
+ * Class using {@link JavaMailSender} to send emails.
  *
  * @author Johan Romeo
  */

@@ -1,7 +1,7 @@
 package com.jromeo.backend.exceptions;
 
 /**
- * Custom-made exception class for handling wrong email provided by users of the application.
+ * Custom exception class for handling wrong email provided by users of the application.
  *
  * @author Johan Romeo
  */

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Controller class for exposing the /grocery-list endpoint, making ut possible to perform
- * POST request to generate grocery shopping lists.
+ * POST request to generate a grocery shopping list.
  *
  * @author Johan Romeo
  */
@@ -23,7 +23,7 @@ public class GroceryShoppingListController {
     private final GroceryShoppingListService groceryShoppingListService;
 
     /**
-     * Generate a grocery shopping list with provisions to buy.
+     * Lets the user receive an email with what provisions to buy.
      */
     @PostMapping("/generate-list")
     public void generateShoppingList() {

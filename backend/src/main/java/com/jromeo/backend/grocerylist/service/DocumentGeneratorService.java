@@ -17,7 +17,7 @@ public class DocumentGeneratorService {
      * Append each Provision name to a String Builder object.
      *
      * @param provisionDtos the provisions to append.
-     * @return a toString() of the String Builder object.
+     * @return a toString() of the String Builder object containing the provisions.
      */
     public String provisionsToBuy(List<ProvisionDto> provisionDtos) {
         StringBuilder sb = new StringBuilder();

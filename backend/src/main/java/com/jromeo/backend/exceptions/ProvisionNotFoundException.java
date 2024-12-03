@@ -1,7 +1,7 @@
 package com.jromeo.backend.exceptions;
 
 /**
- * Exception class for Provision not found.
+ * Custom exception class for Provision not found.
  *
  * @author Johan Romeo
  */

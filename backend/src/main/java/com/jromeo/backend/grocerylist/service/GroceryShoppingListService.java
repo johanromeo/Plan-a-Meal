@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Service class for constructing an email with provisions.
+ * Service class for constructing an email with what provisions to buy.
  *
  * @author Johan Romeo
  */
@@ -26,7 +26,6 @@ public class GroceryShoppingListService {
 
     /**
      * Sends an email to the user(s) with what provisions to buy.
-     *
      */
     public void sendEmailWithProvisions() {
         List<ProvisionEntity> provisionEntities = provisionRepository.findAllProvisionsToBeAddedToGroceryShoppingList();

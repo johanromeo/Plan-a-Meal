@@ -18,6 +18,6 @@ import java.util.Date;
 public class ErrorMessagePayload {
 
     private Date timeStamp;
-    private String message;
 
+    private String message;
 }
