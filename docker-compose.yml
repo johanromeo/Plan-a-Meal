@@ -3,7 +3,7 @@ version: "3.8"
 services:
   mysql:
     image: mysql:latest
-    container_name: meal-db
+    #container_name: meal-db
     environment:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
@@ -16,7 +16,7 @@ services:
 
   backend:
     build: ./backend
-    container_name: meal-backend
+    #container_name: meal-backend
     environment:
       - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
       - SPRING_DATASOURCE_USERNAME=${MYSQL_USER}
@@ -33,11 +33,15 @@ services:
   frontend:
     build:
       context: ./frontend
-    container_name: meal-frontend
+    #container_name: meal-frontend
     ports:
       - "80:80"
 
 volumes:
   meal_data:
+
+#networks:
+#  meal-network:
+#    driver: bridge
 
 
