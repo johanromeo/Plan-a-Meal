@@ -1,4 +1,4 @@
-const baseApiUrl = "http://localhost:8080/household-people";
+const baseApiUrl = "http://localhost:80/household-people";
 
 let isEditMode = false; // Flag to determine if we're adding or editing
 let editPersonId = null; // Store the ID of the person being edited
