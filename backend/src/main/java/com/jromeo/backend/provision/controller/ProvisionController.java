@@ -16,7 +16,7 @@ import java.util.List;
  * @author Johan Romeo
  */
 @RestController
-@RequestMapping("/provisions")
+@RequestMapping("/api/provisions")
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class ProvisionController {

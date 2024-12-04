@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Johan Romeo
  */
 @RestController
-@RequestMapping("/grocery-list")
+@RequestMapping("/api/grocery-list")
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class GroceryShoppingListController {

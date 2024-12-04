@@ -17,7 +17,7 @@ import java.util.List;
  * @author Johan Romeo
  */
 @RestController
-@RequestMapping("/household-people")
+@RequestMapping("/api/household-people")
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class PersonController {

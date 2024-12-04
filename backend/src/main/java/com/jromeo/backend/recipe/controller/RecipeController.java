@@ -20,7 +20,7 @@ import java.util.List;
  * @author Johan Romeo
  */
 @RestController
-@RequestMapping("/recipes")
+@RequestMapping("/api/recipes")
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class RecipeController {
