@@ -15,7 +15,7 @@ services:
       - meal_data:/var/lib/mysql
 
   backend:
-    build: /backend
+    build: ./backend
     container_name: meal-backend
     environment:
       - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
