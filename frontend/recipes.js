@@ -1,4 +1,4 @@
-const recipesApiUrl = "http://localhost:8080/recipes";
+const recipesApiUrl = "/api/recipes";
 let recipeIdToDelete = null; // Variable to store the ID of the recipe to delete
 
 document.addEventListener("DOMContentLoaded", () => {

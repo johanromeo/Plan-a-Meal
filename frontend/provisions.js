@@ -1,4 +1,4 @@
-const baseApiUrl = "http://localhost:8080/provisions";
+const baseApiUrl = "/api/provisions";
 
 let isEditMode = false; // Flag to determine if we're adding or editing
 let editProvisionId = null; // Store the ID of the provision being edited
@@ -207,7 +207,7 @@ function renderProvisions(provisions) {
 function generateGroceryList() {
   showLoadingOverlay("Sending your grocery list...");
 
-  fetch("http://localhost:8080/grocery-list/generate-list", {
+  fetch("/api/grocery-list/generate-list", {
     method: "POST",
   })
     .then((response) => {
