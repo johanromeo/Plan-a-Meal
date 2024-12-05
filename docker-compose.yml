@@ -35,7 +35,7 @@ services:
       context: ./frontend
     #container_name: meal-frontend
     ports:
-      - "80:80"
+      - "8000:8000"
 
 volumes:
   meal_data:
