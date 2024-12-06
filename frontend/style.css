@@ -239,9 +239,6 @@ input[type="email"] {
 
 /* ALL STYLING FOR PROVISIONS.HTML */
 
-/* Provisions Page Styles */
-
-/* Grid body */
 .grid-body {
   /* Text Settings */
   font-family: sans-serif;
@@ -347,11 +344,6 @@ input[type="email"] {
   background-color: #ff9999;
 }
 
-/* Heading Style */
-/* .heading {
-  font-size: 50px;
-  color: #2bfff4;
-} */
 .heading {
   font-size: 80px;
   color: #ffffff;
@@ -473,6 +465,7 @@ input[type="email"] {
 #search-input::placeholder {
   color: #cfcacad7;
 }
+
 /* Checkbox container */
 .checkbox-container {
   display: flex;
@@ -580,7 +573,6 @@ input[type="email"] {
 
 .action-buttons {
   display: flex;
-  /* justify-content: flex-start; */
   gap: 10px;
 }
 

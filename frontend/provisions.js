@@ -77,10 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.target == emailSentModal) {
       closeEmailSentModal();
     }
-    // Prevent closing the loading overlay when clicking outside
-    // if (event.target == loadingOverlay) {
-    //   // Do nothing
-    // }
   };
 });
 
