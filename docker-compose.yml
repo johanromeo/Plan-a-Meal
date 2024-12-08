@@ -3,6 +3,11 @@ version: "3.8"
 services:
   mysql:
     image: mysql:latest
+    command:
+      [
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_swedish_ci"
+      ]
     environment:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
