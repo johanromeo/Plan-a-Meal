@@ -13,7 +13,7 @@ public interface ProvisionRepository extends JpaRepository<ProvisionEntity, Inte
 
     @Query(value =
             "SELECT * FROM provisions " +
-            "ORDER BY name DESC "
+            "ORDER BY provision_name DESC "
             , nativeQuery = true)
     List<ProvisionEntity> findAllBySortedDescName();
 
