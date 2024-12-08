@@ -42,6 +42,12 @@ public class ProvisionService {
         return provisionMapper.mapToDtos(provisionEntities);
     }
 
+    public List<ProvisionDto> findAllProvisionsBySortedDescName() {
+        List<ProvisionEntity> provisionEntities = provisionRepository.findAllBySortedDescName();
+
+        return provisionMapper.mapToDtos(provisionEntities);
+    }
+
     public List<ProvisionDto> findAllPositiveProvisions() {
         List<ProvisionEntity> provisionEntities = provisionRepository.findAllAvailableProvisionsInHousehold();
 

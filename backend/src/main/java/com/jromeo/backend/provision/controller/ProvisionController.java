@@ -34,9 +34,14 @@ public class ProvisionController {
         return new ResponseEntity<>(provisionService.findProvisionById(id), HttpStatus.OK);
     }
 
+//    @GetMapping
+//    public ResponseEntity<List<ProvisionDto>> findAllProvisions() {
+//        return new ResponseEntity<>(provisionService.findAllProvisions(), HttpStatus.OK);
+//    }
+
     @GetMapping
     public ResponseEntity<List<ProvisionDto>> findAllProvisions() {
-        return new ResponseEntity<>(provisionService.findAllProvisions(), HttpStatus.OK);
+        return new ResponseEntity<>(provisionService.findAllProvisionsBySortedDescName(), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

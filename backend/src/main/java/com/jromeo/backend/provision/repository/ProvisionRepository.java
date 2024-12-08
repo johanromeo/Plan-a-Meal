@@ -10,6 +10,13 @@ import java.util.List;
 
 public interface ProvisionRepository extends JpaRepository<ProvisionEntity, Integer> {
 
+
+    @Query(value =
+            "SELECT * FROM provisions " +
+            "ORDER BY name DESC "
+            , nativeQuery = true)
+    List<ProvisionEntity> findAllBySortedDescName();
+
     /**
      * Custom query to find all provisions that meet the requirements to be added in the grocery shopping list.
      * Used by {@link GroceryShoppingListService} to construct an email of missing provisions.
