@@ -10,7 +10,11 @@ import java.util.List;
 
 public interface ProvisionRepository extends JpaRepository<ProvisionEntity, Integer> {
 
-
+    /**
+     * Custom query to find all provisions with names in ascending order.
+     *
+     * @return the list of provisions.
+     */
     @Query(value =
             "SELECT * FROM provisions " +
             "ORDER BY provision_name ASC"
