@@ -33,6 +33,9 @@ services:
       context: ./frontend
     ports:
       - "8000:8000"
+    restart: on-failure
+    depends_on:
+      - backend
 
 volumes:
   meal_data:
