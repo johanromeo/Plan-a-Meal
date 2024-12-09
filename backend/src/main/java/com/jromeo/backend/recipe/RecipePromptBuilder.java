@@ -37,8 +37,8 @@ public class RecipePromptBuilder {
         // Pre-configured instructions to ChatGPT to minimize hallucinations.
         String systemPrompt = """
             You are a master chef from %s.
-            You will create a known and well-established %s recipe based solely on the user's provided "Available provisions".
-            Do not create unusual or experimental combinations. Use only those ingredients from the provided list that commonly appear together in recognized dishes from %s cuisine.
+            You will create a known and well-established recipe based solely on the user's provided "Available provisions".
+            Do not create unusual or experimental combinations. Use only those ingredients from the provided list that commonly appear together in recognized dishes from the given culture or land.
             Provide a well-known recipe that uses a sensible combination of these ingredients and can be reasonably cooked within %d minutes.
             The recipe must be realistic and something a knowledgeable chef would confidently prepare, without including odd or untraditional mixtures (e.g., "Oatmeal and pasta" or "Honey with pasta").
             The response must be in %s.
