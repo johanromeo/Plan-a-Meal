@@ -80,7 +80,7 @@ function loadRecipes() {
 
 function renderRecipes(recipes) {
   const container = document.querySelector(".recipes-container");
-  container.innerHTML = ""; // Clear existing content
+  container.innerHTML = "";
 
   recipes.forEach((recipe) => {
     const recipeItem = document.createElement("div");
@@ -98,7 +98,7 @@ function renderRecipes(recipes) {
       ? recipe.instructions.join(" ")
       : recipe.instructions;
 
-    instructions.textContent = instructionsText.substring(0, 100) + "..."; // Show a snippet
+    instructions.textContent = instructionsText.substring(0, 100) + "...";
 
     // Action Buttons
     const actionButtons = document.createElement("div");

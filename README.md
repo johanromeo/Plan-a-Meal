@@ -47,8 +47,11 @@ Manage the recipes of your household with the following features: <br>
 - View a specific recipe.
 - Remove a recipe.
 
+---
+
 ## Usage
 
+### 
 
 ## Installation
 Step-by-step instructions on how to install and set up your project.
