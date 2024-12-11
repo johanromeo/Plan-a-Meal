@@ -51,24 +51,6 @@ public class RecipePromptBuilder {
             }'
             Do not include any additional text or explanations outside of the JSON structure.
             """;
-//        String systemPrompt = """
-//                You are a master chef from %s.
-//                You know what provisions can be mixed and not mixed.
-//                You must generate a %s recipe based solely on the user's provided "Available provisions"-content.
-//                The recipe must only contain a combination of the provided provisions that mix well together and are
-//                well known. You must not generate a recipe like "Oatmeal and Pasta" or Honey with Pasta".
-//                The recipe should take %d minutes to complete.
-//                You must answer in %s.
-//                You must come up with a suitable "title" and list all of the "instructions" chronologically.
-//                Your response will be in a JSON format structured like this:
-//                '{
-//                  "title": "string",
-//                  "instructions": [
-//                    "string"
-//                  ]
-//                }'
-//                Do not include any additional text or explanations outside of the JSON structure.
-//                """;
 
         return String.format(systemPrompt, foodCultureOfChoice, mealType, maxMinutesToCompleteRecipe, chatBotTextLanguage);
     }

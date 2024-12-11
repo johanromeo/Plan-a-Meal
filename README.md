@@ -51,7 +51,38 @@ Manage the recipes of your household with the following features: <br>
 
 ## Usage
 
-### 
+Here is a simple demonstration of the web application's functionality.
+
+### Landing page
+
+The clickable images gives us three options:
+
+- People
+- Provisions
+- Recipes
+
+Let's start with **People** by clicking on its image.
+
+![1.png](usage-example%2F1.png)
+
+### People
+
+Here, we have an overview of the People of the household along with links that either takes us back to the landing page or to the next steps.   
+![2.png](usage-example%2F2.png)
+
+We start by clicking on "Add Person"
+![3.png](usage-example%2F3.png)
+
+And type in what's necessary - Your **name** and your **email address**.   
+The name could pretty much be whatever you want, but it's important to type in your correct email address, since it will be used to later receive an email of the grocery shopping list, containing all the provisions that are missing and need to be bought.
+
+![4.png](usage-example%2F4.png)
+
+The result should look like the image above, and we are now ready for the next step, adding Provisions to our household's inventory!
+Go ahead and click on
+
+### Provisions
+
 
 ## Installation
 Step-by-step instructions on how to install and set up your project.
