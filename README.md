@@ -79,10 +79,49 @@ The name could pretty much be whatever you want, but it's important to type in y
 ![4.png](usage-example%2F4.png)
 
 The result should look like the image above, and we are now ready for the next step, adding Provisions to our household's inventory!
-Go ahead and click on
+Go ahead and click on "Provisions".
 
 ### Provisions
+Here is the Provisions overview. Let's add a provision to the household's inventory by clicking on the "Add Provision" button.
 
+![5.png](usage-example%2F5.png)
+
+We type in the provision's **name** and **image URL**. DallE 2 is used to generate some default images of commonly used provisions. When we want to add more, simply download images of particular provisions and place them in "images/provisions" before adding them. 
+![6.png](usage-example%2F6.png)
+
+"Mjölk" and its corresponding image have been added. By default, each provision's unit is set to 0 as shown. We can decrement and increment the units by pressing "-" or "+".
+When unit reaches "0", the "Add to Grocery List" checkbox appears. If we click that, "Mjölk" will be added to the grocery shopping list.
+And of course, we can either edit the provision or remove it from our inventory.
+![7.png](usage-example%2F7.png)
+
+Let's add some more commonly used provisions, shall we?
+![8.png](usage-example%2F8.png)
+
+Now we increment the units of some of the provisions. Let us add some of them to the grocery list as well and see what happens!
+First thing's first, we press the "Generate Grocery Shopping List" button.
+![9.png](usage-example%2F9.png)
+
+It says that we have received an email with a grocery shopping list. Let's check it out!
+![10.png](usage-example%2F10.png)
+
+If we go to the mail we added earlier, indeed, we see that we have received a grocery shopping list of the provisions we wanted to add earlier.
+
+![11.png](usage-example%2F11.png)
+
+Next, let's see how the AI-chef can generate a recipe for us with the available provisions.   
+_Note: the chef will only use the provisions with a positive number of units._   
+Now we press the "Generate Recipe" button.
+![12.png](usage-example%2F12.png)
+
+Here have some options to chose from in the drop-down menus.
+![13.png](usage-example%2F13.png)
+
+Let's try something Italian? Good, now press the "Generate Recipe" button.
+![14.png](usage-example%2F14.png)
+
+We now have generated a recipe with step-by-step instructions on how to do it.
+Lastly, we can view the recipe and in case we don't like it, we can of course tell the chef we didn't like it very much and delete it!
+![15.png](usage-example%2F15.png)
 
 ## Installation
 Step-by-step instructions on how to install and set up your project.
