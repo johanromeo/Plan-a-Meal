@@ -123,8 +123,12 @@ We now have generated a recipe with step-by-step instructions on how to do it.
 Lastly, we can view the recipe and in case we don't like it, we can of course tell the chef we didn't like it very much and delete it!
 ![15.png](usage-example%2F15.png)
 
+
 ## Installation
-Step-by-step instructions on how to install and set up your project.
+
+There are a couple of things we need to do before we can use the web application:
+
+
 
 ```
 # Clone the repository
