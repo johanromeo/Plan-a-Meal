@@ -128,17 +128,68 @@ Lastly, we can view the recipe and in case we don't like it, we can of course te
 
 There are a couple of things we need to do before we can use the web application:
 
+### Generate an App Password on your Gmail account
+- In order to send the grocery shopping list by email, you need to generate an "App Password" from a Gmail account, like shown in [this video tutorial](https://youtu.be/FYq9yWgrO8o?si=oBtTRizcJnXnv7P-&t=242).
+- Save the App Password, we'll need it later.
 
+### Obtain an API-key from your OpenAI pro account.
+- In order to generate the recipes, you need to have an OpenAI account with the pro plan in order to generate an API-key.
+- Visit [this link](https://platform.openai.com/settings/organization/api-keys) and click on the green "+ Create new secret key"-button to generate your key.
+- Save the API-key, we'll need it later.
 
+### Install Docker Desktop
+This web application consists of three Docker Containers:
+- The backend
+- A MySQL database 
+- And the frontend
+
+In order to run these containers, install [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) for your machine.
+
+### Clone this repo
+```bash
+# Clone the repository to your machine
+git clone https://github.com/johanromeo/Plan-a-Meal.git
+
+# Go to the project's root folder
+cd Plan-a-Meal
 ```
-# Clone the repository
-git clone https://github.com/your_username/project_name.git
 
-# Navigate to the project directory
-cd project_name
+### Create an .env file
+The last step is to create an ".env"-file containing all of our secrets that we pass to the Docker Containers as environment variables. <br>
+In the **project's root folder**, create a new "File" and name it "**.env**" - like this:
 
-# Install dependencies
-npm install
+![env_file.png](usage-example%2Fenv_file.png)
+
+Finally, copy and paste these environment variables in your .env file and add your own secrets as shown below: 
+
+```text
+# Database configuration
+MYSQL_ROOT_PASSWORD=set_a_root_password
+MYSQL_DATABASE=name_your_database
+MYSQL_USER=set_a_username
+MYSQL_PASSWORD=set_a_password
+SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/${MYSQL_DATABASE}
+
+# Gmail configuration
+SPRING_MAIL_USERNAME=type_in_your_gmail_email_address_here
+SPRING_MAIL_PASSWORD=type_in_your_generated_Gmail_App_Password_here
+
+# OpenAI configuration
+OPENAI_API_KEY=type_in_your_generated_OpenAI_APIkey_here
 ```
+### Start the Docker Containers
+From the project's root folder, type in the following command:
+```bash
+docker-compose up --build -d
+```
+After the images has been downloaded, type in the following command:
+```bash
+docker ps
+```
+You should now see this:
+![docker_ps.png](usage-example%2Fdocker_ps.png)
 
+### Use the web application
+- Open your brower and type in ```localhost:8000```
+- Let's now find out how we navigate and. 
 
