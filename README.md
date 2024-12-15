@@ -107,15 +107,15 @@ OPENAI_API_KEY=type_in_your_generated_OpenAI_APIkey_here
 ```bash
 docker-compose up --build -d
 ```
-- After the images has been downloaded, type in the following command:
+- After the build is done, type in the following command:
 ```bash
 docker ps
 ```
-You should now see this:
+You should now see three running Docker Containers like this:
 ![docker_ps.png](usage-example%2Fdocker_ps.png)
 
 ### Use the web application
-- Open ```http://localhost:8000``` and let's have a quick lookaround!
+- Open http://localhost:8000 in your browser and let's have a quick lookaround!
 
 ---
 
