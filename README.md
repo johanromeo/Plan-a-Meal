@@ -125,7 +125,7 @@ Here is a simple demonstration of the web application's functionality.
 
 ### Landing page
 
-The clickable images gives us three options:
+These clickable images gives us three options:
 
 - People
 - Provisions
@@ -137,13 +137,13 @@ Let's start with **People** by clicking on its image.
 
 ### People
 
-Here, we have an overview of the People of the household along with links that either takes us back to the landing page or to the next steps.   
+Here, we have an overview of the People of the household along with the links in the navigation bar that either takes us back to the landing page or to the next steps.   
 ![2.png](usage-example%2F2.png)
 
 We start by clicking on **"Add Person"**
 ![3.png](usage-example%2F3.png)
 
-And type in what's necessary - Your **name** and your **email address**.   
+And type in what's necessary - Your **name** and **email address**.   
 The name could pretty much be whatever you want, but it's important to type in your correct email address, since it will be used to later receive an email of the grocery shopping list, containing all the provisions that are missing and need to be bought.
 
 ![4.png](usage-example%2F4.png)
@@ -157,11 +157,13 @@ Here is the Provisions overview. Let's add a provision to the household's invent
 ![5.png](usage-example%2F5.png)
 
 We type in the provision's **name** and **image URL**. <br>
-DallE 2 is used to generate some default images of commonly used provisions. When we want to add more, simply download images of particular provisions and place them in "images/provisions" before adding them. 
+I have used DallE 2 to generate some default images of commonly used provisions. <br>
+When we want to add more, simply download images of particular provisions and place them in "images/provisions" before adding them. 
 ![6.png](usage-example%2F6.png)
 
-"Mjölk" and its corresponding image have been added. By default, each provision's unit is set to 0 as shown. We can decrement and increment the units by pressing "-" or "+".
-When unit reaches "0", the "Add to Grocery List" checkbox appears. If we click that, "Mjölk" will be added to the grocery shopping list.
+"Mjölk" and its corresponding image have been added.   
+By default, each provision's unit is set to 0 as shown. We can decrement and increment the units by pressing "-" or "+".
+When unit reaches "0", the "Add to Grocery List" checkbox appears. If we click that, "Mjölk" will be added to the grocery shopping list.   
 And of course, we can either edit the provision or remove it from our inventory.
 ![7.png](usage-example%2F7.png)
 
@@ -195,3 +197,7 @@ Lastly, we can view the recipe and in case we don't like it, we can of course te
 ![15.png](usage-example%2F15.png)
 
 ---
+
+## License 
+
+- [MIT](LICENSE)
