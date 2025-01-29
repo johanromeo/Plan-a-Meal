@@ -57,7 +57,7 @@ There are a couple of things we need to do before we can use the web application
 - In order to send the grocery shopping list by email, you need to generate an "App Password" from a Gmail account, like shown in [this video tutorial](https://youtu.be/FYq9yWgrO8o?si=oBtTRizcJnXnv7P-&t=242).
 - Save the App Password, we'll need it later.
 
-### Obtain an API-key from your OpenAI pro account.
+### Obtain an API-key from your OpenAI account.
 - In order to generate the recipes, you need to have an OpenAI account with the pro plan in order to generate an API-key.
 - Visit [this link](https://platform.openai.com/settings/organization/api-keys) and click on the green "+ Create new secret key"-button to generate your key.
 - Save the API-key, we'll need it later.
